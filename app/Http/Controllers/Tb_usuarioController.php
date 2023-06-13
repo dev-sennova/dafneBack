@@ -14,7 +14,8 @@ class Tb_usuarioController extends Controller
         ->get();
 
         return [
-                'users' => $users
+            'estado' => 'Ok',
+            'users' => $users
         ];
     }
 
@@ -25,7 +26,8 @@ class Tb_usuarioController extends Controller
         ->get();
 
         return [
-                'users' => $users
+            'estado' => 'Ok',
+            'users' => $users
         ];
     }
 
@@ -42,6 +44,11 @@ class Tb_usuarioController extends Controller
         $tb_usuario->password=$request->password;
         $tb_usuario->estado=1;
         $tb_usuario->save();
+
+        return response()->json([
+            'estado' => 'Ok',
+            'message' => 'Usuario creado con éxito'
+           ]);
     }
 
     public function update(Request $request)
@@ -57,6 +64,11 @@ class Tb_usuarioController extends Controller
         $tb_usuario->password=$request->password;
         $tb_usuario->estado='1';
         $tb_usuario->save();
+
+        return response()->json([
+            'estado' => 'Ok',
+            'message' => 'Usuario actualizado con éxito'
+           ]);
     }
 
     public function deactivate(Request $request)
@@ -65,6 +77,11 @@ class Tb_usuarioController extends Controller
         $tb_usuario=Tb_usuario::findOrFail($request->id);
         $tb_usuario->estado='0';
         $tb_usuario->save();
+
+        return response()->json([
+            'estado' => 'Ok',
+            'message' => 'Usuario desactivado con éxito'
+           ]);
     }
 
     public function activate(Request $request)
@@ -73,5 +90,10 @@ class Tb_usuarioController extends Controller
         $tb_usuario=Tb_usuario::findOrFail($request->id);
         $tb_usuario->estado='1';
         $tb_usuario->save();
+
+        return response()->json([
+            'estado' => 'Ok',
+            'message' => 'Usuario activado con éxito'
+           ]);
     }
 }
