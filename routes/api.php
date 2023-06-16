@@ -36,6 +36,61 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("usuario/deactivate", "Tb_usuarioController@deactivate");
      Route::put("usuario/activate", "Tb_usuarioController@activate");
      Route::get("usuario/selectusuario/{id}", "Tb_usuarioController@indexOne");
+
+     Route::get("rol", "Tb_rolController@index");
+     Route::post("rol/store", "Tb_rolController@store");
+     Route::put("rol/update", "Tb_rolController@update");
+     Route::put("rol/deactivate", "Tb_rolController@deactivate");
+     Route::put("rol/activate", "Tb_rolController@activate");
+     Route::get("rol/selectrol/{id}", "Tb_rolController@indexOne");
+
+     Route::get("suenos", "Tb_suenosController@index");
+     Route::post("suenos/store", "Tb_suenosController@store");
+     Route::put("suenos/update", "Tb_suenosController@update");
+     Route::put("suenos/deactivate", "Tb_suenosController@deactivate");
+     Route::put("suenos/activate", "Tb_suenosController@activate");
+     Route::get("suenos/selectsuenos/{id}", "Tb_suenosController@indexOne");
+
+     Route::get("ideas", "Tb_ideasController@index");
+     Route::post("ideas/store", "Tb_ideasController@store");
+     Route::put("ideas/update", "Tb_ideasController@update");
+     Route::put("ideas/deactivate", "Tb_ideasController@deactivate");
+     Route::put("ideas/activate", "Tb_ideasController@activate");
+     Route::get("ideas/selectideas/{id}", "Tb_ideasController@indexOne");
+
+     Route::get("hobbies", "Tb_hobbiesController@index");
+     Route::post("hobbies/store", "Tb_hobbiesController@store");
+     Route::put("hobbies/update", "Tb_hobbiesController@update");
+     Route::put("hobbies/deactivate", "Tb_hobbiesController@deactivate");
+     Route::put("hobbies/activate", "Tb_hobbiesController@activate");
+     Route::get("hobbies/selecthobbies/{id}", "Tb_hobbiesController@indexOne");
+
+     Route::get("criterios_evaluacion", "Tb_criterios_evaluacionController@index");
+     Route::post("criterios_evaluacion/store", "Tb_criterios_evaluacionController@store");
+     Route::put("criterios_evaluacion/update", "Tb_criterios_evaluacionController@update");
+     Route::put("criterios_evaluacion/deactivate", "Tb_criterios_evaluacionController@deactivate");
+     Route::put("criterios_evaluacion/activate", "Tb_criterios_evaluacionController@activate");
+     Route::get("criterios_evaluacion/selectcriterios_evaluacion/{id}", "Tb_criterios_evaluacionController@indexOne");
+
+     Route::get("usuario_hobbies", "Tb_usuario_hobbiesController@index");
+     Route::post("usuario_hobbies/store", "Tb_usuario_hobbiesController@store");
+     Route::put("usuario_hobbies/update", "Tb_usuario_hobbiesController@update");
+     Route::get("usuario_hobbies/selectusuario_hobbies/{id}", "Tb_usuario_hobbiesController@indexOne");
+
+     Route::get("usuario_ideas", "Tb_usuario_ideasController@index");
+     Route::post("usuario_ideas/store", "Tb_usuario_ideasController@store");
+     Route::put("usuario_ideas/update", "Tb_usuario_ideasController@update");
+     Route::get("usuario_ideas/selectusuario_ideas/{id}", "Tb_usuario_ideasController@indexOne");
+
+     Route::get("usuario_rol", "Tb_usuario_rolController@index");
+     Route::post("usuario_rol/store", "Tb_usuario_rolController@store");
+     Route::put("usuario_rol/update", "Tb_usuario_rolController@update");
+     Route::get("usuario_rol/selectusuario_rol/{id}", "Tb_usuario_rolController@indexOne");
+
+     Route::get("usuario_suenos", "Tb_usuario_suenosController@index");
+     Route::post("usuario_suenos/store", "Tb_usuario_suenosController@store");
+     Route::put("usuario_suenos/update", "Tb_usuario_suenosController@update");
+     Route::get("usuario_suenos/selectusuario_suenos/{id}", "Tb_usuario_suenosController@indexOne");
     });
 
 });

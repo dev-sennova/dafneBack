@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tb_usuario;
-use App\Models\Tb_usuario_rol;
+use App\Models\Tb_rol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Tb_usuarioController extends Controller
+class Tb_rolController extends Controller
 {
     public function index(Request $request)
     {
-        $users = Tb_usuario::orderBy('id','desc')
+        $rol = Tb_rol::orderBy('id','desc')
         ->get();
 
         return [
             'estado' => 'Ok',
-            'users' => $users
+            'rol' => $rol
         ];
     }
 
     public function indexOne(Request $request)
     {
-        $users = Tb_usuario::orderBy('id','desc')
-        ->where('tb_usuario.id','=',$request->id)
+        $rol = Tb_rol::orderBy('id','desc')
+        ->where('tb_rol.id','=',$request->id)
         ->get();
 
         return [
             'estado' => 'Ok',
-            'users' => $users
+            'rol' => $rol
         ];
     }
 
@@ -37,33 +36,19 @@ class Tb_usuarioController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_usuario=new Tb_usuario();
-            $tb_usuario->nombres=$request->nombres;
-            $tb_usuario->apellidos=$request->apellidos;
-            $tb_usuario->documento=$request->documento;
-            $tb_usuario->direccion=$request->direccion;
-            $tb_usuario->telefono=$request->telefono;
-            $tb_usuario->email=$request->email;
-            $tb_usuario->password=$request->password;
-            $tb_usuario->estado=1;
+            $tb_rol=new Tb_rol();
+            $tb_rol->rol=$request->rol;
+            $tb_rol->estado=1;
 
-            if ($tb_usuario->save()) {
-
-                $idtabla=DB::getPdo()->lastInsertId();
-
-                $tb_usuario_rol=new Tb_usuario_rol();
-                $tb_usuario_rol->idUsuario=$idtabla;
-                $tb_usuario_rol->idRol=$request->idRol;
-                $tb_usuario_rol->save();
-
+            if ($tb_rol->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Usuario creado con éxito'
+                    'message' => 'Rol creado con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Usuario no pudo ser creado'
+                    'message' => 'Rol no pudo ser creado'
                    ]);
             }
         } catch (\Exception $e) {
@@ -77,25 +62,19 @@ class Tb_usuarioController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_usuario=Tb_usuario::findOrFail($request->id);
-            $tb_usuario->nombres=$request->nombres;
-            $tb_usuario->apellidos=$request->apellidos;
-            $tb_usuario->documento=$request->documento;
-            $tb_usuario->direccion=$request->direccion;
-            $tb_usuario->telefono=$request->telefono;
-            $tb_usuario->email=$request->email;
-            $tb_usuario->password=$request->password;
-            $tb_usuario->estado='1';
+            $tb_rol=Tb_rol::findOrFail($request->id);
+            $tb_rol->rol=$request->rol;
+            $tb_rol->estado='1';
 
-            if ($tb_usuario->save()) {
+            if ($tb_rol->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Usuario actualizado con éxito'
+                    'message' => 'Rol actualizado con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Usuario no pudo ser actualizado'
+                    'message' => 'Rol no pudo ser actualizado'
                    ]);
             }
         } catch (\Exception $e) {
@@ -109,18 +88,18 @@ class Tb_usuarioController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_usuario=Tb_usuario::findOrFail($request->id);
-            $tb_usuario->estado='0';
+            $tb_rol=Tb_rol::findOrFail($request->id);
+            $tb_rol->estado='0';
 
-            if ($tb_usuario->save()) {
+            if ($tb_rol->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Usuario desactivado con éxito'
+                    'message' => 'Rol desactivado con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Usuario no pudo ser desactivado'
+                    'message' => 'Rol no pudo ser desactivado'
                    ]);
             }
         } catch (\Exception $e) {
@@ -134,18 +113,18 @@ class Tb_usuarioController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_usuario=Tb_usuario::findOrFail($request->id);
-            $tb_usuario->estado='1';
+            $tb_rol=Tb_rol::findOrFail($request->id);
+            $tb_rol->estado='1';
 
-            if ($tb_usuario->save()) {
+            if ($tb_rol->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Usuario activado con éxito'
+                    'message' => 'Rol activado con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Usuario no pudo ser activado'
+                    'message' => 'Rol no pudo ser activado'
                    ]);
             }
         } catch (\Exception $e) {
