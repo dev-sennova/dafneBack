@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\Models\Tb_rol;
 
-class Tb_rolSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,20 +12,21 @@ class Tb_rolSeeder extends Seeder
      */
     public function run()
     {
-        $data = json_decode(file_get_contents(__DIR__ . '/json/tb_rol.json'));
+        $data = json_decode(file_get_contents(__DIR__ . '/json/tb_user.json'));
         foreach ($data as $item){
-            Tb_rol::create(array(
+            User::create(array(
                 'id' => $item->id,
-                'rol' => $item->rol,
-                'estado' => $item->estado,
+                'name' => $item->name,
+                'email' => $item->email,
+                'password' => $item->password,
             ));
             }
         /*
-        DB::table('tb_rol')->insert([
+        DB::table('User')->insert([
             'rol' => 'SuperAdministrador',
         ]);
 
-        DB::table('tb_rol')->insert([
+        DB::table('User')->insert([
             'rol' => 'Empresario',
         ]
         );

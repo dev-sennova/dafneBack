@@ -9,7 +9,7 @@ class Tb_usuario extends Model
 {
     protected $table = 'tb_usuario';
 
-    protected $fillable = ['nombres','apellidos','documento','direccion','telefono','email','password','estado'];
+    protected $fillable = ['nombre','tipodocumento','documento','direccion','telefono','ciudad','email','sexo','estado'];
 
     public $timestamps = false;
 }

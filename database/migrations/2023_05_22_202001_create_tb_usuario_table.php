@@ -15,13 +15,14 @@ class CreateTbUsuarioTable extends Migration
     {
         Schema::create('tb_usuario', function (Blueprint $table) {
             $table->id();
-            $table->string('nombres');
-            $table->string('apellidos');
+            $table->string('nombre');
+            $table->string('tipodocumento');
             $table->string('documento');
             $table->string('direccion');
             $table->string('telefono');
+            $table->string('ciudad');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('sexo');
             $table->boolean('estado')->default(1);
         });
     }
