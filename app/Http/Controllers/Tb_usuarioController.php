@@ -51,10 +51,11 @@ class Tb_usuarioController extends Controller
 
             if ($tb_usuario->save()) {
 
-                $idtabla=DB::getPdo()->lastInsertId();
+                //$idtabla=DB::getPdo()->lastInsertId();
+                $idUsuarioRecienGuardado = $tb_usuario->id;
 
                 $tb_usuario_rol=new Tb_usuario_rol();
-                $tb_usuario_rol->idUsuario=$idtabla;
+                $tb_usuario_rol->idUsuario=$idUsuarioRecienGuardado;
                 $tb_usuario_rol->idRol=$request->idRol;
                 $tb_usuario_rol->save();
 

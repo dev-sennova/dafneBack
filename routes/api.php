@@ -44,6 +44,13 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("rol/activate", "Tb_rolController@activate");
      Route::get("rol/selectrol/{id}", "Tb_rolController@indexOne");
 
+     Route::get("ciudad", "Tb_ciudadController@index");
+     Route::post("ciudad/store", "Tb_ciudadController@store");
+     Route::put("ciudad/update", "Tb_ciudadController@update");
+     Route::put("ciudad/deactivate", "Tb_ciudadController@deactivate");
+     Route::put("ciudad/activate", "Tb_ciudadController@activate");
+     Route::get("ciudad/selectciudad/{id}", "Tb_ciudadController@indexOne");
+
      Route::get("suenos", "Tb_suenosController@index");
      Route::post("suenos/store", "Tb_suenosController@store");
      Route::put("suenos/update", "Tb_suenosController@update");

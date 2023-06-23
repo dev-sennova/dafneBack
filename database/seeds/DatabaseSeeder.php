@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tb_usuario_rol;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Foreach_;
@@ -32,6 +33,33 @@ class DatabaseSeeder extends Seeder
 
         //funcion principal que llama cada seeder
         $this->call(UsersSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_usuario'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_usuarioSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_usuario_rol'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_usuario_rolSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_ciudad'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_ciudadSeeder::class);
 //-------------------------------------------------------------------//
 
 //--Tener cuidado con este cierre--//
