@@ -36,6 +36,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("usuario/deactivate", "Tb_usuarioController@deactivate");
      Route::put("usuario/activate", "Tb_usuarioController@activate");
      Route::get("usuario/selectusuario/{id}", "Tb_usuarioController@indexOne");
+     Route::get("usuario/selectemail/{id}", "Tb_usuarioController@indexUser");
 
      Route::get("rol", "Tb_rolController@index");
      Route::post("rol/store", "Tb_rolController@store");
@@ -71,6 +72,8 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("hobbies/deactivate", "Tb_hobbiesController@deactivate");
      Route::put("hobbies/activate", "Tb_hobbiesController@activate");
      Route::get("hobbies/selecthobbies/{id}", "Tb_hobbiesController@indexOne");
+     Route::get("hobbies/selecthobbiesgeneral", "Tb_hobbiesController@indexGeneral");
+     Route::get("hobbies/selecthobbiespropio/{id}", "Tb_hobbiesController@indexPropio");
 
      Route::get("criterios_evaluacion", "Tb_criterios_evaluacionController@index");
      Route::post("criterios_evaluacion/store", "Tb_criterios_evaluacionController@store");
@@ -98,6 +101,21 @@ Route::group(['prefix' => 'auth'], function () {
      Route::post("usuario_suenos/store", "Tb_usuario_suenosController@store");
      Route::put("usuario_suenos/update", "Tb_usuario_suenosController@update");
      Route::get("usuario_suenos/selectusuario_suenos/{id}", "Tb_usuario_suenosController@indexOne");
+
+     Route::get("escolaridad", "Tb_escolaridadController@index");
+     Route::post("escolaridad/store", "Tb_escolaridadController@store");
+     Route::put("escolaridad/update", "Tb_escolaridadController@update");
+     Route::get("escolaridad/selectescolaridad/{id}", "Tb_escolaridadController@indexOne");
+
+     Route::get("ocupacion", "Tb_ocupacionController@index");
+     Route::post("ocupacion/store", "Tb_ocupacionController@store");
+     Route::put("ocupacion/update", "Tb_ocupacionController@update");
+     Route::get("ocupacion/selectocupacion/{id}", "Tb_ocupacionController@indexOne");
+
+     Route::get("experiencia", "Tb_experienciaController@index");
+     Route::post("experiencia/store", "Tb_experienciaController@store");
+     Route::put("experiencia/update", "Tb_experienciaController@update");
+     Route::get("experiencia/selectexperiencia/{id}", "Tb_experienciaController@indexOne");
     });
 
 });

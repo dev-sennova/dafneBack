@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tb_hobbies;
+use App\Models\Tb_usuario_hobbies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,38 @@ class Tb_hobbiesController extends Controller
 {
     public function index(Request $request)
     {
-        $hobbies = Tb_hobbies::orderBy('id','desc')
+        $hobbies = Tb_hobbies::orderBy('id','asc')
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'hobbies' => $hobbies
+        ];
+    }
+
+    public function indexGeneral(Request $request)
+    {
+        $hobbies = Tb_hobbies::orderBy('id','asc')
+        ->where('tb_hobbies.visibilidad','=','1')
+        ->where('tb_hobbies.moderacion','=','1')
+        ->select('tb_hobbies.id','tb_hobbies.hobby')
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'hobbies' => $hobbies
+        ];
+    }
+
+    public function indexPropio(Request $request)
+    {
+        //Modelo::join('tablaqueseune',basicamente un on)
+        $hobbies = Tb_hobbies::join('tb_usuario_hobbies','tb_hobbies.id','=','tb_usuario_hobbies.idHobby')
+        ->where('tb_hobbies.visibilidad','=','2')
+        ->where('tb_hobbies.moderacion','=','1')
+        ->where('tb_usuario_hobbies.idUsuario','=',$request->id)
+        ->select('tb_hobbies.id','tb_hobbies.hobby')
+        ->orderBy('tb_hobbies.id','asc')
         ->get();
 
         return [
@@ -38,19 +70,26 @@ class Tb_hobbiesController extends Controller
         try {
             $tb_hobbies=new Tb_hobbies();
             $tb_hobbies->hobby=$request->hobby;
-            $tb_hobbies->visibilidad=$request->visibilidad;
-            $tb_hobbies->moderacion=$request->moderacion;
+            $tb_hobbies->visibilidad=2;
+            $tb_hobbies->moderacion=1;
             $tb_hobbies->estado=1;
 
             if ($tb_hobbies->save()) {
+                $idHobbyRecienGuardado = $tb_hobbies->id;
+
+                $tb_usuario_hobbies=new Tb_usuario_hobbies();
+                $tb_usuario_hobbies->idUsuario=$request->idUsuario;
+                $tb_usuario_hobbies->idHobby=$idHobbyRecienGuardado;
+                $tb_usuario_hobbies->save();
+
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Hobbies creado con éxito'
+                    'message' => 'Hobbie creado con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Hobbies no pudo ser creado'
+                    'message' => 'Hobbie no pudo ser creado'
                    ]);
             }
         } catch (\Exception $e) {

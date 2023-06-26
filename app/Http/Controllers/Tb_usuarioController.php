@@ -33,6 +33,19 @@ class Tb_usuarioController extends Controller
         ];
     }
 
+    public function indexUser(Request $request)
+    {
+        $users = Tb_usuario::orderBy('id','desc')
+        ->where('tb_usuario.email','=',$request->id)
+        ->select('tb_usuario.id')
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'users' => $users
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');
@@ -67,6 +80,7 @@ class Tb_usuarioController extends Controller
 
                 return response()->json([
                     'estado' => 'Ok',
+                    'idUsuario' => $idUsuarioRecienGuardado,
                     'message' => 'Usuario creado con éxito'
                    ]);
             } else {

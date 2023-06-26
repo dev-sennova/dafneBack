@@ -1,0 +1,12 @@
+[
+{"id":"1","hobby":"Leer","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"2","hobby":"Cocinar","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"3","hobby":"Hacer ejercicio","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"4","hobby":"Ver películas o series","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"5","hobby":"Viajar","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"6","hobby":"Jugar videojuegos","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"7","hobby":"Pintar y dibujar","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"8","hobby":"Hacer manualidades","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"9","hobby":"Escuchar música","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"10","hobby":"Pasar tiempo en redes sociales","visibilidad":"1","moderacion":"1","estado":"1"}
+]
