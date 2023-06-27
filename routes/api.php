@@ -86,11 +86,13 @@ Route::group(['prefix' => 'auth'], function () {
      Route::post("usuario_hobbies/store", "Tb_usuario_hobbiesController@store");
      Route::put("usuario_hobbies/update", "Tb_usuario_hobbiesController@update");
      Route::get("usuario_hobbies/selectusuario_hobbies/{id}", "Tb_usuario_hobbiesController@indexOne");
+     Route::post("usuario_hobbies/closedeal", "Tb_usuario_hobbiesController@closeDeal");
 
      Route::get("usuario_ideas", "Tb_usuario_ideasController@index");
      Route::post("usuario_ideas/store", "Tb_usuario_ideasController@store");
      Route::put("usuario_ideas/update", "Tb_usuario_ideasController@update");
      Route::get("usuario_ideas/selectusuario_ideas/{id}", "Tb_usuario_ideasController@indexOne");
+     Route::post("usuario_ideas/closedeal", "Tb_usuario_ideasController@closeDeal");
 
      Route::get("usuario_rol", "Tb_usuario_rolController@index");
      Route::post("usuario_rol/store", "Tb_usuario_rolController@store");

@@ -17,6 +17,7 @@ class CreateTbUsuarioHobbiesTable extends Migration
             $table->id();
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->foreignId('idHobby')->constrained('tb_hobbies');
+            $table->boolean('estado')->default(0);
         });
     }
 

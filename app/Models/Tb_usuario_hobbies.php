@@ -9,7 +9,7 @@ class Tb_usuario_hobbies extends Model
 {
     protected $table = 'tb_usuario_hobbies';
 
-    protected $fillable = ['idUsuario','idHobby'];
+    protected $fillable = ['idUsuario','idHobby','estado'];
 
     public $timestamps = false;
 

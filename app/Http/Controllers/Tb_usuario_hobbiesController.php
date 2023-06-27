@@ -6,7 +6,7 @@ use App\Models\Tb_usuario_hobbies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Tb_usuario_hobbies_hobbiesController extends Controller
+class Tb_usuario_hobbiesController extends Controller
 {
     public function index(Request $request)
     {
@@ -81,6 +81,57 @@ class Tb_usuario_hobbies_hobbiesController extends Controller
             return response()->json(['error' => 'Ocurrió un error interno'], 500);
         }
 
+    }
+
+    public function closeDeal(Request $request)
+    {
+        //if(!$request->ajax()) return redirect('/');
+
+        //Verifico el hobbie de la tabla que corresponda al idHobby y el idUsuario; si existe lo pongo en estado 1, si no, lo creo y pongo en estado 1
+
+        $count_tb_usuario_hobbies=Tb_usuario_hobbies::where('idHobby','=',$request->idHobby)
+        ->where('idUsuario','=',$request->idUsuario)
+        ->count();
+
+        if($count_tb_usuario_hobbies>0){
+            $tb_usuario_hobbies=Tb_usuario_hobbies::where('idHobby','=',$request->idHobby)
+            ->where('idUsuario','=',$request->idUsuario)
+            ->get();
+
+            foreach($tb_usuario_hobbies as $vuelta){
+                $idBusca = $vuelta->id;
+                }
+
+            $tb_usuario_hobbies=Tb_usuario_hobbies::findOrFail($idBusca);
+            $tb_usuario_hobbies->estado=1;
+            if ($tb_usuario_hobbies->save()) {
+                return response()->json([
+                    'estado' => 'Ok',
+                    'message' => 'Relacion cerrada con éxito'
+                   ]);
+            } else {
+                return response()->json([
+                    'estado' => 'Error',
+                    'message' => 'Relacion no pudo ser cerrada'
+                   ]);
+            }
+        }else{
+            $tb_usuario_hobbies=new Tb_usuario_hobbies();
+            $tb_usuario_hobbies->idUsuario=$request->idUsuario;
+            $tb_usuario_hobbies->idHobby=$request->idHobby;
+            $tb_usuario_hobbies->estado=1;
+            if ($tb_usuario_hobbies->save()) {
+                return response()->json([
+                    'estado' => 'Ok',
+                    'message' => 'Relacion creada y cerrada con éxito'
+                   ]);
+            } else {
+                return response()->json([
+                    'estado' => 'Error',
+                    'message' => 'Relacion no pudo ser creada y cerrada'
+                   ]);
+            }
+        }
     }
 
 }

@@ -18,6 +18,7 @@ class CreateTbUsuarioSuenosTable extends Migration
             $table->integer('prioridad');
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->foreignId('idSuenos')->constrained('tb_suenos');
+            $table->boolean('estado')->default(0);
         });
     }
 
