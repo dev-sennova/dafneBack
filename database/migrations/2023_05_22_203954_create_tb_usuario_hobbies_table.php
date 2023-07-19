@@ -15,6 +15,7 @@ class CreateTbUsuarioHobbiesTable extends Migration
     {
         Schema::create('tb_usuario_hobbies', function (Blueprint $table) {
             $table->id();
+            $table->integer('prioridad')->default(0);
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->foreignId('idHobby')->constrained('tb_hobbies');
             $table->boolean('estado')->default(0);

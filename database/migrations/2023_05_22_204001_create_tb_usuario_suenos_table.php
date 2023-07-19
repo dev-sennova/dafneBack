@@ -15,9 +15,9 @@ class CreateTbUsuarioSuenosTable extends Migration
     {
         Schema::create('tb_usuario_suenos', function (Blueprint $table) {
             $table->id();
-            $table->integer('prioridad');
+            $table->integer('prioridad')->default(0);
             $table->foreignId('idUsuario')->constrained('tb_usuario');
-            $table->foreignId('idSuenos')->constrained('tb_suenos');
+            $table->foreignId('idSueno')->constrained('tb_suenos');
             $table->boolean('estado')->default(0);
         });
     }

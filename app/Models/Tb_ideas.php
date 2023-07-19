@@ -9,7 +9,7 @@ class Tb_ideas extends Model
 {
     protected $table = 'tb_ideas';
 
-    protected $fillable = ['ideas','visibilidad','estado'];
+    protected $fillable = ['ideas','visibilidad','moderacion','estado'];
 
     public $timestamps = false;
 }

@@ -9,7 +9,7 @@ class Tb_suenos extends Model
 {
     protected $table = 'tb_suenos';
 
-    protected $fillable = ['suenos','visibilidad','moderacion','estado'];
+    protected $fillable = ['sueno','visibilidad','moderacion','estado'];
 
     public $timestamps = false;
 }

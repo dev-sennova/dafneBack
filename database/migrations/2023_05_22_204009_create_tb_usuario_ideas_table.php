@@ -17,6 +17,7 @@ class CreateTbUsuarioIdeasTable extends Migration
             $table->id();
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->foreignId('idideas')->constrained('tb_ideas');
+            $table->boolean('estado')->default(0);
         });
     }
 

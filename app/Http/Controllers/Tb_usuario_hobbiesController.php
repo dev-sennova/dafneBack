@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tb_usuario_hobbies;
+use App\Models\Tb_hobbies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -134,4 +135,53 @@ class Tb_usuario_hobbiesController extends Controller
         }
     }
 
+    public function countHobbies(Request $request)
+    {
+        //if(!$request->ajax()) return redirect('/');
+        $count_tb_usuario_hobbies=Tb_usuario_hobbies::where('idUsuario','=',$request->id)
+        ->count();
+        return response()->json([
+            'estado' => 'Ok',
+            'message' => $count_tb_usuario_hobbies
+           ]);
+    }
+
+    public function usuarioHobbies(Request $request)
+    {
+        //if(!$request->ajax()) return redirect('/');
+        $usuario_hobbies=Tb_usuario_hobbies::join('tb_hobbies','tb_hobbies.id','=','tb_usuario_hobbies.idHobby')
+        ->where('tb_usuario_hobbies.idUsuario','=',$request->id)
+        ->where('tb_usuario_hobbies.estado','=',1)
+        ->select('tb_hobbies.hobby','tb_usuario_hobbies.id')
+        ->get();
+        return response()->json([
+            'estado' => 'Ok',
+            'hobbies' => $usuario_hobbies
+           ]);
+    }
+
+    public function updateUsuarioHobbies(Request $request)
+    {
+        //if(!$request->ajax()) return redirect('/');
+
+        try {
+            $tb_usuario_hobbies=Tb_usuario_hobbies::findOrFail($request->id);
+            $tb_usuario_hobbies->prioridad=$request->value;
+
+            if ($tb_usuario_hobbies->save()) {
+                return response()->json([
+                    'estado' => 'Ok',
+                    'message' => 'Usuario Hobbies actualizado con éxito'
+                   ]);
+            } else {
+                return response()->json([
+                    'estado' => 'Error',
+                    'message' => 'Usuario Hobbies no pudo ser actualizado'
+                   ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+        }
+
+    }
 }

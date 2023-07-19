@@ -58,6 +58,8 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("suenos/deactivate", "Tb_suenosController@deactivate");
      Route::put("suenos/activate", "Tb_suenosController@activate");
      Route::get("suenos/selectsuenos/{id}", "Tb_suenosController@indexOne");
+     Route::get("suenos/selectsuenosgeneral", "Tb_suenosController@indexGeneral");
+     Route::get("suenos/selectsuenospropio/{id}", "Tb_suenosController@indexPropio");
 
      Route::get("ideas", "Tb_ideasController@index");
      Route::post("ideas/store", "Tb_ideasController@store");
@@ -65,6 +67,8 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("ideas/deactivate", "Tb_ideasController@deactivate");
      Route::put("ideas/activate", "Tb_ideasController@activate");
      Route::get("ideas/selectideas/{id}", "Tb_ideasController@indexOne");
+     Route::get("ideas/selectideasgeneral", "Tb_ideasController@indexGeneral");
+     Route::get("ideas/selectideaspropio/{id}", "Tb_ideasController@indexPropio");
 
      Route::get("hobbies", "Tb_hobbiesController@index");
      Route::post("hobbies/store", "Tb_hobbiesController@store");
@@ -87,22 +91,32 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("usuario_hobbies/update", "Tb_usuario_hobbiesController@update");
      Route::get("usuario_hobbies/selectusuario_hobbies/{id}", "Tb_usuario_hobbiesController@indexOne");
      Route::post("usuario_hobbies/closedeal", "Tb_usuario_hobbiesController@closeDeal");
+     Route::get("usuario_hobbies/counthobbies/{id}", "Tb_usuario_hobbiesController@countHobbies");
+     Route::get("usuario_hobbies/usuariohobbies/{id}", "Tb_usuario_hobbiesController@usuarioHobbies");
+     Route::post("usuario_hobbies/updateusuariohobbies", "Tb_usuario_hobbiesController@updateUsuarioHobbies");
 
      Route::get("usuario_ideas", "Tb_usuario_ideasController@index");
      Route::post("usuario_ideas/store", "Tb_usuario_ideasController@store");
      Route::put("usuario_ideas/update", "Tb_usuario_ideasController@update");
      Route::get("usuario_ideas/selectusuario_ideas/{id}", "Tb_usuario_ideasController@indexOne");
      Route::post("usuario_ideas/closedeal", "Tb_usuario_ideasController@closeDeal");
-
-     Route::get("usuario_rol", "Tb_usuario_rolController@index");
-     Route::post("usuario_rol/store", "Tb_usuario_rolController@store");
-     Route::put("usuario_rol/update", "Tb_usuario_rolController@update");
-     Route::get("usuario_rol/selectusuario_rol/{id}", "Tb_usuario_rolController@indexOne");
+     Route::get("usuario_ideas/countideas/{id}", "Tb_usuario_ideasController@countIdeas");
+     Route::get("usuario_ideas/usuarioideas/{id}", "Tb_usuario_ideasController@usuarioIdeas");
+     Route::post("usuario_ideas/updateusuarioideas", "Tb_usuario_ideasController@updateUsuarioIdeas");
 
      Route::get("usuario_suenos", "Tb_usuario_suenosController@index");
      Route::post("usuario_suenos/store", "Tb_usuario_suenosController@store");
      Route::put("usuario_suenos/update", "Tb_usuario_suenosController@update");
      Route::get("usuario_suenos/selectusuario_suenos/{id}", "Tb_usuario_suenosController@indexOne");
+     Route::post("usuario_suenos/closedeal", "Tb_usuario_suenosController@closeDeal");
+     Route::get("usuario_suenos/countsuenos/{id}", "Tb_usuario_suenosController@countSuenos");
+     Route::get("usuario_suenos/usuariosuenos/{id}", "Tb_usuario_suenosController@usuarioSuenos");
+     Route::post("usuario_suenos/updateusuariosuenos", "Tb_usuario_suenosController@updateUsuarioSuenos");
+
+     Route::get("usuario_rol", "Tb_usuario_rolController@index");
+     Route::post("usuario_rol/store", "Tb_usuario_rolController@store");
+     Route::put("usuario_rol/update", "Tb_usuario_rolController@update");
+     Route::get("usuario_rol/selectusuario_rol/{id}", "Tb_usuario_rolController@indexOne");
 
      Route::get("escolaridad", "Tb_escolaridadController@index");
      Route::post("escolaridad/store", "Tb_escolaridadController@store");
