@@ -88,6 +88,15 @@ class DatabaseSeeder extends Seeder
         //funcion principal que llama cada seeder
         $this->call(Tb_ideasSeeder::class);
 //-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_criterios'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_criteriosSeeder::class);
+//-------------------------------------------------------------------//
 
 //--Tener cuidado con este cierre--//
     }

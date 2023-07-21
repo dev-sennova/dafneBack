@@ -79,6 +79,15 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("hobbies/selecthobbiesgeneral", "Tb_hobbiesController@indexGeneral");
      Route::get("hobbies/selecthobbiespropio/{id}", "Tb_hobbiesController@indexPropio");
 
+     Route::get("criterios", "Tb_criteriosController@index");
+     Route::post("criterios/store", "Tb_criteriosController@store");
+     Route::put("criterios/update", "Tb_criteriosController@update");
+     Route::put("criterios/deactivate", "Tb_criteriosController@deactivate");
+     Route::put("criterios/activate", "Tb_criteriosController@activate");
+     Route::get("criterios/selectcriterios/{id}", "Tb_criteriosController@indexOne");
+     Route::get("criterios/selectcriteriosgeneral", "Tb_criteriosController@indexGeneral");
+     Route::get("criterios/selectcriteriospropio/{id}", "Tb_criteriosController@indexPropio");
+
      Route::get("criterios_evaluacion", "Tb_criterios_evaluacionController@index");
      Route::post("criterios_evaluacion/store", "Tb_criterios_evaluacionController@store");
      Route::put("criterios_evaluacion/update", "Tb_criterios_evaluacionController@update");
@@ -112,6 +121,15 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("usuario_suenos/countsuenos/{id}", "Tb_usuario_suenosController@countSuenos");
      Route::get("usuario_suenos/usuariosuenos/{id}", "Tb_usuario_suenosController@usuarioSuenos");
      Route::post("usuario_suenos/updateusuariosuenos", "Tb_usuario_suenosController@updateUsuarioSuenos");
+
+     Route::get("usuario_criterios", "Tb_usuario_criteriosController@index");
+     Route::post("usuario_criterios/store", "Tb_usuario_criteriosController@store");
+     Route::put("usuario_criterios/update", "Tb_usuario_criteriosController@update");
+     Route::get("usuario_criterios/selectusuario_criterios/{id}", "Tb_usuario_criteriosController@indexOne");
+     Route::post("usuario_criterios/closedeal", "Tb_usuario_criteriosController@closeDeal");
+     Route::get("usuario_criterios/countcriterios/{id}", "Tb_usuario_criteriosController@countCriterios");
+     Route::get("usuario_criterios/usuariocriterios/{id}", "Tb_usuario_criteriosController@usuarioCriterios");
+     Route::post("usuario_criterios/updateusuariocriterios", "Tb_usuario_criteriosController@updateUsuarioCriterios");
 
      Route::get("usuario_rol", "Tb_usuario_rolController@index");
      Route::post("usuario_rol/store", "Tb_usuario_rolController@store");
