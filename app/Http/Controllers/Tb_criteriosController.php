@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Tb_criterios;
 use App\Models\Tb_usuario_criterios;
-use App\Tb_usuario_criterios as AppTb_usuario_criterios;
 use Illuminate\Http\Request;
 
 class Tb_criteriosController extends Controller
