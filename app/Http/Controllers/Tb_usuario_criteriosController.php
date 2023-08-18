@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tb_usuario_criterios as ModelsTb_usuario_criterios;
+use App\Models\Tb_usuario_ideas;
 use App\Models\Tb_usuario_criterios;
+use App\Models\Tb_relacion_ideas_criterios;
 use Illuminate\Http\Request;
 
 class Tb_usuario_criteriosController extends Controller
