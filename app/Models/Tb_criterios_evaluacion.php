@@ -9,7 +9,7 @@ class Tb_criterios_evaluacion extends Model
 {
     protected $table = 'tb_criterios_evaluacion';
 
-    protected $fillable = ['ideas','visibilidad','idideas','estado'];
+    protected $fillable = ['porcentaje','idCriterio','idIdea','idUsuario','estado'];
 
     public $timestamps = false;
 }

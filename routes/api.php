@@ -94,6 +94,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("criterios_evaluacion/deactivate", "Tb_criterios_evaluacionController@deactivate");
      Route::put("criterios_evaluacion/activate", "Tb_criterios_evaluacionController@activate");
      Route::get("criterios_evaluacion/selectcriterios_evaluacion/{id}", "Tb_criterios_evaluacionController@indexOne");
+     Route::get("criterios_evaluacion/calcularmatriz/{id}", "Tb_criterios_evaluacionController@calcularMatriz");
 
      Route::get("usuario_hobbies", "Tb_usuario_hobbiesController@index");
      Route::post("usuario_hobbies/store", "Tb_usuario_hobbiesController@store");

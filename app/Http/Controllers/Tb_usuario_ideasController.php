@@ -149,7 +149,7 @@ class Tb_usuario_ideasController extends Controller
     public function usuarioIdeas(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');
-        $usuario_ideas=Tb_usuario_ideas::join('tb_ideas','tb_ideas.id','=','tb_usuario_ideas.ididea')
+        $usuario_ideas=Tb_usuario_ideas::join('tb_ideas','tb_ideas.id','=','tb_usuario_ideas.idideas')
         ->where('tb_usuario_ideas.idUsuario','=',$request->id)
         ->where('tb_usuario_ideas.estado','=',1)
         ->select('tb_ideas.idea','tb_usuario_ideas.id')
