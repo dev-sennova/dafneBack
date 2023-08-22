@@ -166,7 +166,7 @@ class Tb_usuario_criteriosController extends Controller
 
         try {
             $tb_usuario_criterios=Tb_usuario_criterios::findOrFail($request->id);
-            $tb_usuario_criterios->porcentaje=$request->value;
+            $tb_usuario_criterios->porcentaje=($request->value)/100;
 
             if ($tb_usuario_criterios->save()) {
                 return response()->json([

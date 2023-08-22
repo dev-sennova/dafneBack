@@ -15,7 +15,7 @@ class CreateTbUsuarioCriteriosTable extends Migration
     {
         Schema::create('tb_usuario_criterios', function (Blueprint $table) {
             $table->id();
-            $table->integer('porcentaje')->default(0);
+            $table->float('porcentaje',3,2)->default(0.00);
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->foreignId('idCriterio')->constrained('tb_criterios');
             $table->boolean('estado')->default(0);

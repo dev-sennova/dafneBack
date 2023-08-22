@@ -15,8 +15,8 @@ class CreateTbCriteriosEvaluacionTable extends Migration
     {
         Schema::create('tb_criterios_evaluacion', function (Blueprint $table) {
             $table->id();
-            $table->integer('porcentaje')->default(0);
-            $table->foreignId('idCriterio')->constrained('tb_criterios');
+            $table->float('porcentaje',3,2)->default(0.00);
+            $table->foreignId('idCriterio')->constrained('tb_usuario_criterios');
             $table->foreignId('idIdea')->constrained('tb_ideas');
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->boolean('estado')->default(1);

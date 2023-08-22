@@ -40,7 +40,7 @@ class Tb_criterios_evaluacionController extends Controller
 
         try {
             $tb_criterios_evaluacion=new Tb_criterios_evaluacion();
-            $tb_criterios_evaluacion->porcentaje=$request->porcentaje;
+            $tb_criterios_evaluacion->porcentaje=($request->porcentaje)/100;
             $tb_criterios_evaluacion->idCriterio=$request->idCriterio;
             $tb_criterios_evaluacion->idIdea=$request->idIdea;
             $tb_criterios_evaluacion->idUsuario=$request->idUsuario;
@@ -69,7 +69,7 @@ class Tb_criterios_evaluacionController extends Controller
 
         try {
             $tb_criterios_evaluacion=Tb_criterios_evaluacion::findOrFail($request->id);
-            $tb_criterios_evaluacion->porcentaje=$request->porcentaje;
+            $tb_criterios_evaluacion->porcentaje=($request->porcentaje)/100;
             $tb_criterios_evaluacion->idCriterio=$request->idCriterio;
             $tb_criterios_evaluacion->idIdea=$request->idIdea;
             $tb_criterios_evaluacion->estado=1;
@@ -175,8 +175,11 @@ class Tb_criterios_evaluacionController extends Controller
 
                 foreach($tb_usuario_criterios as $vueltaUsuarioCriterio){
                     $porcentajeCriterio = $vueltaUsuarioCriterio->porcentaje;
-                    $valorVuelta=($porcentajeCriterioEvaluacion/100)*($porcentajeCriterio/100);
-                    $valorPorcentajeAcumulado=$valorPorcentajeAcumulado+$valorVuelta;
+                    $valorRedondear=$porcentajeCriterioEvaluacion*$porcentajeCriterio;
+                    $resultadoRedondeado = round($valorRedondear, 2);
+                    $valorVuelta=round($resultadoRedondeado,2);
+                    $resultadoFormateado=$valorPorcentajeAcumulado+$valorVuelta;
+                    $valorPorcentajeAcumulado = number_format($resultadoFormateado, 2, '.', '');
                     }
                 }
 
