@@ -96,6 +96,13 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("criterios_evaluacion/selectcriterios_evaluacion/{id}", "Tb_criterios_evaluacionController@indexOne");
      Route::get("criterios_evaluacion/calcularmatriz/{id}", "Tb_criterios_evaluacionController@calcularMatriz");
 
+     Route::get("matriz_evaluacion", "Tb_matriz_evaluacionController@index");
+     Route::post("matriz_evaluacion/store", "Tb_matriz_evaluacionController@store");
+     Route::put("matriz_evaluacion/update", "Tb_matriz_evaluacionController@update");
+     Route::put("matriz_evaluacion/deactivate", "Tb_matriz_evaluacionController@deactivate");
+     Route::put("matriz_evaluacion/activate", "Tb_matriz_evaluacionController@activate");
+     Route::get("matriz_evaluacion/selectmatriz_evaluacion/{id}", "Tb_matriz_evaluacionController@indexOne");
+
      Route::get("usuario_hobbies", "Tb_usuario_hobbiesController@index");
      Route::post("usuario_hobbies/store", "Tb_usuario_hobbiesController@store");
      Route::put("usuario_hobbies/update", "Tb_usuario_hobbiesController@update");
