@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tb_criterios_evaluacion;
 use App\Models\Tb_usuario;
+use App\Models\Tb_matriz_evaluacion;
 use App\Models\Tb_usuario_criterios;
 use App\Models\Tb_usuario_ideas;
 use Illuminate\Http\Request;
@@ -145,7 +146,7 @@ class Tb_criterios_evaluacionController extends Controller
     {
     try {
         $ideas_usuario = Tb_usuario_ideas::join('tb_ideas','tb_usuario_ideas.idideas','=','tb_ideas.id')
-        ->select('tb_usuario_ideas.id', 'tb_ideas.idea')
+        ->select('tb_usuario_ideas.id', 'tb_ideas.idea','tb_usuario_ideas.idUsuario')
         ->orderBy('tb_usuario_ideas.idideas','asc')
         ->where('tb_usuario_ideas.idUsuario','=',$request->id)
         ->where('tb_usuario_ideas.estado','=',1)
@@ -156,11 +157,12 @@ class Tb_criterios_evaluacionController extends Controller
         foreach($ideas_usuario as $vueltaIdeas){ //voy a tomar idea por idea del usuario para traer los porcentajes asociados en la siguiente iteración
             $nombreIdea = $vueltaIdeas->idea;
             $idBuscaIdea = $vueltaIdeas->id;
+            $idUsuario = $vueltaIdeas->idUsuario;
             $valorPorcentajeAcumulado=0;
 
             $criterios_evaluacion_idea = Tb_criterios_evaluacion::select('tb_criterios_evaluacion.porcentaje', 'tb_criterios_evaluacion.idCriterio')
             ->orderBy('tb_criterios_evaluacion.idCriterio','asc')
-            ->where('tb_criterios_evaluacion.idUsuario','=',$request->id)
+            ->where('tb_criterios_evaluacion.idUsuario','=',$idUsuario)
             ->where('tb_criterios_evaluacion.idIdea','=',$idBuscaIdea)
             ->get();
 
@@ -169,7 +171,7 @@ class Tb_criterios_evaluacionController extends Controller
                 $idBuscaCriterio = $vueltaCriterio->idCriterio;
 
                 $tb_usuario_criterios = Tb_usuario_criterios::select('tb_usuario_criterios.porcentaje')
-                ->where('tb_usuario_criterios.idUsuario','=',$request->id)
+                ->where('tb_usuario_criterios.idUsuario','=',$idUsuario)
                 ->where('tb_usuario_criterios.id','=',$idBuscaCriterio)
                 ->get();
 
@@ -182,6 +184,15 @@ class Tb_criterios_evaluacionController extends Controller
                     $valorPorcentajeAcumulado = number_format($resultadoFormateado, 2, '.', '');
                     }
                 }
+                //funcion store matriz_evaluacion, por celeridad la pongo acá. Ajustar código más tarde
+                    $tb_matriz_evaluacion=new Tb_matriz_evaluacion();
+                    $tb_matriz_evaluacion->porcentaje=$valorPorcentajeAcumulado;
+                    $tb_matriz_evaluacion->idUsuarioIdeas=$idBuscaIdea;
+                    $tb_matriz_evaluacion->nombreIdea=$nombreIdea;
+                    $tb_matriz_evaluacion->idUsuario=$idUsuario;
+                    $tb_matriz_evaluacion->estado=1;
+                    $tb_matriz_evaluacion->save();
+
 
                 $resultado[] = [
                     'idIdeaUsuario' => $idBuscaIdea,

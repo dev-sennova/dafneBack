@@ -102,6 +102,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("matriz_evaluacion/deactivate", "Tb_matriz_evaluacionController@deactivate");
      Route::put("matriz_evaluacion/activate", "Tb_matriz_evaluacionController@activate");
      Route::get("matriz_evaluacion/selectmatriz_evaluacion/{id}", "Tb_matriz_evaluacionController@indexOne");
+     Route::get("matriz_evaluacion/selectmatriz_usuario/{id}", "Tb_matriz_evaluacionController@indexByUser");
 
      Route::get("usuario_hobbies", "Tb_usuario_hobbiesController@index");
      Route::post("usuario_hobbies/store", "Tb_usuario_hobbiesController@store");
