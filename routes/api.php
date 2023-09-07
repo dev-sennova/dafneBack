@@ -140,15 +140,6 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("usuario_criterios/usuariocriterios/{id}", "Tb_usuario_criteriosController@usuarioCriterios");
      Route::post("usuario_criterios/updateusuariocriterios", "Tb_usuario_criteriosController@updateUsuarioCriterios");
 
-     Route::get("relacion_ideas_criterios", "Tb_relacion_ideas_criteriosController@index");
-     Route::post("relacion_ideas_criterios/store", "Tb_relacion_ideas_criteriosController@store");
-     Route::put("relacion_ideas_criterios/update", "Tb_relacion_ideas_criteriosController@update");
-     Route::post("relacion_ideas_criterios/generarrelacion_ideas_criterios/{id}", "Tb_relacion_ideas_criteriosController@gestionarRelacionIdeasCriterios");
-     Route::get("relacion_ideas_criterios/selectrelacionideascriterios/{id}", "Tb_relacion_ideas_criteriosController@indexOne");
-     Route::get("relacion_ideas_criterios/countrelacionideascriterios/{id}", "Tb_relacion_ideas_criteriosController@countRelacionIdeasCriterios");
-     Route::get("relacion_ideas_criterios/relacionideascriterios/{id}", "Tb_relacion_ideas_criteriosController@relacionIdeasCriterios");
-     Route::post("relacion_ideas_criterios/updaterelacionideascriterios", "Tb_relacion_ideas_criteriosController@updateRelacionIdeasCriterios");
-
      Route::get("usuario_rol", "Tb_usuario_rolController@index");
      Route::post("usuario_rol/store", "Tb_usuario_rolController@store");
      Route::put("usuario_rol/update", "Tb_usuario_rolController@update");
