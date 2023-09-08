@@ -30,6 +30,18 @@ class Tb_ocupacionController extends Controller
         ];
     }
 
+    public function indexByUser(Request $request)
+    {
+        $resumen_ocupacion = Tb_ocupacion::orderBy('id','desc')
+        ->where('tb_ocupacion.idUsuario','=',$request->id)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'resumen_ocupacion' => $resumen_ocupacion
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');

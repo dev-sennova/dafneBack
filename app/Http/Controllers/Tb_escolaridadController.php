@@ -30,6 +30,18 @@ class Tb_escolaridadController extends Controller
         ];
     }
 
+    public function indexByUser(Request $request)
+    {
+        $resumen_escolaridad = Tb_escolaridad::orderBy('id','desc')
+        ->where('tb_escolaridad.idUsuario','=',$request->id)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'resumen_escolaridad' => $resumen_escolaridad
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');

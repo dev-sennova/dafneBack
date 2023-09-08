@@ -15,7 +15,14 @@ class CreateTbResumenEmpresa extends Migration
     {
         Schema::create('tb_resumen_empresa', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombreIdea');
+            $table->foreignId('idUsuario')->constrained('tb_usuario');
+            $table->string('nombreEmpresa')->nullable();
+            $table->string('mision')->nullable();
+            $table->string('vision')->nullable();
+            $table->string('slogan')->nullable();
+            $table->string('logo')->nullable();
+            $table->boolean('estado')->default(1);
         });
     }
 

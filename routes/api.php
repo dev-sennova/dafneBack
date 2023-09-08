@@ -104,6 +104,14 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("matriz_evaluacion/selectmatriz_evaluacion/{id}", "Tb_matriz_evaluacionController@indexOne");
      Route::get("matriz_evaluacion/selectmatriz_usuario/{id}", "Tb_matriz_evaluacionController@indexByUser");
 
+     Route::get("resumen_empresa", "Tb_resumen_empresaController@index");
+     Route::post("resumen_empresa/store", "Tb_resumen_empresaController@store");
+     Route::put("resumen_empresa/update", "Tb_resumen_empresaController@update");
+     Route::put("resumen_empresa/deactivate", "Tb_resumen_empresaController@deactivate");
+     Route::put("resumen_empresa/activate", "Tb_resumen_empresaController@activate");
+     Route::get("resumen_empresa/selectresumen_empresa/{id}", "Tb_resumen_empresaController@indexOne");
+     Route::get("resumen_empresa/selectresumen_empresa_usuario/{id}", "Tb_resumen_empresaController@indexByUser");
+
      Route::get("usuario_hobbies", "Tb_usuario_hobbiesController@index");
      Route::post("usuario_hobbies/store", "Tb_usuario_hobbiesController@store");
      Route::put("usuario_hobbies/update", "Tb_usuario_hobbiesController@update");
@@ -149,16 +157,21 @@ Route::group(['prefix' => 'auth'], function () {
      Route::post("escolaridad/store", "Tb_escolaridadController@store");
      Route::put("escolaridad/update", "Tb_escolaridadController@update");
      Route::get("escolaridad/selectescolaridad/{id}", "Tb_escolaridadController@indexOne");
+     Route::get("escolaridad/selectresumen_escolaridad_usuario/{id}", "Tb_escolaridadController@indexByUser");
 
      Route::get("ocupacion", "Tb_ocupacionController@index");
      Route::post("ocupacion/store", "Tb_ocupacionController@store");
      Route::put("ocupacion/update", "Tb_ocupacionController@update");
      Route::get("ocupacion/selectocupacion/{id}", "Tb_ocupacionController@indexOne");
+     Route::get("ocupacion/selectresumen_ocupacion_usuario/{id}", "Tb_ocupacionController@indexByUser");
 
      Route::get("experiencia", "Tb_experienciaController@index");
      Route::post("experiencia/store", "Tb_experienciaController@store");
      Route::put("experiencia/update", "Tb_experienciaController@update");
      Route::get("experiencia/selectexperiencia/{id}", "Tb_experienciaController@indexOne");
+     Route::get("experiencia/selectresumen_experiencia_usuario/{id}", "Tb_experienciaController@indexByUser");
+
+     Route::post('/upload-image', 'ImageController@uploadImage');
     });
 
 });
