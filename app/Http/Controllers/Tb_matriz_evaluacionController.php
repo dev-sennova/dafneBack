@@ -29,6 +29,18 @@ class Tb_matriz_evaluacionController extends Controller
         ];
     }
 
+    public function indexByUser(Request $request)
+    {
+        $matriz_evaluacion = Tb_matriz_evaluacion::orderBy('porcentaje','desc')
+        ->where('tb_matriz_evaluacion.idUsuario','=',$request->id)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'matriz_evaluacion' => $matriz_evaluacion
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');

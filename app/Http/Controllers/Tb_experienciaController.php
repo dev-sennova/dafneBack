@@ -30,6 +30,18 @@ class Tb_experienciaController extends Controller
         ];
     }
 
+    public function indexByUser(Request $request)
+    {
+        $resumen_experiencia = Tb_experiencia::orderBy('id','desc')
+        ->where('tb_experiencia.idUsuario','=',$request->id)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'resumen_experiencia' => $resumen_experiencia
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');
