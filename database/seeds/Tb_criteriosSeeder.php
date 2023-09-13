@@ -17,6 +17,7 @@ class Tb_criteriosSeeder extends Seeder
             Tb_criterios::create(array(
                 'id' => $item->id,
                 'criterio' => $item->criterio,
+                'pregunta' => $item->pregunta,
                 'visibilidad' => $item->visibilidad,
                 'moderacion' => $item->moderacion,
                 'estado' => $item->estado,

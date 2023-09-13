@@ -1,8 +1,8 @@
 [
-{"id":"1","criterio":"Innovación","visibilidad":"1","moderacion":"1","estado":"1"},
-{"id":"2","criterio":"Experiencia","visibilidad":"1","moderacion":"1","estado":"1"},
-{"id":"3","criterio":"Rentabilidad","visibilidad":"1","moderacion":"1","estado":"1"},
-{"id":"4","criterio":"Potencial del mercado","visibilidad":"1","moderacion":"1","estado":"1"},
-{"id":"5","criterio":"Inversión necesaria","visibilidad":"1","moderacion":"1","estado":"1"}
+{"id":"1","criterio":"Innovación","pregunta":"Organiza las ideas de mayor a menor según su innovación","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"2","criterio":"Experiencia","pregunta":"Organiza las ideas de mayor a menor según su experiencia necesaria","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"3","criterio":"Rentabilidad","pregunta":"Organiza las ideas de mayor a menor según su rentabilidad","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"4","criterio":"Potencial del mercado","pregunta":"Organiza las ideas de mayor a menor según su potencial de mercado","visibilidad":"1","moderacion":"1","estado":"1"},
+{"id":"5","criterio":"Inversión necesaria","pregunta":"Organiza las ideas de mayor a menor según su inversión necesaria","visibilidad":"1","moderacion":"1","estado":"1"}
 ]
 

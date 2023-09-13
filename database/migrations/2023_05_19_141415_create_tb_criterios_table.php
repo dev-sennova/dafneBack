@@ -16,6 +16,7 @@ class CreateTbCriteriosTable extends Migration
         Schema::create('tb_criterios', function (Blueprint $table) {
             $table->id();
             $table->string('criterio');
+            $table->string('pregunta');
             $table->boolean('visibilidad')->default(0); //visibilidad 1 obligatoria, 0 opcional
             $table->boolean('moderacion')->default(0); //moderacion 0 espera, 1 moderado
             $table->boolean('estado')->default(1);
