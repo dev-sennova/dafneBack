@@ -152,7 +152,7 @@ class Tb_usuario_criteriosController extends Controller
         $usuario_criterios=Tb_usuario_criterios::join('tb_criterios','tb_criterios.id','=','tb_usuario_criterios.idCriterio')
         ->where('tb_usuario_criterios.idUsuario','=',$request->id)
         ->where('tb_usuario_criterios.estado','=',1)
-        ->select('tb_criterios.criterio','tb_usuario_criterios.id')
+        ->select('tb_criterios.criterio','tb_criterios.pregunta','tb_usuario_criterios.id')
         ->get();
         return response()->json([
             'estado' => 'Ok',

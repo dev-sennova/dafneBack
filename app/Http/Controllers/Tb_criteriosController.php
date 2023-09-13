@@ -69,6 +69,7 @@ class Tb_criteriosController extends Controller
         try {
             $tb_criterios=new Tb_criterios();
             $tb_criterios->criterio=$request->criterio;
+            $tb_criterios->pregunta=$request->pregunta;
             $tb_criterios->visibilidad=2;
             $tb_criterios->moderacion=1;
             $tb_criterios->estado=1;
@@ -103,6 +104,7 @@ class Tb_criteriosController extends Controller
         try {
             $tb_criterios=Tb_criterios::findOrFail($request->id);
             $tb_criterios->criterios=$request->criterio;
+            $tb_criterios->pregunta=$request->pregunta;
             $tb_criterios->visibilidad=$request->visibilidad;
             $tb_criterios->moderacion=$request->moderacion;
             $tb_criterios->estado='1';

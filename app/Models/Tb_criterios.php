@@ -8,7 +8,7 @@ class Tb_criterios extends Model
 {
     protected $table = 'tb_criterios';
 
-    protected $fillable = ['criterio','visibilidad','moderacion','estado'];
+    protected $fillable = ['criterio','pregunta','visibilidad','moderacion','estado'];
 
     public $timestamps = false;
 }
