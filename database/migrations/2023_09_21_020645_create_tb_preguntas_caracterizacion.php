@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbBitacora extends Migration
+class CreateTbPreguntasCaracterizacion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateTbBitacora extends Migration
      */
     public function up()
     {
-        Schema::create('tb_bitacora', function (Blueprint $table) {
+        Schema::create('tb_preguntas_caracterizacion', function (Blueprint $table) {
             $table->id();
-            $table->string('avance', 1);
-            $table->foreignId('idSeccion')->constrained('tb_secciones');
-            $table->foreignId('idUsuario')->constrained('tb_usuario');
+            $table->string('pregunta', 255);
             //$table->integer('valorMinuto')->unsigned();
             //$table->boolean('estado')->default(1);
             //$table->timestamps();
@@ -31,6 +29,6 @@ class CreateTbBitacora extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_bitacora');
+        Schema::dropIfExists('tb_preguntas_caracterizacion');
     }
 }
