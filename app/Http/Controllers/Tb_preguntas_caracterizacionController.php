@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tb_preguntas_caracterizacion;
+use App\Models\Tb_avances_simulacion;
+use App\models\Tb_enunciados;
 use Illuminate\Http\Request;
 
 class Tb_preguntas_caracterizacionController extends Controller
 {
     public function index(Request $request)
     {
-        $preguntas_caracterizacion = Tb_preguntas_caracterizacion::orderBy('preguntas_caracterizacion','asc')
+        $preguntas_caracterizacion = Tb_preguntas_caracterizacion::orderBy('preguntas_caracterizacion.id','asc')
         ->get();
 
         return [
@@ -20,7 +22,7 @@ class Tb_preguntas_caracterizacionController extends Controller
 
     public function indexOne(Request $request)
     {
-        $preguntas_caracterizacion = Tb_preguntas_caracterizacion::orderBy('preguntas_caracterizacion','desc')
+        $preguntas_caracterizacion = Tb_preguntas_caracterizacion::orderBy('preguntas_caracterizacion.id','desc')
         ->where('tb_preguntas_caracterizacion.id','=',$request->id)
         ->get();
 
@@ -130,5 +132,879 @@ class Tb_preguntas_caracterizacionController extends Controller
             return response()->json(['error' => 'Ocurrió un error interno'], 500);
         }
 
+    }
+
+    public function validateFlow(Request $request){
+        $idUsuario=$request->idUsuario;
+        $idPregunta=$request->idP;
+
+        $cant_preguntas_simulacion = Tb_avances_simulacion::where('tb_avances_simulacion.idUsuario','=',$request->idUsuario)->count();
+
+        if($cant_preguntas_simulacion>0){
+            $max_preguntas_simulacion = Tb_avances_simulacion::where('tb_avances_simulacion.idUsuario','=',$request->idUsuario)
+            ->select('tb_avances_simulacion.idExterno')
+            ->orderBy('preguntas_caracterizacion.id','desc')
+            ->first();
+        }else{
+            $max_preguntas_simulacion = 1;
+        }
+
+        $pregunta_simulacion=Tb_preguntas_caracterizacion::where('tb_preguntas_caracterizacion.id','=',$max_preguntas_simulacion)->get();
+
+        return [
+            'estado' => 'Ok',
+            'pregunta_simulacion' => $pregunta_simulacion
+        ];
+    }
+
+    public function nextFlow(Request $request){
+        $idUsuario=$request->idUsuario;
+        $idPregunta=$request->idP;
+        $valor=$request->valor;
+
+        $pregunta_simulacion=Tb_preguntas_caracterizacion::where('tb_preguntas_caracterizacion.id','=',$idPregunta)->get();
+
+        foreach($pregunta_simulacion as $vueltaP){
+            $cadenaP = $vueltaP->pregunta;
+            }
+
+        switch ($idPregunta) {
+            case '1':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=1;
+                            $tb_avances_simulacion->cadena=$cadenaP;
+                            $tb_avances_simulacion->pregunta=1;
+                            $tb_avances_simulacion->enunciado=0;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=2;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',1)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=1;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=2;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '2':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=2;
+                            $tb_avances_simulacion->cadena=$cadenaP;
+                            $tb_avances_simulacion->pregunta=1;
+                            $tb_avances_simulacion->enunciado=0;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=3;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',1)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=2;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=3;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '3':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',5)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=5;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+
+
+                            $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',6)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->pregunta;
+                                }
+
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=6;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+
+                            $next_question=5;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=3;
+                            $tb_avances_simulacion->cadena=$cadenaP;
+                            $tb_avances_simulacion->pregunta=1;
+                            $tb_avances_simulacion->enunciado=0;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+
+                            $next_question=4;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '4':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',4)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=4;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+
+                            $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',6)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->pregunta;
+                                }
+
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=6;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+
+                            $next_question=5;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',3)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=3;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+
+                            $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',6)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->pregunta;
+                                }
+
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=6;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+
+                            $next_question=5;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '5':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=5;
+                            $tb_avances_simulacion->cadena=$cadenaP;
+                            $tb_avances_simulacion->pregunta=1;
+                            $tb_avances_simulacion->enunciado=0;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=6;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',7)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=7;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=6;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '6':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=6;
+                            $tb_avances_simulacion->cadena=$cadenaP;
+                            $tb_avances_simulacion->pregunta=1;
+                            $tb_avances_simulacion->enunciado=0;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=9;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=6;
+                            $tb_avances_simulacion->cadena=$cadenaP;
+                            $tb_avances_simulacion->pregunta=1;
+                            $tb_avances_simulacion->enunciado=0;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=7;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '7':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=7;
+                            $tb_avances_simulacion->cadena=$cadenaP;
+                            $tb_avances_simulacion->pregunta=1;
+                            $tb_avances_simulacion->enunciado=0;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=8;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',8)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=8;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=21;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '8':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',9)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=9;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=14;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',10)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=10;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=14;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '9':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',16)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=16;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=11;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',11)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=2;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=10;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '10':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',15)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=15;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=14;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',12)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->pregunta;
+                            }
+
+                        try {
+                            $tb_avances_simulacion=new Tb_avances_simulacion();
+                            $tb_avances_simulacion->idExterno=12;
+                            $tb_avances_simulacion->cadena=$cadenaE;
+                            $tb_avances_simulacion->pregunta=0;
+                            $tb_avances_simulacion->enunciado=1;
+                            $tb_avances_simulacion->idUsuario=$idUsuario;
+                            $tb_avances_simulacion->estado=1;
+                            $tb_avances_simulacion->save();
+                            $next_question=3;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                            // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    }
+                break;
+            case '11':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '12':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '13':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '14':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '15':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '16':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '17':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '18':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '19':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '20':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                            // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    }
+                break;
+            case '21':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '22':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '23':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '24':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '25':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '26':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '27':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '28':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '29':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                }
+                break;
+            case '30':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        break;
+                    default:
+                            // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    }
+                break;
+
+            default:
+                // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+        }
+
+        return [
+            'estado' => 'Ok',
+            'pregunta_simulacion' => $pregunta_simulacion
+        ];
     }
 }

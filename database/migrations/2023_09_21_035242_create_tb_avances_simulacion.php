@@ -15,6 +15,7 @@ class CreateTbAvancesSimulacion extends Migration
     {
         Schema::create('tb_avances_simulacion', function (Blueprint $table) {
             $table->id();
+            $table->integer('idExterno');
             $table->string('cadena', 255);
             $table->boolean('pregunta')->default(0);
             $table->boolean('enunciado')->default(0);

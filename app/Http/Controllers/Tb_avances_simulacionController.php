@@ -9,7 +9,7 @@ class Tb_avances_simulacionController extends Controller
 {
     public function index(Request $request)
     {
-        $avances_simulacion = Tb_avances_simulacion::orderBy('avances_simulacion','asc')
+        $avances_simulacion = Tb_avances_simulacion::orderBy('avances_simulacion.id','asc')
         ->get();
 
         return [
@@ -20,7 +20,7 @@ class Tb_avances_simulacionController extends Controller
 
     public function indexOne(Request $request)
     {
-        $avances_simulacion = Tb_avances_simulacion::orderBy('avances_simulacion','desc')
+        $avances_simulacion = Tb_avances_simulacion::orderBy('avances_simulacion.id','desc')
         ->where('tb_avances_simulacion.id','=',$request->id)
         ->get();
 
@@ -36,6 +36,7 @@ class Tb_avances_simulacionController extends Controller
 
         try {
             $tb_avances_simulacion=new Tb_avances_simulacion();
+            $tb_avances_simulacion->idExterno=$request->idExterno;
             $tb_avances_simulacion->cadena=$request->cadena;
             $tb_avances_simulacion->pregunta=$request->pregunta;
             $tb_avances_simulacion->enunciado=$request->enunciado;
