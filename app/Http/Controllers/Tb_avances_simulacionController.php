@@ -36,7 +36,10 @@ class Tb_avances_simulacionController extends Controller
 
         try {
             $tb_avances_simulacion=new Tb_avances_simulacion();
-            $tb_avances_simulacion->avances_simulacion=$request->avances_simulacion;
+            $tb_avances_simulacion->cadena=$request->cadena;
+            $tb_avances_simulacion->pregunta=$request->pregunta;
+            $tb_avances_simulacion->enunciado=$request->enunciado;
+            $tb_avances_simulacion->idUsuario=$request->idUsuario;
             $tb_avances_simulacion->estado=1;
 
             if ($tb_avances_simulacion->save()) {
@@ -62,7 +65,10 @@ class Tb_avances_simulacionController extends Controller
 
         try {
             $tb_avances_simulacion=Tb_avances_simulacion::findOrFail($request->id);
-            $tb_avances_simulacion->avances_simulacion=$request->avances_simulacion;
+            $tb_avances_simulacion->cadena=$request->cadena;
+            $tb_avances_simulacion->pregunta=$request->pregunta;
+            $tb_avances_simulacion->enunciado=$request->enunciado;
+            $tb_avances_simulacion->idUsuario=$request->idUsuario;
             $tb_avances_simulacion->estado='1';
 
             if ($tb_avances_simulacion->save()) {

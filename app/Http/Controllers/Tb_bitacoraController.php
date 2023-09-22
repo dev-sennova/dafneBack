@@ -36,7 +36,9 @@ class Tb_bitacoraController extends Controller
 
         try {
             $tb_bitacora=new Tb_bitacora();
-            $tb_bitacora->bitacora=$request->bitacora;
+            $tb_bitacora->avance=$request->avance;
+            $tb_bitacora->idSeccion=$request->idSeccion;
+            $tb_bitacora->idUsuario=$request->idUsuario;
             $tb_bitacora->estado=1;
 
             if ($tb_bitacora->save()) {
@@ -62,7 +64,9 @@ class Tb_bitacoraController extends Controller
 
         try {
             $tb_bitacora=Tb_bitacora::findOrFail($request->id);
-            $tb_bitacora->bitacora=$request->bitacora;
+            $tb_bitacora->avance=$request->avance;
+            $tb_bitacora->idSeccion=$request->idSeccion;
+            $tb_bitacora->idUsuario=$request->idUsuario;
             $tb_bitacora->estado='1';
 
             if ($tb_bitacora->save()) {

@@ -36,7 +36,8 @@ class Tb_seccionesController extends Controller
 
         try {
             $tb_secciones=new Tb_secciones();
-            $tb_secciones->secciones=$request->secciones;
+            $tb_secciones->seccion=$request->seccion;
+            $tb_secciones->idModulo=$request->idModulo;
             $tb_secciones->estado=1;
 
             if ($tb_secciones->save()) {
@@ -62,7 +63,8 @@ class Tb_seccionesController extends Controller
 
         try {
             $tb_secciones=Tb_secciones::findOrFail($request->id);
-            $tb_secciones->secciones=$request->secciones;
+            $tb_secciones->seccion=$request->seccion;
+            $tb_secciones->idModulo=$request->idModulo;
             $tb_secciones->estado='1';
 
             if ($tb_secciones->save()) {

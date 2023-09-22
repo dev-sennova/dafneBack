@@ -36,7 +36,7 @@ class Tb_preguntas_caracterizacionController extends Controller
 
         try {
             $tb_preguntas_caracterizacion=new Tb_preguntas_caracterizacion();
-            $tb_preguntas_caracterizacion->preguntas_caracterizacion=$request->preguntas_caracterizacion;
+            $tb_preguntas_caracterizacion->pregunta=$request->pregunta;
             $tb_preguntas_caracterizacion->estado=1;
 
             if ($tb_preguntas_caracterizacion->save()) {
@@ -62,7 +62,7 @@ class Tb_preguntas_caracterizacionController extends Controller
 
         try {
             $tb_preguntas_caracterizacion=Tb_preguntas_caracterizacion::findOrFail($request->id);
-            $tb_preguntas_caracterizacion->preguntas_caracterizacion=$request->preguntas_caracterizacion;
+            $tb_preguntas_caracterizacion->pregunta=$request->pregunta;
             $tb_preguntas_caracterizacion->estado='1';
 
             if ($tb_preguntas_caracterizacion->save()) {

@@ -36,7 +36,7 @@ class Tb_enunciadosController extends Controller
 
         try {
             $tb_enunciados=new Tb_enunciados();
-            $tb_enunciados->enunciados=$request->enunciados;
+            $tb_enunciados->enunciado=$request->enunciado;
             $tb_enunciados->estado=1;
 
             if ($tb_enunciados->save()) {
@@ -62,7 +62,7 @@ class Tb_enunciadosController extends Controller
 
         try {
             $tb_enunciados=Tb_enunciados::findOrFail($request->id);
-            $tb_enunciados->enunciados=$request->enunciados;
+            $tb_enunciados->enunciado=$request->enunciado;
             $tb_enunciados->estado='1';
 
             if ($tb_enunciados->save()) {
