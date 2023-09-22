@@ -218,7 +218,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '2':
@@ -270,7 +274,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '3':
@@ -340,7 +348,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '4':
@@ -430,7 +442,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '5':
@@ -482,7 +498,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '6':
@@ -528,7 +548,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '7':
@@ -580,7 +604,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '8':
@@ -638,7 +666,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '9':
@@ -696,7 +728,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '10':
@@ -800,7 +836,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '12':
@@ -858,7 +898,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '13':
@@ -910,7 +954,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '14':
@@ -962,7 +1010,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '15':
@@ -1020,7 +1072,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '16':
@@ -1078,7 +1134,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '17':
@@ -1136,7 +1196,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '18':
@@ -1194,7 +1258,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '19':
@@ -1252,7 +1320,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '20':
@@ -1356,7 +1428,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '22':
@@ -1408,7 +1484,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '23':
@@ -1506,7 +1586,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '24':
@@ -1564,7 +1648,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '25':
@@ -1715,7 +1803,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '26':
@@ -1813,7 +1905,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '27':
@@ -1974,7 +2070,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '28':
@@ -2042,7 +2142,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '29':
@@ -2110,7 +2214,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
                 }
                 break;
             case '30':
@@ -2178,7 +2286,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                         }
                         break;
                     default:
-                            // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                        // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                        return [
+                            'estado' => 'error',
+                            'mensaje' => "El caso no existe"
+                        ];
                     }
                 break;
                 case '31':
@@ -2268,7 +2380,11 @@ class Tb_preguntas_caracterizacionController extends Controller
                             }
                             break;
                         default:
-                                // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                            // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                            return [
+                                'estado' => 'error',
+                                'mensaje' => "El caso no existe"
+                            ];
                         }
                         break;
                 case '32':
@@ -2313,6 +2429,10 @@ class Tb_preguntas_caracterizacionController extends Controller
                 break;
             default:
                 // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                return [
+                    'estado' => 'error',
+                    'mensaje' => "El caso no existe"
+                ];
         }
 
         return [
