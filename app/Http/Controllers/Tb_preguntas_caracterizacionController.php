@@ -138,10 +138,10 @@ class Tb_preguntas_caracterizacionController extends Controller
         $idUsuario=$request->idUsuario;
         $idPregunta=$request->idP;
 
-        $cant_preguntas_simulacion = Tb_avances_simulacion::where('tb_avances_simulacion.idUsuario','=',$request->idUsuario)->count();
+        $cant_preguntas_simulacion = Tb_avances_simulacion::where('tb_avances_simulacion.idUsuario','=',$idUsuario)->count();
 
         if($cant_preguntas_simulacion>0){
-            $max_preguntas_simulacion = Tb_avances_simulacion::where('tb_avances_simulacion.idUsuario','=',$request->idUsuario)
+            $max_preguntas_simulacion = Tb_avances_simulacion::where('tb_avances_simulacion.idUsuario','=',$idUsuario)
             ->select('tb_avances_simulacion.idExterno')
             ->orderBy('preguntas_caracterizacion.id','desc')
             ->first();
@@ -150,6 +150,18 @@ class Tb_preguntas_caracterizacionController extends Controller
         }
 
         $pregunta_simulacion=Tb_preguntas_caracterizacion::where('tb_preguntas_caracterizacion.id','=',$max_preguntas_simulacion)->get();
+
+        return [
+            'estado' => 'Ok',
+            'pregunta_simulacion' => $pregunta_simulacion
+        ];
+    }
+
+    public function preFlow(Request $request){
+        $idUsuario=$request->idUsuario;
+        $idPregunta=$request->idP;
+
+        $pregunta_simulacion=Tb_preguntas_caracterizacion::where('tb_preguntas_caracterizacion.id','=',$idPregunta)->get();
 
         return [
             'estado' => 'Ok',
