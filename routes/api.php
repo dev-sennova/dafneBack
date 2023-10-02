@@ -174,6 +174,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::post('/upload-image', 'ImageController@uploadImage');
 
      Route::get("preguntas_caracterizacion/next", "Tb_preguntas_caracterizacionController@validateFlow");
+     Route::get("preguntas_caracterizacion/nextflow", "Tb_preguntas_caracterizacionController@nextFlow");
     });
 
 });

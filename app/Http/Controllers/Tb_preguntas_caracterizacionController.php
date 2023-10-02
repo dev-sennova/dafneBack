@@ -288,7 +288,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',5)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -305,7 +305,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',6)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                             $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -362,7 +362,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',4)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -378,7 +378,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',6)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                             $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -404,7 +404,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',3)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -420,7 +420,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',6)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                             $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -476,7 +476,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',7)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -582,7 +582,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',8)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -618,7 +618,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',9)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -644,7 +644,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',10)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -680,7 +680,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',12)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -706,7 +706,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',11)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -742,7 +742,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',15)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -814,7 +814,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',17)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -850,7 +850,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',13)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -876,7 +876,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',14)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -932,7 +932,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',16)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -968,7 +968,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',16)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1024,7 +1024,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',18)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1050,7 +1050,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',16)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1086,7 +1086,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',21)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1112,7 +1112,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',19)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1148,7 +1148,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',22)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1174,7 +1174,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',20)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1210,7 +1210,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',25)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1236,7 +1236,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',23)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1272,7 +1272,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',26)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1298,7 +1298,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',24)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1354,7 +1354,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',27)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1406,7 +1406,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',28)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1442,7 +1442,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',29)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1498,7 +1498,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',30)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1514,7 +1514,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',35)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1529,7 +1529,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',36)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1544,7 +1544,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                     $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',37)->get();
 
                                     foreach($enunciado_simulacion as $vueltaE){
-                                        $cadenaE = $vueltaE->pregunta;
+                                        $cadenaE = $vueltaE->enunciado;
                                         }
 
                                         $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1600,7 +1600,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',33)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1626,7 +1626,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',31)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1662,7 +1662,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',34)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1678,7 +1678,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',35)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1693,7 +1693,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',36)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1708,7 +1708,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                     $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',37)->get();
 
                                     foreach($enunciado_simulacion as $vueltaE){
-                                        $cadenaE = $vueltaE->pregunta;
+                                        $cadenaE = $vueltaE->enunciado;
                                         }
 
                                         $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1734,7 +1734,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',32)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1751,7 +1751,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',35)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1766,7 +1766,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',36)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1781,7 +1781,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                     $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',37)->get();
 
                                     foreach($enunciado_simulacion as $vueltaE){
-                                        $cadenaE = $vueltaE->pregunta;
+                                        $cadenaE = $vueltaE->enunciado;
                                         }
 
                                         $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1837,7 +1837,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',39)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1853,7 +1853,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',40)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1868,7 +1868,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',41)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1883,7 +1883,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                     $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',42)->get();
 
                                     foreach($enunciado_simulacion as $vueltaE){
-                                        $cadenaE = $vueltaE->pregunta;
+                                        $cadenaE = $vueltaE->enunciado;
                                         }
 
                                         $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1919,7 +1919,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',39)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -1935,7 +1935,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',40)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1950,7 +1950,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',41)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1965,7 +1965,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                     $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',42)->get();
 
                                     foreach($enunciado_simulacion as $vueltaE){
-                                        $cadenaE = $vueltaE->pregunta;
+                                        $cadenaE = $vueltaE->enunciado;
                                         }
 
                                         $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -1991,7 +1991,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',38)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -2018,7 +2018,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',40)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2033,7 +2033,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',41)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2048,7 +2048,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                     $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',42)->get();
 
                                     foreach($enunciado_simulacion as $vueltaE){
-                                        $cadenaE = $vueltaE->pregunta;
+                                        $cadenaE = $vueltaE->enunciado;
                                         }
 
                                         $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2084,7 +2084,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',43)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -2100,7 +2100,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',44)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2156,7 +2156,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',43)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -2172,7 +2172,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',44)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2228,7 +2228,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                         $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',43)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -2244,7 +2244,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',44)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                                 $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2300,7 +2300,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',43)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                             try {
@@ -2316,7 +2316,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',44)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2342,7 +2342,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',45)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                             try {
@@ -2358,7 +2358,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                                 $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',46)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
-                                    $cadenaE = $vueltaE->pregunta;
+                                    $cadenaE = $vueltaE->enunciado;
                                     }
 
                                     $tb_avances_simulacion=new Tb_avances_simulacion();
@@ -2394,7 +2394,7 @@ class Tb_preguntas_caracterizacionController extends Controller
                             $enunciado_simulacion=Tb_enunciados::where('tb_enunciados.id','=',47)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
-                                $cadenaE = $vueltaE->pregunta;
+                                $cadenaE = $vueltaE->enunciado;
                                 }
 
                             try {
