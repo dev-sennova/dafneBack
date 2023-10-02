@@ -97,6 +97,24 @@ class DatabaseSeeder extends Seeder
         //funcion principal que llama cada seeder
         $this->call(Tb_criteriosSeeder::class);
 //-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_preguntas_caracterizacion'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_preguntas_caracterizacionSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_enunciados'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_enunciadosSeeder::class);
+//-------------------------------------------------------------------//
 
 //--Tener cuidado con este cierre--//
     }
