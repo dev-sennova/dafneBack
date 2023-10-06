@@ -176,6 +176,13 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("preguntas_caracterizacion/next", "Tb_preguntas_caracterizacionController@validateFlow");
      Route::get("preguntas_caracterizacion/pre", "Tb_preguntas_caracterizacionController@preFlow");
      Route::get("preguntas_caracterizacion/nextflow", "Tb_preguntas_caracterizacionController@nextFlow");
+
+     Route::get("matriz_dofa", "Tb_matriz_dofaController@index");
+     Route::post("matriz_dofa/store", "Tb_matriz_dofaController@store");
+     Route::put("matriz_dofa/update", "Tb_matriz_dofaController@update");
+     Route::put("matriz_dofa/deactivate", "Tb_matriz_dofaController@deactivate");
+     Route::put("matriz_dofa/activate", "Tb_matriz_dofaController@activate");
+     Route::get("matriz_dofa/selectmatriz_dofa/{id}", "Tb_matriz_dofaController@indexOne");
     });
 
 });
