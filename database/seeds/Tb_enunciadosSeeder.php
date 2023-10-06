@@ -1,6 +1,6 @@
 <?php
 
-use App\models\Tb_enunciados;
+use App\Models\Tb_enunciados;
 use Illuminate\Database\Seeder;
 
 class Tb_enunciadosSeeder extends Seeder

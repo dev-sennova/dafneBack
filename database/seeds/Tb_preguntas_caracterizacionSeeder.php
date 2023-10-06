@@ -1,6 +1,6 @@
 <?php
 
-use App\models\Tb_preguntas_caracterizacion;
+use App\Models\Tb_preguntas_caracterizacion;
 use Illuminate\Database\Seeder;
 
 class Tb_preguntas_caracterizacionSeeder extends Seeder
