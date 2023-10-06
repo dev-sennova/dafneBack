@@ -142,6 +142,7 @@ class Tb_preguntas_caracterizacionController extends Controller
 
         if($cant_preguntas_simulacion>0){
             $max_preguntas_simulacion = Tb_avances_simulacion::where('tb_avances_simulacion.idUsuario','=',$idUsuario)
+
             ->select('tb_avances_simulacion.idExterno')
             ->orderBy('preguntas_caracterizacion.id','desc')
             ->first();
