@@ -19,7 +19,10 @@ class CreateTbMatrizDofaTable extends Migration
             $table->string('oportunidades', 1200)->nullable();
             $table->string('fortalezas', 1200)->nullable();
             $table->string('amenazas', 1200)->nullable();
-            $table->integer('avance')->default(0);
+            $table->integer('avanced')->default(0);
+            $table->integer('avanceo')->default(0);
+            $table->integer('avancef')->default(0);
+            $table->integer('avancea')->default(0);
             $table->integer('estado')->default(0);
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             //$table->timestamps();

@@ -40,7 +40,10 @@ class Tb_matriz_dofaController extends Controller
             $tb_matriz_dofa->oportunidades=$request->oportunidades;
             $tb_matriz_dofa->fortalezas=$request->fortalezas;
             $tb_matriz_dofa->amenazas=$request->amenazas;
-            $tb_matriz_dofa->avance=$request->avance;
+            $tb_matriz_dofa->avanced=$request->avanced;
+            $tb_matriz_dofa->avanceo=$request->avanceo;
+            $tb_matriz_dofa->avancef=$request->avancef;
+            $tb_matriz_dofa->avancea=$request->avancea;
             $tb_matriz_dofa->estado='1';
             $tb_matriz_dofa->idUsuario=$request->idUsuario;
 
@@ -70,7 +73,10 @@ class Tb_matriz_dofaController extends Controller
             $tb_matriz_dofa->oportunidades=$request->oportunidades;
             $tb_matriz_dofa->fortalezas=$request->fortalezas;
             $tb_matriz_dofa->amenazas=$request->amenazas;
-            $tb_matriz_dofa->avance=$request->avance;
+            $tb_matriz_dofa->avanced=$request->avanced;
+            $tb_matriz_dofa->avanceo=$request->avanceo;
+            $tb_matriz_dofa->avancef=$request->avancef;
+            $tb_matriz_dofa->avancea=$request->avancea;
             $tb_matriz_dofa->estado='1';
             $tb_matriz_dofa->idUsuario=$request->idUsuario;
 
