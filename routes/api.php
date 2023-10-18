@@ -183,6 +183,13 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("matriz_dofa/deactivate", "Tb_matriz_dofaController@deactivate");
      Route::put("matriz_dofa/activate", "Tb_matriz_dofaController@activate");
      Route::get("matriz_dofa/selectmatriz_dofa/{id}", "Tb_matriz_dofaController@indexOne");
+
+     Route::get("modelo_canvas", "Tb_modelo_canvasController@index");
+     Route::post("modelo_canvas/store", "Tb_modelo_canvasController@store");
+     Route::put("modelo_canvas/update", "Tb_modelo_canvasController@update");
+     Route::put("modelo_canvas/deactivate", "Tb_modelo_canvasController@deactivate");
+     Route::put("modelo_canvas/activate", "Tb_modelo_canvasController@activate");
+     Route::get("modelo_canvas/selectmodelo_canvas/{id}", "Tb_modelo_canvasController@indexOne");
     });
 
 });
