@@ -36,10 +36,22 @@ class Tb_matriz_dofaController extends Controller
 
         try {
             $tb_matriz_dofa=new Tb_matriz_dofa();
-            $tb_matriz_dofa->debilidades="";
-            $tb_matriz_dofa->oportunidades="";
-            $tb_matriz_dofa->fortalezas="";
-            $tb_matriz_dofa->amenazas="";
+            $tb_matriz_dofa->debilidades1="";
+            $tb_matriz_dofa->oportunidades1="";
+            $tb_matriz_dofa->fortalezas1="";
+            $tb_matriz_dofa->amenazas1="";
+            $tb_matriz_dofa->debilidades2="";
+            $tb_matriz_dofa->oportunidades2="";
+            $tb_matriz_dofa->fortalezas2="";
+            $tb_matriz_dofa->amenazas2="";
+            $tb_matriz_dofa->debilidades3="";
+            $tb_matriz_dofa->oportunidades3="";
+            $tb_matriz_dofa->fortalezas3="";
+            $tb_matriz_dofa->amenazas3="";
+            $tb_matriz_dofa->debilidades4="";
+            $tb_matriz_dofa->oportunidades4="";
+            $tb_matriz_dofa->fortalezas4="";
+            $tb_matriz_dofa->amenazas4="";
             $tb_matriz_dofa->avanced='0';
             $tb_matriz_dofa->avanceo='0';
             $tb_matriz_dofa->avancef='0';
