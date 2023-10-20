@@ -81,10 +81,22 @@ class Tb_matriz_dofaController extends Controller
 
         try {
             $tb_matriz_dofa=Tb_matriz_dofa::findOrFail($request->id);
-            $tb_matriz_dofa->debilidades=$request->debilidades;
-            $tb_matriz_dofa->oportunidades=$request->oportunidades;
-            $tb_matriz_dofa->fortalezas=$request->fortalezas;
-            $tb_matriz_dofa->amenazas=$request->amenazas;
+            $tb_matriz_dofa->debilidades1=$request->debilidades1;
+            $tb_matriz_dofa->oportunidades1=$request->oportunidades1;
+            $tb_matriz_dofa->fortalezas1=$request->fortalezas1;
+            $tb_matriz_dofa->amenazas1=$request->amenazas1;
+            $tb_matriz_dofa->debilidades2=$request->debilidades2;
+            $tb_matriz_dofa->oportunidades2=$request->oportunidades2;
+            $tb_matriz_dofa->fortalezas2=$request->fortalezas2;
+            $tb_matriz_dofa->amenazas2=$request->amenazas2;
+            $tb_matriz_dofa->debilidades3=$request->debilidades3;
+            $tb_matriz_dofa->oportunidades3=$request->oportunidades3;
+            $tb_matriz_dofa->fortalezas3=$request->fortalezas3;
+            $tb_matriz_dofa->amenazas3=$request->debilidades1;
+            $tb_matriz_dofa->debilidades4=$request->debilidades4;
+            $tb_matriz_dofa->oportunidades4=$request->oportunidades4;
+            $tb_matriz_dofa->fortalezas4=$request->fortalezas4;
+            $tb_matriz_dofa->amenazas4=$request->amenazas4;
             $tb_matriz_dofa->avanced=$request->avanced;
             $tb_matriz_dofa->avanceo=$request->avanceo;
             $tb_matriz_dofa->avancef=$request->avancef;
