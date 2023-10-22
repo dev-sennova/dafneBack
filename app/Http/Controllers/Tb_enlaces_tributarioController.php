@@ -9,24 +9,24 @@ class Tb_enlaces_tributarioController extends Controller
 {
     public function index(Request $request)
     {
-        $enunciados = Tb_enlaces_tributario::orderBy('enunciados','asc')
+        $enlaces = Tb_enlaces_tributario::orderBy('enlaces','asc')
         ->get();
 
         return [
             'estado' => 'Ok',
-            'enunciados' => $enunciados
+            'enlaces' => $enlaces
         ];
     }
 
     public function indexOne(Request $request)
     {
-        $enunciados = Tb_enlaces_tributario::orderBy('enunciados','desc')
+        $enlaces = Tb_enlaces_tributario::orderBy('enlaces','desc')
         ->where('tb_enlaces_tributario.id','=',$request->id)
         ->get();
 
         return [
             'estado' => 'Ok',
-            'enunciados' => $enunciados
+            'enlaces' => $enlaces
         ];
     }
 
@@ -42,12 +42,12 @@ class Tb_enlaces_tributarioController extends Controller
             if ($tb_enlaces_tributario->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'enunciados creada con éxito'
+                    'message' => 'enlaces creada con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'enunciados no pudo ser creada'
+                    'message' => 'enlaces no pudo ser creada'
                    ]);
             }
         } catch (\Exception $e) {
@@ -68,12 +68,12 @@ class Tb_enlaces_tributarioController extends Controller
             if ($tb_enlaces_tributario->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'enunciados actualizada con éxito'
+                    'message' => 'enlaces actualizada con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'enunciados no pudo ser actualizada'
+                    'message' => 'enlaces no pudo ser actualizada'
                    ]);
             }
         } catch (\Exception $e) {
@@ -93,12 +93,12 @@ class Tb_enlaces_tributarioController extends Controller
             if ($tb_enlaces_tributario->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'enunciados desactivada con éxito'
+                    'message' => 'enlaces desactivada con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'enunciados no pudo ser desactivada'
+                    'message' => 'enlaces no pudo ser desactivada'
                    ]);
             }
         } catch (\Exception $e) {
@@ -118,12 +118,12 @@ class Tb_enlaces_tributarioController extends Controller
             if ($tb_enlaces_tributario->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'enunciados activada con éxito'
+                    'message' => 'enlaces activada con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'enunciados no pudo ser activada'
+                    'message' => 'enlaces no pudo ser activada'
                    ]);
             }
         } catch (\Exception $e) {

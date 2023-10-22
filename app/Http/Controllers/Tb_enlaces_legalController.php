@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tb_enlaces_tributario_persona;
+use App\Models\Tb_enlaces_legal;
 use Illuminate\Http\Request;
 
-class Tb_enlaces_tributario_persona_personaController extends Controller
+class Tb_enlaces_legalController extends Controller
 {
     public function index(Request $request)
     {
-        $enlaces = Tb_enlaces_tributario_persona::orderBy('enlaces','asc')
+        $enlaces = Tb_enlaces_legal::orderBy('enlaces','asc')
         ->get();
 
         return [
@@ -20,8 +20,8 @@ class Tb_enlaces_tributario_persona_personaController extends Controller
 
     public function indexOne(Request $request)
     {
-        $enlaces = Tb_enlaces_tributario_persona::orderBy('enlaces','desc')
-        ->where('tb_enlaces_tributario_persona.id','=',$request->id)
+        $enlaces = Tb_enlaces_legal::orderBy('enlaces','desc')
+        ->where('tb_enlaces_legal.id','=',$request->id)
         ->get();
 
         return [
@@ -35,11 +35,11 @@ class Tb_enlaces_tributario_persona_personaController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_enlaces_tributario_persona=new Tb_enlaces_tributario_persona();
-            $tb_enlaces_tributario_persona->enunciado=$request->enunciado;
-            $tb_enlaces_tributario_persona->estado=1;
+            $tb_enlaces_legal=new Tb_enlaces_legal();
+            $tb_enlaces_legal->enunciado=$request->enunciado;
+            $tb_enlaces_legal->estado=1;
 
-            if ($tb_enlaces_tributario_persona->save()) {
+            if ($tb_enlaces_legal->save()) {
                 return response()->json([
                     'estado' => 'Ok',
                     'message' => 'enlaces creada con éxito'
@@ -61,11 +61,11 @@ class Tb_enlaces_tributario_persona_personaController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_enlaces_tributario_persona=Tb_enlaces_tributario_persona::findOrFail($request->id);
-            $tb_enlaces_tributario_persona->enunciado=$request->enunciado;
-            $tb_enlaces_tributario_persona->estado='1';
+            $tb_enlaces_legal=Tb_enlaces_legal::findOrFail($request->id);
+            $tb_enlaces_legal->enunciado=$request->enunciado;
+            $tb_enlaces_legal->estado='1';
 
-            if ($tb_enlaces_tributario_persona->save()) {
+            if ($tb_enlaces_legal->save()) {
                 return response()->json([
                     'estado' => 'Ok',
                     'message' => 'enlaces actualizada con éxito'
@@ -87,10 +87,10 @@ class Tb_enlaces_tributario_persona_personaController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_enlaces_tributario_persona=Tb_enlaces_tributario_persona::findOrFail($request->id);
-            $tb_enlaces_tributario_persona->estado='0';
+            $tb_enlaces_legal=Tb_enlaces_legal::findOrFail($request->id);
+            $tb_enlaces_legal->estado='0';
 
-            if ($tb_enlaces_tributario_persona->save()) {
+            if ($tb_enlaces_legal->save()) {
                 return response()->json([
                     'estado' => 'Ok',
                     'message' => 'enlaces desactivada con éxito'
@@ -112,10 +112,10 @@ class Tb_enlaces_tributario_persona_personaController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $tb_enlaces_tributario_persona=Tb_enlaces_tributario_persona::findOrFail($request->id);
-            $tb_enlaces_tributario_persona->estado='1';
+            $tb_enlaces_legal=Tb_enlaces_legal::findOrFail($request->id);
+            $tb_enlaces_legal->estado='1';
 
-            if ($tb_enlaces_tributario_persona->save()) {
+            if ($tb_enlaces_legal->save()) {
                 return response()->json([
                     'estado' => 'Ok',
                     'message' => 'enlaces activada con éxito'
@@ -132,3 +132,4 @@ class Tb_enlaces_tributario_persona_personaController extends Controller
 
     }
 }
+
