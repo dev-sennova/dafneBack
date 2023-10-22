@@ -15,7 +15,7 @@ class CreateTbEnunciadosTributarioTable extends Migration
     {
         Schema::create('tb_enunciados_tributario', function (Blueprint $table) {
             $table->id();
-            $table->string('enunciado', 255);
+            $table->string('enunciado', 512);
             //$table->timestamps();
         });
     }

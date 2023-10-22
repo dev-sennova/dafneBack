@@ -22,9 +22,9 @@
     {"id":"21","enunciado":"Puede escoger alguna de las alternativas de proveedores de facturación electrónica."},
     {"id":"22","enunciado":"Declarante del Impuesto de Renta."},
     {"id":"23","enunciado":"Obligado a expedir nómina electrónica."},
-    {"id":"23","enunciado":"No es declarante del Impuesto de Renta."},
-    {"id":"18","enunciado":"Puede optar por la solucion de nómina gratuita DIAN."},
-    {"id":"15","enunciado":"Puede escoger alguna de las alternativas de proveedores de facturación electrónica."},
-    {"id":"18","enunciado":"Pertenece al régimen ordinario de tributación."},
-    {"id":"18","enunciado":"Puede optar por el Régimen simple de Tributación RST."}
+    {"id":"24","enunciado":"No es declarante del Impuesto de Renta."},
+    {"id":"25","enunciado":"Puede optar por la solucion de nómina gratuita DIAN."},
+    {"id":"26","enunciado":"Puede escoger alguna de las alternativas de proveedores de facturación electrónica."},
+    {"id":"27","enunciado":"Pertenece al régimen ordinario de tributación."},
+    {"id":"28","enunciado":"Puede optar por el Régimen simple de Tributación RST."}
 ]
