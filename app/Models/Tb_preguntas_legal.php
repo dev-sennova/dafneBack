@@ -9,4 +9,6 @@ class Tb_preguntas_legal extends Model
     protected $table = 'tb_preguntas_legal';
 
     protected $fillable = ['pregunta'];
+
+    public $timestamps = false;
 }

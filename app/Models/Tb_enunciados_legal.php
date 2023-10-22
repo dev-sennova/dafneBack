@@ -9,4 +9,6 @@ class Tb_enunciados_legal extends Model
     protected $table = 'tb_enunciados_legal';
 
     protected $fillable = ['enunciado'];
+
+    public $timestamps = false;
 }

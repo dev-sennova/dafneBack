@@ -9,4 +9,6 @@ class Tb_enunciados_tributario extends Model
     protected $table = 'tb_enunciados_tributario';
 
     protected $fillable = ['enunciado'];
+
+    public $timestamps = false;
 }

@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_preguntas_legalSeeder::class);
 //-------------------------------------------------------------------//
 
 //-------------------------------------------------------------------//
@@ -132,7 +132,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_enunciados_legalSeeder::class);
 //-------------------------------------------------------------------//
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_preguntas_tributarioSeeder::class);
 //-------------------------------------------------------------------//
 
 //-------------------------------------------------------------------//
@@ -151,7 +151,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_enunciados_tributarioSeeder::class);
 //-------------------------------------------------------------------//
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_enlaces_tributarioSeeder::class);
 //-------------------------------------------------------------------//
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
@@ -169,7 +169,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_preguntas_tributario_personaSeeder::class);
 //-------------------------------------------------------------------//
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
@@ -178,7 +178,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_enunciados_tributario_personaSeeder::class);
 //-------------------------------------------------------------------//
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
@@ -187,7 +187,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //funcion principal que llama cada seeder
-        $this->call(Tb_enunciadosSeeder::class);
+        $this->call(Tb_enlaces_tributario_personaSeeder::class);
 //-------------------------------------------------------------------//
 
 

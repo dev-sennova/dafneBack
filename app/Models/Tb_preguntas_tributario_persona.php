@@ -9,4 +9,6 @@ class Tb_preguntas_tributario_persona extends Model
     protected $table = 'tb_preguntas_tributario_persona';
 
     protected $fillable = ['pregunta'];
+
+    public $timestamps = false;
 }
