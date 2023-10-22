@@ -1,0 +1,14 @@
+[
+    {"id":"1","pregunta":"¿Prestaría algún bien o servicio excluido con IVA de los que se mencionan en el artículo 424,426 y 476 del ET?"},
+    {"id":"2","pregunta":"¿Cumple con TODOS los requisitos anteriores?"},
+    {"id":"3","pregunta":"¿Su actividad económica está relacionada con las que se mencionan en el art 512-1 del ET?"},
+    {"id":"4","pregunta":"¿La actividad económica está relacionada con las que se mencionan en el artículo 468-1 O 468-3?"},
+    {"id":"5","pregunta":"¿Cumple con TODOS los requisitos del articulo 512-13 del estatuto tributario nacional?"},
+    {"id":"6","pregunta":"¿Su actividad se encuentra dentro del Art. 512-8 y 512-12 del ET?"},
+    {"id":"7","pregunta":"¿Usaría el sistema de facturación gratuito de la DIAN?"},
+    {"id":"8","pregunta":"¿Su actividad se encuentra relacionada dentro del Art. 512-2 del ET?"},
+    {"id":"9","pregunta":"¿Va tener uno o más empleados?"},
+    {"id":"10","pregunta":"¿Usaría el sistema de facturación gratuito de la DIAN?"},
+    {"id":"11","pregunta":"¿Cumple con TODOS los requisitos del articulo 592 y 594-3 del estudio tributario?"},
+    {"id":"12","pregunta":"¿Cumple con TODOS los requisitos del Art. 368-2?"}
+]

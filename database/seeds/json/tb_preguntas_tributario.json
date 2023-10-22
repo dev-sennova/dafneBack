@@ -1,0 +1,11 @@
+[
+    {"id":"1","pregunta":"¿Usaría el sistema de nómina gratuito de la DIAN?"},
+    {"id":"2","pregunta":"¿Prestara algún bien o servicio excluido con IVA de los que se mencionan en el Art. 424, 426 y 476 del ET?"},
+    {"id":"3","pregunta":"¿Va a tener uno o más empleados?"},
+    {"id":"4","pregunta":"¿Usaría el sistema de nómina gratuito de la DIAN?"},
+    {"id":"5","pregunta":"¿Su actividad económica está relacionada con las que se mencionan en el artículo 512-1 de ET?"},
+    {"id":"6","pregunta":"¿Su actividad económica está relacionada con las que se mencionan en el Art. 468-1 o 468-3?"},
+    {"id":"7","pregunta":"¿Su actividad económica se encuentra dentro del Art 512-8 y 512-12 del ET?"},
+    {"id":"8","pregunta":"¿Su actividad económica se encuentra relacionada dentro del Art 512-2 del ET?"},
+    {"id":"9","pregunta":"¿Es franquicia?"}
+]
