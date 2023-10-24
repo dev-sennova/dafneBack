@@ -271,7 +271,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
 
-                            $next_question=13;
+                            $next_question=10;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -384,7 +384,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
 
-                            $next_question=13;
+                            $next_question=10;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -741,7 +741,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                     $tb_avances_tributario_persona->estado=1;
                                     $tb_avances_tributario_persona->save();
 
-                            $next_question=13;
+                            $next_question=10;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -800,7 +800,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                     $tb_avances_tributario_persona->estado=1;
                                     $tb_avances_tributario_persona->save();
 
-                            $next_question=13;
+                            $next_question=10;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -967,7 +967,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                             $tb_preguntas_tributario_persona->estado=1;
                                             $tb_preguntas_tributario_persona->save();
 
-                            $next_question=10;
+                            $next_question=13;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1064,7 +1064,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                     $tb_preguntas_tributario_persona->estado=1;
                                     $tb_preguntas_tributario_persona->save();
 
-                            $next_question=10;
+                            $next_question=13;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1123,7 +1123,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                     $tb_preguntas_tributario_persona->estado=1;
                                     $tb_preguntas_tributario_persona->save();
 
-                            $next_question=10;
+                            $next_question=13;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1176,7 +1176,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
 
-                            $next_question=14;
+                            $next_question=11;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1203,7 +1203,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
 
-                            $next_question=14;
+                            $next_question=11;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1220,6 +1220,33 @@ class Tb_preguntas_tributario_personaController extends Controller
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',16)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+                        try {
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=16;
+                            $tb_avances_tributario_persona->cadena=$cadenaE;
+                            $tb_avances_tributario_persona->pregunta=0;
+                            $tb_avances_tributario_persona->enunciado=1;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=12;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
                             $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
                             $tb_avances_tributario_persona->idExterno=11;
@@ -1231,33 +1258,6 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
 
-                            $next_question=0;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    case '2':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',17)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=17;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
                             $next_question=17;
                             return response()->json([
                                 'estado' => 'Ok',
@@ -1279,267 +1279,39 @@ class Tb_preguntas_tributario_personaController extends Controller
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',13)->get();
+                        $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',13)->get();
 
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
+                            foreach($enlace_simulacion as $vueltaEn){
+                                $cadenaEn = $vueltaEn->enlace;
+                                }
                         try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=13;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=17;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    case '2':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',14)->get();
+                            $tb_preguntas_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_preguntas_tributario_persona->idExterno=13;
+                            $tb_preguntas_tributario_persona->cadena=$cadenaEn;
+                            $tb_preguntas_tributario_persona->pregunta=0;
+                            $tb_preguntas_tributario_persona->enunciado=0;
+                            $tb_preguntas_tributario_persona->enlace=1;
+                            $tb_preguntas_tributario_persona->idUsuario=$idUsuario;
+                            $tb_preguntas_tributario_persona->estado=1;
+                            $tb_preguntas_tributario_persona->save();
 
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
+                            $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',18)->get();
 
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=14;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=17;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    default:
-                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
-                    return [
-                        'estado' => 'error',
-                        'mensaje' => "El caso no existe"
-                    ];
-                }
-                break;
-            case '13':
-                switch ($valor) {
-                    case '1':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=13;
-                            $tb_avances_tributario_persona->cadena=$cadenaP;
-                            $tb_avances_tributario_persona->pregunta=1;
-                            $tb_avances_tributario_persona->enunciado=0;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=14;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    case '2':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',16)->get();
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
 
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=16;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=17;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    default:
-                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
-                    return [
-                        'estado' => 'error',
-                        'mensaje' => "El caso no existe"
-                    ];
-                }
-                break;
-            case '14':
-                switch ($valor) {
-                    case '1':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',16)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=16;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=17;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    case '2':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=14;
-                            $tb_avances_tributario_persona->cadena=$cadenaP;
-                            $tb_avances_tributario_persona->pregunta=1;
-                            $tb_avances_tributario_persona->enunciado=0;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=15;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    default:
-                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
-                    return [
-                        'estado' => 'error',
-                        'mensaje' => "El caso no existe"
-                    ];
-                }
-                break;
-            case '15':
-                switch ($valor) {
-                    case '1':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',18)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
-                        try {
                             $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
                             $tb_avances_tributario_persona->idExterno=18;
                             $tb_avances_tributario_persona->cadena=$cadenaE;
                             $tb_avances_tributario_persona->pregunta=0;
                             $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->enlace=0;
                             $tb_avances_tributario_persona->idUsuario=$idUsuario;
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
+
                             $next_question=17;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    case '2':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',16)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=16;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=17;
-                            return response()->json([
-                                'estado' => 'Ok',
-                                'message' => $next_question
-                               ]);
-                        } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                        }
-                        break;
-                    default:
-                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
-                    return [
-                        'estado' => 'error',
-                        'mensaje' => "El caso no existe"
-                    ];
-                }
-                break;
-            case '16':
-                switch ($valor) {
-                    case '1':
-                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',21)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
-                        try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=21;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=20;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1566,7 +1338,291 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $tb_avances_tributario_persona->idUsuario=$idUsuario;
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
-                            $next_question=18;
+
+                            $next_question=17;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
+                }
+                break;
+            case '13':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',14)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                                $cadenaEn = $vueltaEn->enlace;
+                                }
+                        try {
+                            $tb_preguntas_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_preguntas_tributario_persona->idExterno=14;
+                            $tb_preguntas_tributario_persona->cadena=$cadenaEn;
+                            $tb_preguntas_tributario_persona->pregunta=0;
+                            $tb_preguntas_tributario_persona->enunciado=0;
+                            $tb_preguntas_tributario_persona->enlace=1;
+                            $tb_preguntas_tributario_persona->idUsuario=$idUsuario;
+                            $tb_preguntas_tributario_persona->estado=1;
+                            $tb_preguntas_tributario_persona->save();
+
+                                    $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',20)->get();
+
+                                    foreach($enunciado_simulacion as $vueltaE){
+                                        $cadenaE = $vueltaE->enunciado;
+                                        }
+
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=20;
+                            $tb_avances_tributario_persona->cadena=$cadenaE;
+                            $tb_avances_tributario_persona->pregunta=0;
+                            $tb_avances_tributario_persona->enunciado=1;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=14;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',21)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+                        try {
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=21;
+                            $tb_avances_tributario_persona->cadena=$cadenaE;
+                            $tb_avances_tributario_persona->pregunta=0;
+                            $tb_avances_tributario_persona->enunciado=1;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=14;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                            // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
+                    }
+                break;
+            case '14':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',24)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->enunciado;
+                            }
+
+                        try {
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=24;
+                            $tb_avances_tributario_persona->cadena=$cadenaE;
+                            $tb_avances_tributario_persona->pregunta=0;
+                            $tb_avances_tributario_persona->enunciado=1;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=17;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',22)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->enunciado;
+                            }
+
+                        try {
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=22;
+                            $tb_avances_tributario_persona->cadena=$cadenaE;
+                            $tb_avances_tributario_persona->pregunta=0;
+                            $tb_avances_tributario_persona->enunciado=1;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=15;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
+                }
+                break;
+            case '15':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',23)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->enunciado;
+                            }
+
+                        try {
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=23;
+                            $tb_avances_tributario_persona->cadena=$cadenaE;
+                            $tb_avances_tributario_persona->pregunta=0;
+                            $tb_avances_tributario_persona->enunciado=1;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=16;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        try {
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=15;
+                            $tb_avances_tributario_persona->cadena=$cadenaP;
+                            $tb_avances_tributario_persona->pregunta=1;
+                            $tb_avances_tributario_persona->enunciado=0;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=17;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    default:
+                    // Código a ejecutar si $variable1 no coincide con ningún caso anterior
+                    return [
+                        'estado' => 'error',
+                        'mensaje' => "El caso no existe"
+                    ];
+                }
+                break;
+            case '16':
+                switch ($valor) {
+                    case '1':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
+                        $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',15)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                                $cadenaEn = $vueltaEn->enlace;
+                                }
+                        try {
+                            $tb_preguntas_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_preguntas_tributario_persona->idExterno=15;
+                            $tb_preguntas_tributario_persona->cadena=$cadenaEn;
+                            $tb_preguntas_tributario_persona->pregunta=0;
+                            $tb_preguntas_tributario_persona->enunciado=0;
+                            $tb_preguntas_tributario_persona->enlace=1;
+                            $tb_preguntas_tributario_persona->idUsuario=$idUsuario;
+                            $tb_preguntas_tributario_persona->estado=1;
+                            $tb_preguntas_tributario_persona->save();
+
+                            $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',25)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+
+                                $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                                $tb_avances_tributario_persona->idExterno=25;
+                                $tb_avances_tributario_persona->cadena=$cadenaE;
+                                $tb_avances_tributario_persona->pregunta=0;
+                                $tb_avances_tributario_persona->enunciado=1;
+                                $tb_avances_tributario_persona->enlace=0;
+                                $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                                $tb_avances_tributario_persona->estado=1;
+                                $tb_avances_tributario_persona->save();
+
+                            $next_question=17;
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => $next_question
+                               ]);
+                        } catch (\Exception $e) {
+                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                        }
+                        break;
+                    case '2':
+                        // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',26)->get();
+
+                        foreach($enunciado_simulacion as $vueltaE){
+                            $cadenaE = $vueltaE->enunciado;
+                            }
+
+                        try {
+                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_avances_tributario_persona->idExterno=26;
+                            $tb_avances_tributario_persona->cadena=$cadenaE;
+                            $tb_avances_tributario_persona->pregunta=0;
+                            $tb_avances_tributario_persona->enunciado=1;
+                            $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                            $tb_avances_tributario_persona->estado=1;
+                            $tb_avances_tributario_persona->save();
+
+                            $next_question=17;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1587,23 +1643,23 @@ class Tb_preguntas_tributario_personaController extends Controller
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',22)->get();
+                        $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',16)->get();
 
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
+                            foreach($enlace_simulacion as $vueltaEn){
+                                $cadenaEn = $vueltaEn->enlace;
+                                }
                         try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=22;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=21;
+                            $tb_preguntas_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_preguntas_tributario_persona->idExterno=16;
+                            $tb_preguntas_tributario_persona->cadena=$cadenaEn;
+                            $tb_preguntas_tributario_persona->pregunta=0;
+                            $tb_preguntas_tributario_persona->enunciado=0;
+                            $tb_preguntas_tributario_persona->enlace=1;
+                            $tb_preguntas_tributario_persona->idUsuario=$idUsuario;
+                            $tb_preguntas_tributario_persona->estado=1;
+                            $tb_preguntas_tributario_persona->save();
+
+                            $next_question=18;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1614,7 +1670,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                         break;
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',20)->get();
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',27)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
                             $cadenaE = $vueltaE->enunciado;
@@ -1622,15 +1678,16 @@ class Tb_preguntas_tributario_personaController extends Controller
 
                         try {
                             $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=20;
+                            $tb_avances_tributario_persona->idExterno=27;
                             $tb_avances_tributario_persona->cadena=$cadenaE;
                             $tb_avances_tributario_persona->pregunta=0;
                             $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->enlace=0;
                             $tb_avances_tributario_persona->idUsuario=$idUsuario;
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
-                            $next_question=19;
+
+                            $next_question=99;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
