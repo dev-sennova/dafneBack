@@ -190,6 +190,34 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("modelo_canvas/deactivate", "Tb_modelo_canvasController@deactivate");
      Route::put("modelo_canvas/activate", "Tb_modelo_canvasController@activate");
      Route::get("modelo_canvas/selectmodelo_canvas/{id}", "Tb_modelo_canvasController@indexOne");
+
+     Route::get("debilidades_amenazas", "Tb_debilidades_amenazasController@index");
+     Route::post("debilidades_amenazas/store", "Tb_debilidades_amenazasController@store");
+     Route::put("debilidades_amenazas/update", "Tb_debilidades_amenazasController@update");
+     Route::put("debilidades_amenazas/deactivate", "Tb_debilidades_amenazasController@deactivate");
+     Route::put("debilidades_amenazas/activate", "Tb_debilidades_amenazasController@activate");
+     Route::get("debilidades_amenazas/selectdebilidades_amenazas/{id}", "Tb_debilidades_amenazasController@indexOne");
+
+     Route::get("debilidades_oportunidades", "Tb_debilidades_oportunidadesController@index");
+     Route::post("debilidades_oportunidades/store", "Tb_debilidades_oportunidadesController@store");
+     Route::put("debilidades_oportunidades/update", "Tb_debilidades_oportunidadesController@update");
+     Route::put("debilidades_oportunidades/deactivate", "Tb_debilidades_oportunidadesController@deactivate");
+     Route::put("debilidades_oportunidades/activate", "Tb_debilidades_oportunidadesController@activate");
+     Route::get("debilidades_oportunidades/selectdebilidades_oportunidades/{id}", "Tb_debilidades_oportunidadesController@indexOne");
+
+     Route::get("fortalezas_amenazas", "Tb_fortalezas_amenazasController@index");
+     Route::post("fortalezas_amenazas/store", "Tb_fortalezas_amenazasController@store");
+     Route::put("fortalezas_amenazas/update", "Tb_fortalezas_amenazasController@update");
+     Route::put("fortalezas_amenazas/deactivate", "Tb_fortalezas_amenazasController@deactivate");
+     Route::put("fortalezas_amenazas/activate", "Tb_fortalezas_amenazasController@activate");
+     Route::get("fortalezas_amenazas/selectfortalezas_amenazas/{id}", "Tb_fortalezas_amenazasController@indexOne");
+
+     Route::get("fortalezas_oportunidades", "Tb_fortalezas_oportunidadesController@index");
+     Route::post("fortalezas_oportunidades/store", "Tb_fortalezas_oportunidadesController@store");
+     Route::put("fortalezas_oportunidades/update", "Tb_fortalezas_oportunidadesController@update");
+     Route::put("fortalezas_oportunidades/deactivate", "Tb_fortalezas_oportunidadesController@deactivate");
+     Route::put("fortalezas_oportunidades/activate", "Tb_fortalezas_oportunidadesController@activate");
+     Route::get("fortalezas_oportunidades/selectfortalezas_oportunidades/{id}", "Tb_fortalezas_oportunidadesController@indexOne");
     });
 
 });
