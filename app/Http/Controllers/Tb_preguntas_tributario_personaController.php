@@ -1708,7 +1708,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',25)->get();
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',27)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
                             $cadenaE = $vueltaE->enunciado;
@@ -1716,15 +1716,16 @@ class Tb_preguntas_tributario_personaController extends Controller
 
                         try {
                             $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=25;
+                            $tb_avances_tributario_persona->idExterno=27;
                             $tb_avances_tributario_persona->cadena=$cadenaE;
                             $tb_avances_tributario_persona->pregunta=0;
                             $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
+                            $tb_avances_tributario_persona->enlace=0;
                             $tb_avances_tributario_persona->idUsuario=$idUsuario;
                             $tb_avances_tributario_persona->estado=1;
                             $tb_avances_tributario_persona->save();
-                            $next_question=20;
+
+                            $next_question=99;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1735,23 +1736,23 @@ class Tb_preguntas_tributario_personaController extends Controller
                         break;
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',23)->get();
+                        $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',17)->get();
 
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
+                            foreach($enlace_simulacion as $vueltaEn){
+                                $cadenaEn = $vueltaEn->enlace;
+                                }
                         try {
-                            $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=23;
-                            $tb_avances_tributario_persona->cadena=$cadenaE;
-                            $tb_avances_tributario_persona->pregunta=0;
-                            $tb_avances_tributario_persona->enunciado=1;
-                                $tb_avances_tributario_persona->enlace=0;
-                            $tb_avances_tributario_persona->idUsuario=$idUsuario;
-                            $tb_avances_tributario_persona->estado=1;
-                            $tb_avances_tributario_persona->save();
-                            $next_question=20;
+                            $tb_preguntas_tributario_persona=new Tb_avances_tributario_persona();
+                            $tb_preguntas_tributario_persona->idExterno=17;
+                            $tb_preguntas_tributario_persona->cadena=$cadenaEn;
+                            $tb_preguntas_tributario_persona->pregunta=0;
+                            $tb_preguntas_tributario_persona->enunciado=0;
+                            $tb_preguntas_tributario_persona->enlace=1;
+                            $tb_preguntas_tributario_persona->idUsuario=$idUsuario;
+                            $tb_preguntas_tributario_persona->estado=1;
+                            $tb_preguntas_tributario_persona->save();
+
+                            $next_question=19;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1772,7 +1773,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                     switch ($valor) {
                         case '1':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                            $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',47)->get();
+                            $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',28)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
                                 $cadenaE = $vueltaE->enunciado;
@@ -1780,7 +1781,7 @@ class Tb_preguntas_tributario_personaController extends Controller
 
                             try {
                                 $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                                $tb_avances_tributario_persona->idExterno=47;
+                                $tb_avances_tributario_persona->idExterno=28;
                                 $tb_avances_tributario_persona->cadena=$cadenaE;
                                 $tb_avances_tributario_persona->pregunta=0;
                                 $tb_avances_tributario_persona->enunciado=1;
@@ -1788,6 +1789,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                 $tb_avances_tributario_persona->idUsuario=$idUsuario;
                                 $tb_avances_tributario_persona->estado=1;
                                 $tb_avances_tributario_persona->save();
+
                                 $next_question=99;
                                 return response()->json([
                                     'estado' => 'Ok',
@@ -1799,11 +1801,31 @@ class Tb_preguntas_tributario_personaController extends Controller
                             break;
                         case '2':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
+                            $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',27)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+
+                            try {
+                                $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
+                                $tb_avances_tributario_persona->idExterno=27;
+                                $tb_avances_tributario_persona->cadena=$cadenaE;
+                                $tb_avances_tributario_persona->pregunta=0;
+                                $tb_avances_tributario_persona->enunciado=1;
+                                $tb_avances_tributario_persona->enlace=0;
+                                $tb_avances_tributario_persona->idUsuario=$idUsuario;
+                                $tb_avances_tributario_persona->estado=1;
+                                $tb_avances_tributario_persona->save();
+
                                 $next_question=99;
                                 return response()->json([
                                     'estado' => 'Ok',
                                     'message' => $next_question
                                    ]);
+                            } catch (\Exception $e) {
+                                return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            }
                             break;
                         default:
                                 // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
