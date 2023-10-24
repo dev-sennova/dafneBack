@@ -40,6 +40,7 @@ class Tb_avances_tributarioController extends Controller
             $tb_avances_tributario->cadena=$request->cadena;
             $tb_avances_tributario->pregunta=$request->pregunta;
             $tb_avances_tributario->enunciado=$request->enunciado;
+            $tb_avances_tributario->enlace=$request->enlace;
             $tb_avances_tributario->idUsuario=$request->idUsuario;
             $tb_avances_tributario->estado=1;
 
@@ -69,6 +70,7 @@ class Tb_avances_tributarioController extends Controller
             $tb_avances_tributario->cadena=$request->cadena;
             $tb_avances_tributario->pregunta=$request->pregunta;
             $tb_avances_tributario->enunciado=$request->enunciado;
+            $tb_avances_tributario->enlace=$request->enlace;
             $tb_avances_tributario->idUsuario=$request->idUsuario;
             $tb_avances_tributario->estado='1';
 

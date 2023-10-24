@@ -19,6 +19,7 @@ class CreateTbAvancesLegalTable extends Migration
             $table->string('cadena', 255);
             $table->boolean('pregunta')->default(0);
             $table->boolean('enunciado')->default(0);
+            $table->boolean('enlace')->default(0);
             $table->integer('estado')->default(0);
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             //$table->timestamps();

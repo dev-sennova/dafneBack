@@ -92,7 +92,7 @@ class Tb_matriz_dofaController extends Controller
             $tb_matriz_dofa->debilidades3=$request->debilidades3;
             $tb_matriz_dofa->oportunidades3=$request->oportunidades3;
             $tb_matriz_dofa->fortalezas3=$request->fortalezas3;
-            $tb_matriz_dofa->amenazas3=$request->debilidades1;
+            $tb_matriz_dofa->amenazas3=$request->amenazas3;
             $tb_matriz_dofa->debilidades4=$request->debilidades4;
             $tb_matriz_dofa->oportunidades4=$request->oportunidades4;
             $tb_matriz_dofa->fortalezas4=$request->fortalezas4;
