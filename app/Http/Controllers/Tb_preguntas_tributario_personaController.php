@@ -800,7 +800,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                     $tb_avances_tributario_persona->estado=1;
                                     $tb_avances_tributario_persona->save();
 
-                            $next_question=10;
+                            $next_question=13;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -919,7 +919,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',9)->get();
+                        $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',11)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
                             $cadenaE = $vueltaE->enunciado;
@@ -927,7 +927,7 @@ class Tb_preguntas_tributario_personaController extends Controller
 
                         try {
                             $tb_avances_tributario_persona=new Tb_avances_tributario_persona();
-                            $tb_avances_tributario_persona->idExterno=9;
+                            $tb_avances_tributario_persona->idExterno=11;
                             $tb_avances_tributario_persona->cadena=$cadenaE;
                             $tb_avances_tributario_persona->pregunta=0;
                             $tb_avances_tributario_persona->enunciado=1;
@@ -1064,7 +1064,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                                     $tb_preguntas_tributario_persona->estado=1;
                                     $tb_preguntas_tributario_persona->save();
 
-                            $next_question=13;
+                            $next_question=10;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
