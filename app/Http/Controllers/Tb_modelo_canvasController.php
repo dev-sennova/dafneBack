@@ -104,12 +104,12 @@ class Tb_modelo_canvasController extends Controller
             if ($tb_modelo_canvas->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Matriz dofa actualizada con éxito'
+                    'message' => 'Modelo canvas actualizada con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Matriz dofa no pudo ser actualizada'
+                    'message' => 'Modelo canvas no pudo ser actualizada'
                    ]);
             }
         } catch (\Exception $e) {
@@ -128,12 +128,12 @@ class Tb_modelo_canvasController extends Controller
             if ($tb_modelo_canvas->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Matriz dofa desactivada con éxito'
+                    'message' => 'Modelo canvas desactivada con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Matriz dofa no pudo ser desactivada'
+                    'message' => 'Modelo canvas no pudo ser desactivada'
                    ]);
             }
         } catch (\Exception $e) {
@@ -153,12 +153,12 @@ class Tb_modelo_canvasController extends Controller
             if ($tb_modelo_canvas->save()) {
                 return response()->json([
                     'estado' => 'Ok',
-                    'message' => 'Matriz dofa activado con éxito'
+                    'message' => 'Modelo canvas activado con éxito'
                    ]);
             } else {
                 return response()->json([
                     'estado' => 'Error',
-                    'message' => 'Matriz dofa no pudo ser activado'
+                    'message' => 'Modelo canvas no pudo ser activado'
                    ]);
             }
         } catch (\Exception $e) {
