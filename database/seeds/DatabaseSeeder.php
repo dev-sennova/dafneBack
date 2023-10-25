@@ -180,6 +180,24 @@ class DatabaseSeeder extends Seeder
         //funcion principal que llama cada seeder
         $this->call(Tb_enlaces_tributario_personaSeeder::class);
 //-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_modulo'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_moduloSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_secciones'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_seccionesSeeder::class);
+//-------------------------------------------------------------------//
 
 
 //--Tener cuidado con este cierre--//

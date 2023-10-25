@@ -15,7 +15,7 @@ class CreateTbBitacora extends Migration
     {
         Schema::create('tb_bitacora', function (Blueprint $table) {
             $table->id();
-            $table->string('avance', 1);
+            $table->integer('avance')->default(0);
             $table->foreignId('idSeccion')->constrained('tb_secciones');
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             //$table->integer('valorMinuto')->unsigned();
