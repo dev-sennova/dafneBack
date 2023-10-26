@@ -53,6 +53,7 @@ class Tb_avances_legalController extends Controller
             $tb_avances_legal->pregunta=$request->pregunta;
             $tb_avances_legal->enunciado=$request->enunciado;
             $tb_avances_legal->enlace=$request->enlace;
+            $tb_avances_legal->next=$request->next;
             $tb_avances_legal->idUsuario=$request->idUsuario;
             $tb_avances_legal->estado=1;
 
@@ -83,6 +84,7 @@ class Tb_avances_legalController extends Controller
             $tb_avances_legal->pregunta=$request->pregunta;
             $tb_avances_legal->enunciado=$request->enunciado;
             $tb_avances_legal->enlace=$request->enlace;
+            $tb_avances_legal->next=$request->next;
             $tb_avances_legal->idUsuario=$request->idUsuario;
             $tb_avances_legal->estado='1';
 

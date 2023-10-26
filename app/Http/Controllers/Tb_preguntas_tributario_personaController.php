@@ -143,7 +143,6 @@ class Tb_preguntas_tributario_personaController extends Controller
 
         if($cant_preguntas_simulacion>0){
             $max_preguntas_simulacion = Tb_avances_tributario_persona::where('tb_avances_tributario_persona.idUsuario','=',$idUsuario)
-
             ->select('tb_avances_tributario_persona.idExterno')
             ->orderBy('preguntas_tributario_persona.id','desc')
             ->first();
@@ -171,37 +170,40 @@ class Tb_preguntas_tributario_personaController extends Controller
         ];
     }
 
-    public function guardarPregunta($idExterno, $cadenaP, $idUsuario){
+    public function guardarPregunta($idExterno, $cadenaP, $next, $idUsuario){
         $tb_avpreg_tribpers=new Tb_avances_tributario_persona();
         $tb_avpreg_tribpers->idExterno=$idExterno;
         $tb_avpreg_tribpers->cadena=$cadenaP;
         $tb_avpreg_tribpers->pregunta=1;
         $tb_avpreg_tribpers->enunciado=0;
         $tb_avpreg_tribpers->enlace=0;
+        $tb_avpreg_tribpers->next=$next;
         $tb_avpreg_tribpers->idUsuario=$idUsuario;
         $tb_avpreg_tribpers->estado=1;
         $tb_avpreg_tribpers->save();
     }
 
-    public function guardarEnunciado($idExterno, $cadenaE, $idUsuario){
+    public function guardarEnunciado($idExterno, $cadenaE, $next, $idUsuario){
         $tb_avenun_tribpers=new Tb_avances_tributario_persona();
         $tb_avenun_tribpers->idExterno=$idExterno;
         $tb_avenun_tribpers->cadena=$cadenaE;
         $tb_avenun_tribpers->pregunta=0;
         $tb_avenun_tribpers->enunciado=1;
         $tb_avenun_tribpers->enlace=0;
+        $tb_avenun_tribpers->next=$next;
         $tb_avenun_tribpers->idUsuario=$idUsuario;
         $tb_avenun_tribpers->estado=1;
         $tb_avenun_tribpers->save();
     }
 
-    public function guardarEnlace($idExterno, $cadenaEn, $idUsuario){
+    public function guardarEnlace($idExterno, $cadenaEn, $next, $idUsuario){
         $tb_avenla_tribpers=new Tb_avances_tributario_persona();
         $tb_avenla_tribpers->idExterno=$idExterno;
         $tb_avenla_tribpers->cadena=$cadenaEn;
         $tb_avenla_tribpers->pregunta=0;
         $tb_avenla_tribpers->enunciado=0;
         $tb_avenla_tribpers->enlace=1;
+        $tb_avenla_tribpers->next=$next;
         $tb_avenla_tribpers->idUsuario=$idUsuario;
         $tb_avenla_tribpers->estado=1;
         $tb_avenla_tribpers->save();
@@ -221,13 +223,14 @@ class Tb_preguntas_tributario_personaController extends Controller
         switch ($idPregunta) {
             case '1':
             try {
+                $next_question=1;
                 $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',1)->get();
 
                 foreach($enunciado_simulacion as $vueltaE){
                 $cadenaE = $vueltaE->enunciado;
                 }
 
-                $this->guardarEnunciado(1, $cadenaE, $idUsuario);
+                $this->guardarEnunciado(1, $cadenaE, $next_question, $idUsuario);
 
                 $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',1)->get();
 
@@ -235,7 +238,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                 $cadenaEn = $vueltaEn->enlace;
                 }
 
-                $this->guardarEnlace(1, $cadenaEn, $idUsuario);
+                $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
             } catch (\Exception $e) {
                 return response()->json(['error' => 'Ocurrió un error interno'], 500);
             }
@@ -243,7 +246,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si pregunta es 1 y entra por si'
                         try {
-                            $this->guardarPregunta(1, $cadenaP, $idUsuario);
+                            $next_question=10;
+                            $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',2)->get();
 
@@ -251,7 +255,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(2, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(2, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',9)->get();
 
@@ -259,7 +263,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(9, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(9, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',10)->get();
 
@@ -267,8 +271,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(10, $cadenaE, $idUsuario);
-                            $next_question=10;
+                            $this->guardarEnunciado(10, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -280,7 +284,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si  si pregunta es 1 y entra por no'
                         try {
-                            $this->guardarPregunta(1, $cadenaP, $idUsuario);
+                            $next_question=2;
+                            $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',2)->get();
 
@@ -288,8 +293,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(2, $cadenaEn, $idUsuario);
-                            $next_question=2;
+                            $this->guardarEnlace(2, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -311,7 +316,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(2, $cadenaP, $idUsuario);
+                            $next_question=10;
+                            $this->guardarPregunta(2, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',3)->get();
 
@@ -319,7 +325,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(3, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(3, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',2)->get();
 
@@ -327,7 +333,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(2, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(2, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',9)->get();
 
@@ -335,7 +341,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(9, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(9, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',10)->get();
 
@@ -343,8 +349,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(10, $cadenaE, $idUsuario);
-                            $next_question=10;
+                            $this->guardarEnunciado(10, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -356,7 +362,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(2, $cadenaP, $idUsuario);
+                            $next_question=3;
+                            $this->guardarPregunta(2, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',3)->get();
 
@@ -364,8 +371,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(3, $cadenaEn, $idUsuario);
-                            $next_question=3;
+                            $this->guardarEnlace(3, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -387,7 +394,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(3, $cadenaP, $idUsuario);
+                            $next_question=5;
+                            $this->guardarPregunta(3, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',4)->get();
 
@@ -395,7 +403,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(4, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(4, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',5)->get();
 
@@ -403,8 +411,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(5, $cadenaEn, $idUsuario);
-                            $next_question=5;
+                            $this->guardarEnlace(5, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -416,7 +424,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(3, $cadenaP, $idUsuario);
+                            $next_question=4;
+                            $this->guardarPregunta(3, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',4)->get();
 
@@ -424,8 +433,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(4, $cadenaEn, $idUsuario);
-                            $next_question=4;
+                            $this->guardarEnlace(4, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -447,7 +456,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(4, $cadenaP, $idUsuario);
+                            $next_question=5;
+                            $this->guardarPregunta(4, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',4)->get();
 
@@ -455,7 +465,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(4, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(4, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',5)->get();
 
@@ -463,8 +473,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(5, $cadenaEn, $idUsuario);
-                            $next_question=5;
+                            $this->guardarEnlace(5, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -476,7 +486,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(4, $cadenaP, $idUsuario);
+                            $next_question=6;
+                            $this->guardarPregunta(4, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',7)->get();
 
@@ -484,8 +495,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(7, $cadenaEn, $idUsuario);
-                            $next_question=6;
+                            $this->guardarEnlace(7, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -507,7 +518,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(5, $cadenaP, $idUsuario);
+                            $next_question=7;
+                            $this->guardarPregunta(5, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',6)->get();
 
@@ -515,8 +527,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(6, $cadenaEn, $idUsuario);
-                            $next_question=7;
+                            $this->guardarEnlace(6, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -528,7 +540,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(5, $cadenaP, $idUsuario);
+                            $next_question=14;
+                            $this->guardarPregunta(5, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',5)->get();
 
@@ -536,7 +549,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(5, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(5, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',8)->get();
 
@@ -544,7 +557,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(8, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(8, $cadenaEn, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',6)->get();
 
@@ -552,8 +565,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(6, $cadenaE, $idUsuario);
-                            $next_question=14;
+                            $this->guardarEnunciado(6, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -575,7 +588,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(6, $cadenaP, $idUsuario);
+                            $next_question=10;
+                            $this->guardarPregunta(6, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',8)->get();
 
@@ -583,7 +597,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(8, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(8, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',9)->get();
 
@@ -591,7 +605,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(9, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(9, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',10)->get();
 
@@ -599,8 +613,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(10, $cadenaE, $idUsuario);
-                            $next_question=10;
+                            $this->guardarEnunciado(10, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -612,7 +626,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(6, $cadenaP, $idUsuario);
+                            $next_question=10;
+                            $this->guardarPregunta(6, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',7)->get();
 
@@ -620,7 +635,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(7, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(7, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',9)->get();
 
@@ -628,7 +643,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(9, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(9, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',10)->get();
 
@@ -636,8 +651,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(10, $cadenaE, $idUsuario);
-                            $next_question=10;
+                            $this->guardarEnunciado(10, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -659,7 +674,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(7, $cadenaP, $idUsuario);
+                            $next_question=14;
+                            $this->guardarPregunta(7, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',5)->get();
 
@@ -667,7 +683,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(5, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(5, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',8)->get();
 
@@ -675,7 +691,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(8, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(8, $cadenaEn, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',6)->get();
 
@@ -683,8 +699,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(6, $cadenaE, $idUsuario);
-                            $next_question=14;
+                            $this->guardarEnunciado(6, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -696,7 +712,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(7, $cadenaP, $idUsuario);
+                            $next_question=8;
+                            $this->guardarPregunta(7, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',9)->get();
 
@@ -704,8 +721,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(9, $cadenaEn, $idUsuario);
-                            $next_question=8;
+                            $this->guardarEnlace(9, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -727,7 +744,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(8, $cadenaP, $idUsuario);
+                            $next_question=13;
+                            $this->guardarPregunta(8, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',11)->get();
 
@@ -735,7 +753,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(11, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(11, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',17)->get();
 
@@ -743,7 +761,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(17, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(17, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',12)->get();
 
@@ -751,8 +769,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(12, $cadenaEn, $idUsuario);
-                            $next_question=13;
+                            $this->guardarEnlace(12, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -764,7 +782,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(8, $cadenaP, $idUsuario);
+                            $next_question=9;
+                            $this->guardarPregunta(8, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',10)->get();
 
@@ -772,8 +791,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(10, $cadenaEn, $idUsuario);
-                            $next_question=9;
+                            $this->guardarEnlace(10, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -795,7 +814,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(9, $cadenaP, $idUsuario);
+                            $next_question=13;
+                            $this->guardarPregunta(9, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',13)->get();
 
@@ -803,7 +823,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(13, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(13, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',17)->get();
 
@@ -811,7 +831,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(17, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(17, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',12)->get();
 
@@ -819,8 +839,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(12, $cadenaEn, $idUsuario);
-                            $next_question=13;
+                            $this->guardarEnlace(12, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -832,7 +852,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(9, $cadenaP, $idUsuario);
+                            $next_question=13;
+                            $this->guardarPregunta(9, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',12)->get();
 
@@ -840,7 +861,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(12, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(12, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',17)->get();
 
@@ -848,7 +869,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(17, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(17, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',12)->get();
 
@@ -856,8 +877,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(12, $cadenaEn, $idUsuario);
-                            $next_question=13;
+                            $this->guardarEnlace(12, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -879,7 +900,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(10, $cadenaP, $idUsuario);
+                            $next_question=11;
+                            $this->guardarPregunta(10, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',11)->get();
 
@@ -887,7 +909,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(11, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(11, $cadenaEn, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',14)->get();
 
@@ -895,8 +917,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(14, $cadenaE, $idUsuario);
-                            $next_question=11;
+                            $this->guardarEnunciado(14, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -908,7 +930,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(10, $cadenaP, $idUsuario);
+                            $next_question=11;
+                            $this->guardarPregunta(10, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',15)->get();
 
@@ -916,8 +939,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(15, $cadenaE, $idUsuario);
-                            $next_question=11;
+                            $this->guardarEnunciado(15, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -935,7 +958,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(11, $cadenaP, $idUsuario);
+                            $next_question=12;
+                            $this->guardarPregunta(11, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',16)->get();
 
@@ -943,8 +967,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(16, $cadenaE, $idUsuario);
-                            $next_question=12;
+                            $this->guardarEnunciado(16, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -956,8 +980,9 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(11, $cadenaP, $idUsuario);
                             $next_question=17;
+                            $this->guardarPregunta(11, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -979,7 +1004,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(12, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(12, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',13)->get();
 
@@ -987,7 +1013,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(13, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(13, $cadenaEn, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',18)->get();
 
@@ -995,8 +1021,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(18, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(18, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1008,7 +1034,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(12, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(12, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',19)->get();
 
@@ -1016,8 +1043,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(19, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(19, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1039,7 +1066,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(13, $cadenaP, $idUsuario);
+                            $next_question=14;
+                            $this->guardarPregunta(13, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',14)->get();
 
@@ -1047,7 +1075,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(14, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(14, $cadenaEn, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',20)->get();
 
@@ -1055,8 +1083,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(20, $cadenaE, $idUsuario);
-                            $next_question=14;
+                            $this->guardarEnunciado(20, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1068,7 +1096,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(13, $cadenaP, $idUsuario);
+                            $next_question=14;
+                            $this->guardarPregunta(13, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',21)->get();
 
@@ -1076,9 +1105,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(21, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(21, $cadenaE, $next_question, $idUsuario);
 
-                            $next_question=14;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1096,7 +1124,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(14, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(14, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',24)->get();
 
@@ -1104,8 +1133,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(24, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(24, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1117,7 +1146,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(14, $cadenaP, $idUsuario);
+                            $next_question=15;
+                            $this->guardarPregunta(14, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',22)->get();
 
@@ -1125,8 +1155,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(22, $cadenaE, $idUsuario);
-                            $next_question=15;
+                            $this->guardarEnunciado(22, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1148,7 +1178,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(15, $cadenaP, $idUsuario);
+                            $next_question=16;
+                            $this->guardarPregunta(15, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',23)->get();
 
@@ -1156,8 +1187,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(23, $cadenaE, $idUsuario);
-                            $next_question=16;
+                            $this->guardarEnunciado(23, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1169,8 +1200,9 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(15, $cadenaP, $idUsuario);
                             $next_question=17;
+                            $this->guardarPregunta(15, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1192,7 +1224,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(16, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(16, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',15)->get();
 
@@ -1200,7 +1233,7 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(15, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(15, $cadenaEn, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',25)->get();
 
@@ -1208,8 +1241,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(25, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(25, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1221,7 +1254,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(16, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(16, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',26)->get();
 
@@ -1229,8 +1263,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(26, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(26, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1252,7 +1286,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(17, $cadenaP, $idUsuario);
+                            $next_question=18;
+                            $this->guardarPregunta(17, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',16)->get();
 
@@ -1260,8 +1295,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(16, $cadenaEn, $idUsuario);
-                            $next_question=18;
+                            $this->guardarEnlace(16, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1273,7 +1308,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(17, $cadenaP, $idUsuario);
+                            $next_question=99;
+                            $this->guardarPregunta(17, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',27)->get();
 
@@ -1281,8 +1317,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(27, $cadenaE, $idUsuario);
-                            $next_question=99;
+                            $this->guardarEnunciado(27, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1304,7 +1340,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(18, $cadenaP, $idUsuario);
+                            $next_question=99;
+                            $this->guardarPregunta(18, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',27)->get();
 
@@ -1312,8 +1349,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(27, $cadenaE, $idUsuario);
-                            $next_question=99;
+                            $this->guardarEnunciado(27, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1325,7 +1362,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(18, $cadenaP, $idUsuario);
+                            $next_question=19;
+                            $this->guardarPregunta(18, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',17)->get();
 
@@ -1333,8 +1371,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                             $cadenaEn = $vueltaEn->enlace;
                             }
 
-                            $this->guardarEnlace(17, $cadenaEn, $idUsuario);
-                            $next_question=19;
+                            $this->guardarEnlace(17, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1356,7 +1394,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                         case '1':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                             try {
-                                $this->guardarPregunta(19, $cadenaP, $idUsuario);
+                                $next_question=99;
+                                $this->guardarPregunta(19, $cadenaP, $next_question, $idUsuario);
 
                                 $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',28)->get();
 
@@ -1364,8 +1403,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(28, $cadenaE, $idUsuario);
-                                $next_question=99;
+                                $this->guardarEnunciado(28, $cadenaE, $next_question, $idUsuario);
+
                                 return response()->json([
                                     'estado' => 'Ok',
                                     'message' => $next_question
@@ -1377,7 +1416,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                         case '2':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                             try {
-                                $this->guardarPregunta(19, $cadenaP, $idUsuario);
+                                $next_question=99;
+                                $this->guardarPregunta(19, $cadenaP, $next_question, $idUsuario);
 
                                 $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',27)->get();
 
@@ -1385,8 +1425,8 @@ class Tb_preguntas_tributario_personaController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(27, $cadenaE, $idUsuario);
-                                $next_question=99;
+                                $this->guardarEnunciado(27, $cadenaE, $next_question, $idUsuario);
+
                                 return response()->json([
                                     'estado' => 'Ok',
                                     'message' => $next_question

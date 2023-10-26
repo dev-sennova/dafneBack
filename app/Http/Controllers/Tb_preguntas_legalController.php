@@ -142,9 +142,8 @@ class Tb_preguntas_legalController extends Controller
 
         if($cant_preguntas_simulacion>0){
             $max_preguntas_simulacion = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)
-
             ->select('tb_avances_legal.idExterno')
-            ->orderBy('preguntas_caracterizacion.id','desc')
+            ->orderBy('tb_avances_legal.id','desc')
             ->first();
         }else{
             $max_preguntas_simulacion = 1;
@@ -169,37 +168,40 @@ class Tb_preguntas_legalController extends Controller
         ];
     }
 
-    public function guardarPregunta($idExterno, $cadenaP, $idUsuario){
+    public function guardarPregunta($idExterno, $cadenaP, $next, $idUsuario){
         $tb_avpreg_legal=new Tb_avances_legal();
         $tb_avpreg_legal->idExterno=$idExterno;
         $tb_avpreg_legal->cadena=$cadenaP;
         $tb_avpreg_legal->pregunta=1;
         $tb_avpreg_legal->enunciado=0;
         $tb_avpreg_legal->enlace=0;
+        $tb_avpreg_legal->next=$next;
         $tb_avpreg_legal->idUsuario=$idUsuario;
         $tb_avpreg_legal->estado=1;
         $tb_avpreg_legal->save();
     }
 
-    public function guardarEnunciado($idExterno, $cadenaE, $idUsuario){
+    public function guardarEnunciado($idExterno, $cadenaE, $next, $idUsuario){
         $tb_avenun_legal=new Tb_avances_legal();
         $tb_avenun_legal->idExterno=$idExterno;
         $tb_avenun_legal->cadena=$cadenaE;
         $tb_avenun_legal->pregunta=0;
         $tb_avenun_legal->enunciado=1;
         $tb_avenun_legal->enlace=0;
+        $tb_avenun_legal->next=$next;
         $tb_avenun_legal->idUsuario=$idUsuario;
         $tb_avenun_legal->estado=1;
         $tb_avenun_legal->save();
     }
 
-    public function guardarEnlace($idExterno, $cadenaEn, $idUsuario){
+    public function guardarEnlace($idExterno, $cadenaEn, $next, $idUsuario){
         $tb_avenla_legal=new Tb_avances_legal();
         $tb_avenla_legal->idExterno=$idExterno;
         $tb_avenla_legal->cadena=$cadenaEn;
         $tb_avenla_legal->pregunta=0;
         $tb_avenla_legal->enunciado=0;
         $tb_avenla_legal->enlace=1;
+        $tb_avenla_legal->next=$next;
         $tb_avenla_legal->idUsuario=$idUsuario;
         $tb_avenla_legal->estado=1;
         $tb_avenla_legal->save();
@@ -222,8 +224,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si pregunta es 1 y entra por si'
                         try {
-                            $this->guardarPregunta(1, $cadenaP, $idUsuario);
                             $next_question=2;
+                            $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -235,7 +238,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si  si pregunta es 1 y entra por no'
                         try {
-                            $this->guardarPregunta(1, $cadenaP, $idUsuario);
+                            $next_question=2;
+                            $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',1)->get();
 
@@ -243,8 +247,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(1, $cadenaE, $idUsuario);
-                            $next_question=2;
+                            $this->guardarEnunciado(1, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -266,8 +270,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si pregunta es 2 y entra por si'
                         try {
-                            $this->guardarPregunta(2, $cadenaP, $idUsuario);
                             $next_question=3;
+                            $this->guardarPregunta(2, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -279,7 +284,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si pregunta es 2 y entra por no'
                         try {
-                            $this->guardarPregunta(2, $cadenaP, $idUsuario);
+                            $next_question=3;
+                            $this->guardarPregunta(2, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',2)->get();
 
@@ -287,8 +293,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(2, $cadenaE, $idUsuario);
-                            $next_question=3;
+                            $this->guardarEnunciado(2, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -310,7 +316,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si pregunta es 3 y entra por si'
                         try {
-                            $this->guardarPregunta(3, $cadenaP, $idUsuario);
+                            $next_question=5;
+                            $this->guardarPregunta(3, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',3)->get();
 
@@ -318,7 +325,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(3, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(3, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',6)->get();
 
@@ -326,7 +333,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(6, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(6, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_legal::where('tb_enlaces_legal.id','=',1)->get();
 
@@ -334,9 +341,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaEn = $vueltaEn->enlace;
                                 }
 
-                            $this->guardarEnlace(1, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
 
-                            $next_question=5;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -348,8 +354,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si pregunta es 3 y entra por no'
                         try {
-                            $this->guardarPregunta(3, $cadenaP, $idUsuario);
                             $next_question=4;
+                            $this->guardarPregunta(3, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -371,7 +378,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(4, $cadenaP, $idUsuario);
+                            $next_question=5;
+                            $this->guardarPregunta(4, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',4)->get();
 
@@ -379,7 +387,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(4, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(4, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',6)->get();
 
@@ -387,7 +395,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(6, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(6, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_legal::where('tb_enlaces_legal.id','=',1)->get();
 
@@ -395,8 +403,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaEn = $vueltaEn->enlace;
                                 }
 
-                            $this->guardarEnlace(5, $cadenaEn, $idUsuario);
-                            $next_question=5;
+                            $this->guardarEnlace(5, $cadenaEn, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -408,7 +416,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(4, $cadenaP, $idUsuario);
+                            $next_question=5;
+                            $this->guardarPregunta(4, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',5)->get();
 
@@ -416,7 +425,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(5, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(5, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',6)->get();
 
@@ -424,16 +433,15 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarPregunta(6, $cadenaE, $idUsuario);
+                            $this->guardarPregunta(6, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_legal::where('tb_enlaces_legal.id','=',1)->get();
 
                             foreach($enlace_simulacion as $vueltaEn){
                                 $cadenaEn = $vueltaEn->enlace;
                                 }
-                            $this->guardarEnlace(1, $cadenaEn, $idUsuario);
+                            $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
 
-                            $next_question=5;
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -455,8 +463,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(5, $cadenaP, $idUsuario);
                             $next_question=6;
+                            $this->guardarPregunta(5, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -468,7 +477,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(5, $cadenaP, $idUsuario);
+                            $next_question=6;
+                            $this->guardarPregunta(5, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',7)->get();
 
@@ -476,8 +486,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(7, $cadenaE, $idUsuario);
-                            $next_question=6;
+                            $this->guardarEnunciado(7, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -499,8 +509,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(6, $cadenaP, $idUsuario);
                             $next_question=9;
+                            $this->guardarPregunta(6, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -512,8 +523,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(6, $cadenaP, $idUsuario);
                             $next_question=7;
+                            $this->guardarPregunta(6, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -535,8 +547,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(7, $cadenaP, $idUsuario);
                             $next_question=8;
+                            $this->guardarPregunta(7, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -548,7 +561,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(7, $cadenaP, $idUsuario);
+                            $next_question=16;
+                            $this->guardarPregunta(7, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',8)->get();
 
@@ -556,8 +570,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(8, $cadenaE, $idUsuario);
-                            $next_question=16;
+                            $this->guardarEnunciado(8, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -579,7 +593,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(8, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(8, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',9)->get();
 
@@ -587,8 +602,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(9, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(9, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -600,7 +615,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(8, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(8, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',10)->get();
 
@@ -608,8 +624,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(10, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(10, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -631,7 +647,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(9, $cadenaP, $idUsuario);
+                            $next_question=11;
+                            $this->guardarPregunta(9, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',12)->get();
 
@@ -639,8 +656,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(12, $cadenaE, $idUsuario);
-                            $next_question=11;
+                            $this->guardarEnunciado(12, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -652,7 +669,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(9, $cadenaP, $idUsuario);
+                            $next_question=10;
+                            $this->guardarPregunta(9, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',11)->get();
 
@@ -660,8 +678,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarEnunciado(11, $cadenaE, $idUsuario);
-                            $next_question=10;
+                            $this->guardarEnunciado(11, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -683,8 +701,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(10, $cadenaP, $idUsuario);
-
+                            $next_question=17;
+                            $this->guardarPregunta(10, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',15)->get();
 
@@ -692,8 +710,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(15, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(15, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -705,8 +723,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(10, $cadenaP, $idUsuario);
                             $next_question=12;
+                            $this->guardarPregunta(10, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -724,8 +743,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(11, $cadenaP, $idUsuario);
                             $next_question=13;
+                            $this->guardarPregunta(11, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -737,7 +757,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(11, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(11, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',17)->get();
 
@@ -745,8 +766,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(17, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(17, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -768,7 +789,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(12, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(12, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',13)->get();
 
@@ -776,8 +798,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(13, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(13, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -789,7 +811,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(12, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(12, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',14)->get();
 
@@ -797,8 +820,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(14, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(14, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -820,8 +843,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(13, $cadenaP, $idUsuario);
                             $next_question=14;
+                            $this->guardarPregunta(13, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -833,7 +857,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(13, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(13, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',16)->get();
 
@@ -841,8 +866,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(16, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(16, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -864,7 +889,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(14, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(14, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',16)->get();
 
@@ -872,8 +898,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(16, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(16, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -885,8 +911,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(14, $cadenaP, $idUsuario);
                             $next_question=15;
+                            $this->guardarPregunta(14, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -908,7 +935,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(15, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(15, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',18)->get();
 
@@ -916,8 +944,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(18, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(18, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -929,7 +957,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(15, $cadenaP, $idUsuario);
+                            $next_question=17;
+                            $this->guardarPregunta(15, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',16)->get();
 
@@ -937,8 +966,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(16, $cadenaE, $idUsuario);
-                            $next_question=17;
+                            $this->guardarEnunciado(16, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -960,7 +989,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(16, $cadenaP, $idUsuario);
+                            $next_question=20;
+                            $this->guardarPregunta(16, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',21)->get();
 
@@ -968,8 +998,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(21, $cadenaE, $idUsuario);
-                            $next_question=20;
+                            $this->guardarEnunciado(21, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -981,7 +1011,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(16, $cadenaP, $idUsuario);
+                            $next_question=18;
+                            $this->guardarPregunta(16, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',19)->get();
 
@@ -989,8 +1020,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(19, $cadenaE, $idUsuario);
-                            $next_question=18;
+                            $this->guardarEnunciado(19, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1012,7 +1043,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(17, $cadenaP, $idUsuario);
+                            $next_question=21;
+                            $this->guardarPregunta(17, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',22)->get();
 
@@ -1020,8 +1052,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(22, $cadenaE, $idUsuario);
-                            $next_question=21;
+                            $this->guardarEnunciado(22, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1033,7 +1065,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(17, $cadenaP, $idUsuario);
+                            $next_question=19;
+                            $this->guardarPregunta(17, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',20)->get();
 
@@ -1041,8 +1074,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(20, $cadenaE, $idUsuario);
-                            $next_question=19;
+                            $this->guardarEnunciado(20, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1064,7 +1097,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(18, $cadenaP, $idUsuario);
+                            $next_question=20;
+                            $this->guardarPregunta(18, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',25)->get();
 
@@ -1072,8 +1106,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(25, $cadenaE, $idUsuario);
-                            $next_question=20;
+                            $this->guardarEnunciado(25, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1085,7 +1119,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(18, $cadenaP, $idUsuario);
+                            $next_question=20;
+                            $this->guardarPregunta(18, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',23)->get();
 
@@ -1093,8 +1128,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(23, $cadenaE, $idUsuario);
-                            $next_question=20;
+                            $this->guardarEnunciado(23, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1116,7 +1151,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(19, $cadenaP, $idUsuario);
+                            $next_question=21;
+                            $this->guardarPregunta(19, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',26)->get();
 
@@ -1124,8 +1160,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(26, $cadenaE, $idUsuario);
-                            $next_question=21;
+                            $this->guardarEnunciado(26, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1137,7 +1173,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(19, $cadenaP, $idUsuario);
+                            $next_question=21;
+                            $this->guardarPregunta(19, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',24)->get();
 
@@ -1145,8 +1182,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(24, $cadenaE, $idUsuario);
-                            $next_question=21;
+                            $this->guardarEnunciado(24, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1168,8 +1205,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(20, $cadenaP, $idUsuario);
                             $next_question=22;
+                            $this->guardarPregunta(20, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1181,7 +1219,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(20, $cadenaP, $idUsuario);
+                            $next_question=22;
+                            $this->guardarPregunta(20, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',27)->get();
 
@@ -1189,8 +1228,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(27, $cadenaE, $idUsuario);
-                            $next_question=22;
+                            $this->guardarEnunciado(27, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1208,8 +1247,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(21, $cadenaP, $idUsuario);
                             $next_question=23;
+                            $this->guardarPregunta(21, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1221,7 +1261,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(21, $cadenaP, $idUsuario);
+                            $next_question=23;
+                            $this->guardarPregunta(21, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',28)->get();
 
@@ -1229,8 +1270,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(28, $cadenaE, $idUsuario);
-                            $next_question=23;
+                            $this->guardarEnunciado(28, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1252,7 +1293,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(22, $cadenaP, $idUsuario);
+                            $next_question=32;
+                            $this->guardarPregunta(22, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',29)->get();
 
@@ -1260,8 +1302,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(29, $cadenaE, $idUsuario);
-                            $next_question=32;
+                            $this->guardarEnunciado(29, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1273,8 +1315,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(22, $cadenaP, $idUsuario);
                             $next_question=24;
+                            $this->guardarPregunta(22, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1296,7 +1339,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(23, $cadenaP, $idUsuario);
+                            $next_question=26;
+                            $this->guardarPregunta(23, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',30)->get();
 
@@ -1304,7 +1348,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(30, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(30, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',35)->get();
 
@@ -1312,7 +1356,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(35, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(35, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',36)->get();
 
@@ -1320,8 +1364,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(36, $cadenaE, $idUsuario);
-                            $next_question=26;
+                            $this->guardarEnunciado(36, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1333,8 +1377,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(23, $cadenaP, $idUsuario);
                             $next_question=25;
+                            $this->guardarPregunta(23, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1356,7 +1401,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(24, $cadenaP, $idUsuario);
+                            $next_question=32;
+                            $this->guardarPregunta(24, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',33)->get();
 
@@ -1364,8 +1410,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(33, $cadenaE, $idUsuario);
-                            $next_question=32;
+                            $this->guardarEnunciado(33, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1377,7 +1423,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(24, $cadenaP, $idUsuario);
+                            $next_question=32;
+                            $this->guardarPregunta(24, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',31)->get();
 
@@ -1385,8 +1432,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(31, $cadenaE, $idUsuario);
-                            $next_question=32;
+                            $this->guardarEnunciado(31, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1408,7 +1455,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(25, $cadenaP, $idUsuario);
+                            $next_question=26;
+                            $this->guardarPregunta(25, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',34)->get();
 
@@ -1416,7 +1464,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(34, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(34, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',35)->get();
 
@@ -1424,7 +1472,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(35, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(35, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',36)->get();
 
@@ -1432,8 +1480,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(36, $cadenaE, $idUsuario);
-                            $next_question=26;
+                            $this->guardarEnunciado(36, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1445,7 +1493,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(25, $cadenaP, $idUsuario);
+                            $next_question=26;
+                            $this->guardarPregunta(25, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',32)->get();
 
@@ -1453,7 +1502,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(32, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(32, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',35)->get();
 
@@ -1461,7 +1510,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(35, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(35, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',36)->get();
 
@@ -1469,8 +1518,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(36, $cadenaE, $idUsuario);
-                            $next_question=26;
+                            $this->guardarEnunciado(36, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1492,8 +1541,9 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(26, $cadenaP, $idUsuario);
                             $next_question=27;
+                            $this->guardarPregunta(26, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1505,7 +1555,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(26, $cadenaP, $idUsuario);
+                            $next_question=28;
+                            $this->guardarPregunta(26, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',38)->get();
 
@@ -1513,7 +1564,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(38, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(38, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',39)->get();
 
@@ -1521,7 +1572,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(39, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(39, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',40)->get();
 
@@ -1529,8 +1580,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(40, $cadenaE, $idUsuario);
-                            $next_question=28;
+                            $this->guardarEnunciado(40, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1552,7 +1603,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(27, $cadenaP, $idUsuario);
+                            $next_question=28;
+                            $this->guardarPregunta(27, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',38)->get();
 
@@ -1560,7 +1612,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(38, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(38, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',39)->get();
 
@@ -1568,7 +1620,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(39, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(39, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',40)->get();
 
@@ -1576,8 +1628,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(40, $cadenaE, $idUsuario);
-                            $next_question=28;
+                            $this->guardarEnunciado(40, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1589,7 +1641,8 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(27, $cadenaP, $idUsuario);
+                            $next_question=28;
+                            $this->guardarPregunta(27, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',37)->get();
 
@@ -1597,7 +1650,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(37, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(37, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',38)->get();
 
@@ -1605,7 +1658,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(38, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(38, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',39)->get();
 
@@ -1613,7 +1666,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(39, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(39, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',40)->get();
 
@@ -1621,8 +1674,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(40, $cadenaE, $idUsuario);
-                            $next_question=28;
+                            $this->guardarEnunciado(40, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1644,7 +1697,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(28, $cadenaP, $idUsuario);
+                            $next_question=32;
+                            $this->guardarPregunta(28, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',41)->get();
 
@@ -1652,7 +1706,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(41, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(41, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',42)->get();
 
@@ -1660,8 +1714,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(42, $cadenaE, $idUsuario);
-                            $next_question=32;
+                            $this->guardarEnunciado(42, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1673,8 +1727,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(28, $cadenaP, $idUsuario);
                             $next_question=29;
+                            $this->guardarPregunta(28, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1696,7 +1751,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(29, $cadenaP, $idUsuario);
+                            $next_question=32;
+                            $this->guardarPregunta(29, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',41)->get();
 
@@ -1704,7 +1760,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(41, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(41, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',42)->get();
 
@@ -1712,8 +1768,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(42, $cadenaE, $idUsuario);
-                            $next_question=32;
+                            $this->guardarEnunciado(42, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1725,8 +1781,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(29, $cadenaP, $idUsuario);
                             $next_question=30;
+                            $this->guardarPregunta(29, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1748,7 +1805,8 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                         try {
-                            $this->guardarPregunta(30, $cadenaP, $idUsuario);
+                            $next_question=32;
+                            $this->guardarPregunta(30, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',41)->get();
 
@@ -1756,7 +1814,7 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(41, $cadenaE, $idUsuario);
+                            $this->guardarEnunciado(41, $cadenaE, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',42)->get();
 
@@ -1764,8 +1822,8 @@ class Tb_preguntas_legalController extends Controller
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(42, $cadenaE, $idUsuario);
-                            $next_question=32;
+                            $this->guardarEnunciado(42, $cadenaE, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1777,8 +1835,9 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                         try {
-                            $this->guardarPregunta(30, $cadenaP, $idUsuario);
                             $next_question=31;
+                            $this->guardarPregunta(30, $cadenaP, $next_question, $idUsuario);
+
                             return response()->json([
                                 'estado' => 'Ok',
                                 'message' => $next_question
@@ -1800,7 +1859,8 @@ class Tb_preguntas_legalController extends Controller
                         case '1':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                             try {
-                                $this->guardarPregunta(31, $cadenaP, $idUsuario);
+                                $next_question=32;
+                                $this->guardarPregunta(31, $cadenaP, $next_question, $idUsuario);
 
                                 $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',41)->get();
 
@@ -1808,7 +1868,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(41, $cadenaE, $idUsuario);
+                                $this->guardarEnunciado(41, $cadenaE, $next_question, $idUsuario);
 
                                 $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',42)->get();
 
@@ -1816,8 +1876,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(42, $cadenaE, $idUsuario);
-                                $next_question=32;
+                                $this->guardarEnunciado(42, $cadenaE, $next_question, $idUsuario);
+
                                 return response()->json([
                                     'estado' => 'Ok',
                                     'message' => $next_question
@@ -1829,7 +1889,8 @@ class Tb_preguntas_legalController extends Controller
                         case '2':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
                             try {
-                                $this->guardarPregunta(31, $cadenaP, $idUsuario);
+                                $next_question=32;
+                                $this->guardarPregunta(31, $cadenaP, $next_question, $idUsuario);
 
                                 $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',43)->get();
 
@@ -1837,7 +1898,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(43, $cadenaE, $idUsuario);
+                                $this->guardarEnunciado(43, $cadenaE, $next_question, $idUsuario);
 
                                 $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',44)->get();
 
@@ -1845,8 +1906,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(44, $cadenaE, $idUsuario);
-                                $next_question=32;
+                                $this->guardarEnunciado(44, $cadenaE, $next_question, $idUsuario);
+
                                 return response()->json([
                                     'estado' => 'Ok',
                                     'message' => $next_question
@@ -1868,8 +1929,8 @@ class Tb_preguntas_legalController extends Controller
                         case '1':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
                             try {
-                                $this->guardarPregunta(32, $cadenaP, $idUsuario);
-
+                                $next_question=99;
+                                $this->guardarPregunta(32, $cadenaP, $next_question, $idUsuario);
 
                                 $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',46)->get();
 
@@ -1877,8 +1938,8 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(46, $cadenaE, $idUsuario);
-                                $next_question=99;
+                                $this->guardarEnunciado(46, $cadenaE, $next_question, $idUsuario);
+
                                 return response()->json([
                                     'estado' => 'Ok',
                                     'message' => $next_question
@@ -1889,12 +1950,17 @@ class Tb_preguntas_legalController extends Controller
                             break;
                         case '2':
                             // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                                $this->guardarPregunta(32, $cadenaP, $idUsuario);
-                                $next_question=99;
-                                return response()->json([
-                                    'estado' => 'Ok',
-                                    'message' => $next_question
-                                   ]);
+                                try {
+                                    $next_question=99;
+                                    $this->guardarPregunta(32, $cadenaP, $next_question, $idUsuario);
+
+                                    return response()->json([
+                                        'estado' => 'Ok',
+                                        'message' => $next_question
+                                       ]);
+                                } catch (\Exception $e) {
+                                    return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
+                                }
                             break;
                         default:
                                 // Código a ejecutar si $variable1 es 'valor1' pero $variable2 no coincide con ningún caso anterior
