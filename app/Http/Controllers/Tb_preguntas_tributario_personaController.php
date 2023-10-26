@@ -171,6 +171,42 @@ class Tb_preguntas_tributario_personaController extends Controller
         ];
     }
 
+    public function guardarPregunta($idExterno, $cadenaP, $idUsuario){
+        $tb_avpreg_tribpers=new Tb_avances_tributario_persona();
+        $tb_avpreg_tribpers->idExterno=$idExterno;
+        $tb_avpreg_tribpers->cadena=$cadenaP;
+        $tb_avpreg_tribpers->pregunta=1;
+        $tb_avpreg_tribpers->enunciado=0;
+        $tb_avpreg_tribpers->enlace=0;
+        $tb_avpreg_tribpers->idUsuario=$idUsuario;
+        $tb_avpreg_tribpers->estado=1;
+        $tb_avpreg_tribpers->save();
+    }
+
+    public function guardarEnunciado($idExterno, $cadenaE, $idUsuario){
+        $tb_avenun_tribpers=new Tb_avances_tributario_persona();
+        $tb_avenun_tribpers->idExterno=$idExterno;
+        $tb_avenun_tribpers->cadena=$cadenaE;
+        $tb_avenun_tribpers->pregunta=0;
+        $tb_avenun_tribpers->enunciado=1;
+        $tb_avenun_tribpers->enlace=0;
+        $tb_avenun_tribpers->idUsuario=$idUsuario;
+        $tb_avenun_tribpers->estado=1;
+        $tb_avenun_tribpers->save();
+    }
+
+    public function guardarEnlace($idExterno, $cadenaEn, $idUsuario){
+        $tb_avenla_tribpers=new Tb_avances_tributario_persona();
+        $tb_avenla_tribpers->idExterno=$idExterno;
+        $tb_avenla_tribpers->cadena=$cadenaEn;
+        $tb_avenla_tribpers->pregunta=0;
+        $tb_avenla_tribpers->enunciado=0;
+        $tb_avenla_tribpers->enlace=1;
+        $tb_avenla_tribpers->idUsuario=$idUsuario;
+        $tb_avenla_tribpers->estado=1;
+        $tb_avenla_tribpers->save();
+    }
+
     public function nextFlow(Request $request){
         $idUsuario=$request->idUsuario;
         $idPregunta=$request->idP;
