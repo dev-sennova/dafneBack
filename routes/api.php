@@ -198,6 +198,14 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("estrategias/activate", "Tb_estrategiasController@activate");
      Route::get("estrategias/selectestrategias/{id}", "Tb_estrategiasController@indexOne");
 
+     Route::get("avances_legal", "Tb_avances_legalController@index");
+     Route::post("avances_legal/store", "Tb_avances_legalController@store");
+     Route::put("avances_legal/update", "Tb_avances_legalController@update");
+     Route::put("avances_legal/deactivate", "Tb_avances_legalController@deactivate");
+     Route::put("avances_legal/activate", "Tb_avances_legalController@activate");
+     Route::get("avances_legal/selectavances_legal/{id}", "Tb_avances_legalController@indexOne");
+     Route::get("avances_legal/selectavances_legalpropio/{id}", "Tb_avances_legalController@indexPropio");
+
     });
 
 });

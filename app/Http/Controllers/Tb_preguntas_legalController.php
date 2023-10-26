@@ -54,7 +54,7 @@ class Tb_preguntas_legalController extends Controller
                    ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
         }
 
     }
@@ -80,7 +80,7 @@ class Tb_preguntas_legalController extends Controller
                    ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
         }
 
     }
@@ -105,7 +105,7 @@ class Tb_preguntas_legalController extends Controller
                    ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
         }
 
     }
@@ -130,7 +130,7 @@ class Tb_preguntas_legalController extends Controller
                    ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
         }
 
     }
@@ -203,7 +203,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -211,7 +211,7 @@ class Tb_preguntas_legalController extends Controller
                         $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',1)->get();
 
                         foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
+                            $cadenaE = $vueltaE->enunciado;
                             }
 
                         try {
@@ -230,7 +230,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -261,7 +261,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -288,7 +288,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -359,7 +359,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -381,7 +381,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -435,7 +435,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -479,7 +479,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -510,7 +510,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -537,7 +537,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -568,7 +568,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -589,7 +589,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -620,7 +620,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -647,7 +647,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -684,7 +684,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -711,7 +711,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -748,7 +748,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -775,7 +775,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -812,7 +812,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -833,7 +833,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -860,7 +860,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -887,7 +887,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -924,7 +924,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -951,7 +951,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -982,7 +982,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1009,7 +1009,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1046,7 +1046,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1067,7 +1067,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1104,7 +1104,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1131,7 +1131,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1168,7 +1168,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1195,7 +1195,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1232,7 +1232,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1259,7 +1259,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1296,7 +1296,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1323,7 +1323,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1360,7 +1360,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1387,7 +1387,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1418,7 +1418,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1445,7 +1445,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1472,7 +1472,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1499,7 +1499,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1536,7 +1536,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1557,7 +1557,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1627,7 +1627,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1648,7 +1648,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1685,7 +1685,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1712,7 +1712,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1782,7 +1782,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1843,7 +1843,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -1874,7 +1874,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -1934,7 +1934,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -2004,7 +2004,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -2076,7 +2076,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -2130,7 +2130,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -2151,7 +2151,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -2205,7 +2205,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -2226,7 +2226,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -2280,7 +2280,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     case '2':
@@ -2301,7 +2301,7 @@ class Tb_preguntas_legalController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                         }
                         break;
                     default:
@@ -2355,7 +2355,7 @@ class Tb_preguntas_legalController extends Controller
                                     'message' => $next_question
                                    ]);
                             } catch (\Exception $e) {
-                                return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                                return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                             }
                             break;
                         case '2':
@@ -2399,7 +2399,7 @@ class Tb_preguntas_legalController extends Controller
                                     'message' => $next_question
                                    ]);
                             } catch (\Exception $e) {
-                                return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                                return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                             }
                             break;
                         default:
@@ -2436,7 +2436,7 @@ class Tb_preguntas_legalController extends Controller
                                     'message' => $next_question
                                    ]);
                             } catch (\Exception $e) {
-                                return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                                return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
                             }
                             break;
                         case '2':

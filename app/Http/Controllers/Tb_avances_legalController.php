@@ -30,6 +30,18 @@ class Tb_avances_legalController extends Controller
         ];
     }
 
+    public function indexPropio(Request $request)
+    {
+        $avances_legal = Tb_avances_legal::orderBy('tb_avances_legal.id','asc')
+        ->where('tb_avances_legal.idUsuario','=',$request->id)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'avances_legal' => $avances_legal
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');
