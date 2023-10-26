@@ -173,9 +173,9 @@ Route::group(['prefix' => 'auth'], function () {
 
      Route::post('/upload-image', 'ImageController@uploadImage');
 
-     Route::get("preguntas_caracterizacion/next", "Tb_preguntas_caracterizacionController@validateFlow");
-     Route::get("preguntas_caracterizacion/pre", "Tb_preguntas_caracterizacionController@preFlow");
-     Route::get("preguntas_caracterizacion/nextflow", "Tb_preguntas_caracterizacionController@nextFlow");
+     Route::get("preguntas_legal/next", "Tb_preguntas_legalController@validateFlow");
+     Route::get("preguntas_legal/pre", "Tb_preguntas_legalController@preFlow");
+     Route::get("preguntas_legal/nextflow", "Tb_preguntas_legalController@nextFlow");
 
      Route::get("matriz_dofa", "Tb_matriz_dofaController@index");
      Route::post("matriz_dofa/store", "Tb_matriz_dofaController@store");
