@@ -171,6 +171,42 @@ class Tb_preguntas_legalController extends Controller
         ];
     }
 
+    public function guardarPregunta($idExterno, $cadenaP, $idUsuario){
+        $tb_avpreg_legal=new Tb_avances_legal();
+        $tb_avpreg_legal->idExterno=$idExterno;
+        $tb_avpreg_legal->cadena=$cadenaP;
+        $tb_avpreg_legal->pregunta=1;
+        $tb_avpreg_legal->enunciado=0;
+        $tb_avpreg_legal->enlace=0;
+        $tb_avpreg_legal->idUsuario=$idUsuario;
+        $tb_avpreg_legal->estado=1;
+        $tb_avpreg_legal->save();
+    }
+
+    public function guardarEnunciado($idExterno, $cadenaE, $idUsuario){
+        $tb_avenun_legal=new Tb_avances_legal();
+        $tb_avenun_legal->idExterno=$idExterno;
+        $tb_avenun_legal->cadena=$cadenaE;
+        $tb_avenun_legal->pregunta=0;
+        $tb_avenun_legal->enunciado=1;
+        $tb_avenun_legal->enlace=0;
+        $tb_avenun_legal->idUsuario=$idUsuario;
+        $tb_avenun_legal->estado=1;
+        $tb_avenun_legal->save();
+    }
+
+    public function guardarEnlace($idExterno, $cadenaEn, $idUsuario){
+        $tb_avenla_legal=new Tb_avances_legal();
+        $tb_avenla_legal->idExterno=$idExterno;
+        $tb_avenla_legal->cadena=$cadenaEn;
+        $tb_avenla_legal->pregunta=0;
+        $tb_avenla_legal->enunciado=0;
+        $tb_avenla_legal->enlace=1;
+        $tb_avenla_legal->idUsuario=$idUsuario;
+        $tb_avenla_legal->estado=1;
+        $tb_avenla_legal->save();
+    }
+
     public function nextFlow(Request $request){
         $idUsuario=$request->idUsuario;
         $idPregunta=$request->idP;
@@ -188,15 +224,7 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si pregunta es 1 y entra por si'
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=1;
-                            $tb_preguntas_legal->cadena=$cadenaP;
-                            $tb_preguntas_legal->pregunta=1;
-                            $tb_preguntas_legal->enunciado=0;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(1, $cadenaP, $idUsuario);
                             $next_question=2;
                             return response()->json([
                                 'estado' => 'Ok',
@@ -208,22 +236,16 @@ class Tb_preguntas_legalController extends Controller
                         break;
                     case '2':
                         // Código a ejecutar si  si pregunta es 1 y entra por no'
-                        $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',1)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=1;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(1, $cadenaP, $idUsuario);
+
+                            $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',1)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+
+                            $this->guardarEnunciado(1, $cadenaE, $idUsuario);
                             $next_question=2;
                             return response()->json([
                                 'estado' => 'Ok',
@@ -246,15 +268,7 @@ class Tb_preguntas_legalController extends Controller
                     case '1':
                         // Código a ejecutar si pregunta es 2 y entra por si'
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=2;
-                            $tb_preguntas_legal->cadena=$cadenaP;
-                            $tb_preguntas_legal->pregunta=1;
-                            $tb_preguntas_legal->enunciado=0;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(2, $cadenaP, $idUsuario);
                             $next_question=3;
                             return response()->json([
                                 'estado' => 'Ok',
@@ -266,22 +280,16 @@ class Tb_preguntas_legalController extends Controller
                         break;
                     case '2':
                         // Código a ejecutar si pregunta es 2 y entra por no'
-                        $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',2)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->pregunta;
-                            }
-
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=2;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(2, $cadenaP, $idUsuario);
+
+                            $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',2)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+
+                            $this->guardarEnunciado(2, $cadenaE, $idUsuario);
                             $next_question=3;
                             return response()->json([
                                 'estado' => 'Ok',
@@ -303,23 +311,16 @@ class Tb_preguntas_legalController extends Controller
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si pregunta es 3 y entra por si'
-                        $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',3)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=3;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(3, $cadenaP, $idUsuario);
 
+                            $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',3)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+
+                            $this->guardarEnunciado(3, $cadenaE, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',6)->get();
 
@@ -327,15 +328,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=6;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarEnunciado(6, $cadenaE, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_legal::where('tb_enlaces_legal.id','=',1)->get();
 
@@ -343,15 +336,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaEn = $vueltaEn->enlace;
                                 }
 
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=1;
-                            $tb_preguntas_legal->cadena=$cadenaEn;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=0;
-                            $tb_preguntas_legal->enlace=1;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarEnlace(1, $cadenaEn, $idUsuario);
 
                             $next_question=5;
                             return response()->json([
@@ -365,16 +350,7 @@ class Tb_preguntas_legalController extends Controller
                     case '2':
                         // Código a ejecutar si pregunta es 3 y entra por no'
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=3;
-                            $tb_preguntas_legal->cadena=$cadenaP;
-                            $tb_preguntas_legal->pregunta=1;
-                            $tb_preguntas_legal->enunciado=0;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
-
+                            $this->guardarPregunta(3, $cadenaP, $idUsuario);
                             $next_question=4;
                             return response()->json([
                                 'estado' => 'Ok',
@@ -396,22 +372,16 @@ class Tb_preguntas_legalController extends Controller
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorA'
-                        $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',4)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=4;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(4, $cadenaP, $idUsuario);
+
+                            $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',4)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+
+                            $this->guardarEnunciado(4, $cadenaE, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',6)->get();
 
@@ -419,16 +389,15 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=6;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarEnunciado(6, $cadenaE, $idUsuario);
 
+                            $enlace_simulacion=Tb_enlaces_legal::where('tb_enlaces_legal.id','=',1)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                                $cadenaEn = $vueltaEn->enlace;
+                                }
+
+                            $this->guardarEnlace(5, $cadenaEn, $idUsuario);
                             $next_question=5;
                             return response()->json([
                                 'estado' => 'Ok',
@@ -440,22 +409,16 @@ class Tb_preguntas_legalController extends Controller
                         break;
                     case '2':
                         // Código a ejecutar si $variable1 es 'valor1' y $variable2 es 'valorB'
-                        $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',5)->get();
-
-                        foreach($enunciado_simulacion as $vueltaE){
-                            $cadenaE = $vueltaE->enunciado;
-                            }
-
                         try {
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=5;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(4, $cadenaP, $idUsuario);
+
+                            $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',5)->get();
+
+                            foreach($enunciado_simulacion as $vueltaE){
+                                $cadenaE = $vueltaE->enunciado;
+                                }
+
+                            $this->guardarEnunciado(5, $cadenaE, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',6)->get();
 
@@ -463,15 +426,14 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $tb_preguntas_legal=new Tb_avances_legal();
-                            $tb_preguntas_legal->idExterno=6;
-                            $tb_preguntas_legal->cadena=$cadenaE;
-                            $tb_preguntas_legal->pregunta=0;
-                            $tb_preguntas_legal->enunciado=1;
-                            $tb_preguntas_legal->enlace=0;
-                            $tb_preguntas_legal->idUsuario=$idUsuario;
-                            $tb_preguntas_legal->estado=1;
-                            $tb_preguntas_legal->save();
+                            $this->guardarPregunta(6, $cadenaE, $idUsuario);
+
+                            $enlace_simulacion=Tb_enlaces_legal::where('tb_enlaces_legal.id','=',1)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                                $cadenaEn = $vueltaEn->enlace;
+                                }
+                            $this->guardarEnlace(1, $cadenaEn, $idUsuario);
 
                             $next_question=5;
                             return response()->json([
