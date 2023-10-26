@@ -139,7 +139,7 @@ class Tb_preguntas_legalController extends Controller
         $idUsuario=$request->idUsuario;
         $idPregunta=$request->idP;
 
-        $cant_preguntas_simulacion = Tb_preguntas_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)->count();
+        $cant_preguntas_simulacion = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)->count();
 
         if($cant_preguntas_simulacion>0){
             $max_preguntas_simulacion = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)
