@@ -16,7 +16,7 @@ class CreateTbAvancesTributarioTable extends Migration
         Schema::create('tb_avances_tributario', function (Blueprint $table) {
             $table->id();
             $table->integer('idExterno');
-            $table->string('cadena', 255);
+            $table->string('cadena', 512);
             $table->boolean('pregunta')->default(0);
             $table->boolean('enunciado')->default(0);
             $table->boolean('enlace')->default(0);

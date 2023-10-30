@@ -1,0 +1,19 @@
+[
+    {"id":"1","dato":"Nombre del producto o servicio descripción y nombre de la empresa."},
+    {"id":"2","dato":"Número de productos o servicios en el mes."},
+    {"id":"3","dato":"Relacione el costo total de los materiales por unidad de producto."},
+    {"id":"4","dato":"Indique el costo del producto para la venta."},
+    {"id":"5","dato":"Relacione el costo total de los materiales por unidad de servicio."},
+    {"id":"6","dato":"Seleccione de la lista desplegable el código CIIU y la descripción asociada a su actividad económica principal."},
+    {"id":"7","dato":"Cree los perfiles del talento humano a contratar por nómina fija."},
+    {"id":"8","dato":"Digilencie el valor mensual a pagar a cada perfil relacionado."},
+    {"id":"9","dato":"De la lista desplegable seleccione los perfiles creados anteriormente."},
+    {"id":"10","dato":"Nombre del equipo. Costo. Vida útil en años."},
+    {"id":"11","dato":"Relacione el valor mensual por concepto."},
+    {"id":"12","dato":"Seleccione los conceptos de los costos indirectos de la lista desplegable y/o cree los conceptos adicionales."},
+    {"id":"13","dato":"Ingresar el valor del préstamo inicial. Tasa de interés (mensual o anual), número de período en meses."},
+    {"id":"14","dato":"Ingresar el valor de cada concepto seleccionado o creado."},
+    {"id":"15","dato":"Seleccione de la lista desplegable los conceptos que se relacionan con el área administrativa y ventas y/o cree conceptos que no encuentre en la lista."},
+    {"id":"16","dato":"Ingresar el amrgen de ganancia esperado."},
+    {"id":"17","dato":"Captura de datos de ingresos y/o gastos adicionales."}
+]

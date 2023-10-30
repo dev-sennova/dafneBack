@@ -135,16 +135,37 @@ class Tb_preguntas_legalController extends Controller
 
     }
 
+    public function validatePersona(Request $request){
+        $idUsuario=$request->idUsuario;
+
+        try {
+            $cant_enunciado = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)
+            ->where('tb_avances_legal.enunciado','=',1)
+            ->where('tb_avances_legal.idExterno','=',8)
+            ->count();
+
+            return [
+                'estado' => 'Ok',
+                'cant_enunciado' => $cant_enunciado
+            ];
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Ocurrió un error interno'.$e], 500);
+        }
+    }
+
     public function validateFlow(Request $request){
         $idUsuario=$request->idUsuario;
 
         $cant_preguntas_simulacion = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)->count();
 
         if($cant_preguntas_simulacion>0){
-            $max_preguntas_simulacion = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)
-            ->select('tb_avances_legal.idExterno')
-            ->orderBy('tb_avances_legal.id','desc')
-            ->first();
+            $preguntas_simulacion = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$idUsuario)
+            ->orderBy('tb_avances_legal.id','asc')
+            ->get();
+
+            foreach($preguntas_simulacion as $vueltaP){
+                $max_preguntas_simulacion = $vueltaP->next;
+                }
         }else{
             $max_preguntas_simulacion = 1;
         }
@@ -1932,13 +1953,13 @@ class Tb_preguntas_legalController extends Controller
                                 $next_question=99;
                                 $this->guardarPregunta(32, $cadenaP, $next_question, $idUsuario);
 
-                                $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',46)->get();
+                                $enunciado_simulacion=Tb_enunciados_legal::where('tb_enunciados_legal.id','=',45)->get();
 
                                 foreach($enunciado_simulacion as $vueltaE){
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                                $this->guardarEnunciado(46, $cadenaE, $next_question, $idUsuario);
+                                $this->guardarEnunciado(45, $cadenaE, $next_question, $idUsuario);
 
                                 return response()->json([
                                     'estado' => 'Ok',

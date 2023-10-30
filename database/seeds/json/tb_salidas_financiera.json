@@ -1,0 +1,6 @@
+[
+    {"id":"1","salida":"Hoja de costos con los elementos del costo, unitarios y globales."},
+    {"id":"2","salida":"Resumen hoja de gastos mensuales."},
+    {"id":"3","salida":"Mostrar documento resumen de la simulación."},
+    {"id":"4","salida":"Mostrar estado de resultados."}
+]

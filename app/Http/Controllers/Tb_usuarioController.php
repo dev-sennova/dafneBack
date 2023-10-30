@@ -46,12 +46,32 @@ class Tb_usuarioController extends Controller
         ];
     }
 
+    public function indexIdUser(Request $request)
+    {
+        $cadenaE=0;
+
+        $users = Tb_usuario::orderBy('id','desc')
+        ->where('tb_usuario.email','=',$request->id)
+        ->select('tb_usuario.id')
+        ->get();
+
+        foreach($users as $vueltaE){
+            $cadenaE = $vueltaE->id;
+            }
+
+        return [
+            'idUsuario' => $cadenaE
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');
+        $idUsuarioRecienGuardado=$request->id;
 
         try {
             $tb_usuario=new Tb_usuario();
+            $tb_usuario->id=$request->id;
             $tb_usuario->nombre=$request->nombre;
             $tb_usuario->tipodocumento=$request->tipodocumento;
             $tb_usuario->documento=$request->documento;
@@ -65,18 +85,20 @@ class Tb_usuarioController extends Controller
             if ($tb_usuario->save()) {
 
                 //$idtabla=DB::getPdo()->lastInsertId();
-                $idUsuarioRecienGuardado = $tb_usuario->id;
+                //$idUsuarioRecienGuardado = $tb_usuario->id;
 
                 $tb_usuario_rol=new Tb_usuario_rol();
-                $tb_usuario_rol->idUsuario=$idUsuarioRecienGuardado;
+                $tb_usuario_rol->idUsuario=$request->id;
                 $tb_usuario_rol->idRol=$request->idRol;
                 $tb_usuario_rol->save();
 
+                /*
                 $tb_user=new User();
                 $tb_user->name = $request->nombre;
                 $tb_user->email = $request->email;
                 $tb_user->password = bcrypt($request->documento);
                 $tb_user->save();
+                */
 
                 return response()->json([
                     'estado' => 'Ok',

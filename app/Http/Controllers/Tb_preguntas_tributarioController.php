@@ -137,15 +137,17 @@ class Tb_preguntas_tributarioController extends Controller
 
     public function validateFlow(Request $request){
         $idUsuario=$request->idUsuario;
-        $idPregunta=$request->idP;
 
         $cant_preguntas_simulacion = Tb_avances_tributario::where('tb_avances_tributario.idUsuario','=',$idUsuario)->count();
 
         if($cant_preguntas_simulacion>0){
-            $max_preguntas_simulacion = Tb_avances_tributario::where('tb_avances_tributario.idUsuario','=',$idUsuario)
-            ->select('tb_avances_tributario.idExterno')
-            ->orderBy('preguntas_tributario.id','desc')
-            ->first();
+            $preguntas_simulacion = Tb_avances_tributario::where('tb_avances_tributario.idUsuario','=',$idUsuario)
+            ->orderBy('tb_avances_tributario.id','asc')
+            ->get();
+
+            foreach($preguntas_simulacion as $vueltaP){
+                $max_preguntas_simulacion = $vueltaP->next;
+                }
         }else{
             $max_preguntas_simulacion = 1;
         }
@@ -222,40 +224,30 @@ class Tb_preguntas_tributarioController extends Controller
 
         switch ($idPregunta) {
             case '1':
-                try {
-                    $next_question=1;
-                    $enunciado_simulacion=Tb_enunciados_tributario::where('tb_enunciados_tributario.id','=',1)->get();
-
-                    foreach($enunciado_simulacion as $vueltaE){
-                    $cadenaE = $vueltaE->enunciado;
-                    }
-
-                    $this->guardarEnunciado(1, $cadenaE, $next_question, $idUsuario);
-
-                    $enunciado_simulacion=Tb_enunciados_tributario::where('tb_enunciados_tributario.id','=',2)->get();
-
-                    foreach($enunciado_simulacion as $vueltaE){
-                    $cadenaE = $vueltaE->enunciado;
-                    }
-
-                    $this->guardarEnunciado(2, $cadenaE, $next_question, $idUsuario);
-
-                    $enlace_simulacion=Tb_enlaces_tributario::where('tb_enlaces_tributario.id','=',1)->get();
-
-                    foreach($enlace_simulacion as $vueltaEn){
-                    $cadenaEn = $vueltaEn->enlace;
-                    }
-
-                    $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
-                } catch (\Exception $e) {
-                    return response()->json(['error' => 'Ocurrió un error interno'], 500);
-                }
-
-                switch ($valor) {
+                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si pregunta es 1 y entra por si'
                         try {
-                            $next_question=10;
+                            $next_question=8;
+
+                            //START MODIFY
+                            $enunciado_simulacionP=Tb_enunciados_tributario::where('tb_enunciados_tributario.id','<',3)->get();
+
+                            foreach($enunciado_simulacionP as $vueltaEP){
+                            $cadenaEP = $vueltaEP->enunciado;
+                            $idE = $vueltaEP->id;
+                            $this->guardarEnunciado($idE, $cadenaEP, $next_question, $idUsuario);
+                            }
+
+                            $enlace_simulacion=Tb_enlaces_tributario::where('tb_enlaces_tributario.id','=',1)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                            $cadenaEn = $vueltaEn->enlace;
+                            }
+
+                            $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
+                            //END MODIFY
+
                             $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario::where('tb_enunciados_tributario.id','=',3)->get();
@@ -266,13 +258,13 @@ class Tb_preguntas_tributarioController extends Controller
 
                             $this->guardarEnunciado(3, $cadenaE, $next_question, $idUsuario);
 
-                            $enunciado_simulacion=Tb_enunciados_tributario::where('tb_enunciados_tributario.id','=',11)->get();
+                            $enunciado_simulacion=Tb_enunciados_tributario::where('tb_enunciados_tributario.id','=',12)->get();
 
                             foreach($enunciado_simulacion as $vueltaE){
                             $cadenaE = $vueltaE->enunciado;
                             }
 
-                            $this->guardarEnunciado(11, $cadenaE, $next_question, $idUsuario);
+                            $this->guardarEnunciado(12, $cadenaE, $next_question, $idUsuario);
 
                             return response()->json([
                                 'estado' => 'Ok',
@@ -286,6 +278,25 @@ class Tb_preguntas_tributarioController extends Controller
                         // Código a ejecutar si  si pregunta es 1 y entra por no'
                         try {
                             $next_question=2;
+
+                            //START MODIFY
+                            $enunciado_simulacionP=Tb_enunciados_tributario::where('tb_enunciados_tributario.id','<',3)->get();
+
+                            foreach($enunciado_simulacionP as $vueltaEP){
+                            $cadenaEP = $vueltaEP->enunciado;
+                            $idE = $vueltaEP->id;
+                            $this->guardarEnunciado($idE, $cadenaEP, $next_question, $idUsuario);
+                            }
+
+                            $enlace_simulacion=Tb_enlaces_tributario::where('tb_enlaces_tributario.id','=',1)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                            $cadenaEn = $vueltaEn->enlace;
+                            }
+
+                            $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
+                            //END MODIFY
+
                             $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario::where('tb_enlaces_tributario.id','=',2)->get();

@@ -4,7 +4,7 @@
     {"id":"3","enunciado":"Su empresa pertenece al sector manufacturero."},
     {"id":"4","enunciado":"Su empresa pertenece al sector servicios."},
     {"id":"5","enunciado":"Su empresa pertenece al sector comercial."},
-    {"id":"6","enunciado":"Seleccione el rango de ingresos brutos que proyecta tener en el año con base al Decreto 957 de 2019. Artículo 2.2.1.13.2.2"},
+    {"id":"6","enunciado":"Seleccione el rango de ingresos brutos que proyecta tener en el año con base al Decreto 957 de 2019. Artículo <a href='https://n9.cl/ruvga' target='_blank'>2.2.1.13.2.2</a> "},
     {"id":"7","enunciado":"Debe revisar los requisitos del plan de ordenamiento territorial antes de continuar con los demas procesos."},
     {"id":"8","enunciado":"Registrese como Persona Natural."},
     {"id":"9","enunciado":"Registrese como Empresa Unipersonal."},

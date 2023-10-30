@@ -1,0 +1,12 @@
+[
+    {"id":"1","pregunta":"¿Requerirá de materiales para la producción o de productos para su venta posterior?"},
+    {"id":"2","pregunta":"¿Son unicamente materias primas para la transformacion?"},
+    {"id":"3","pregunta":"¿Requerirá de insumos o materiales para la prestación del servicio?"},
+    {"id":"4","pregunta":"¿Va a vincular a una o más personas por nómina fija?"},
+    {"id":"5","pregunta":"¿El usuario se va a formalizar como persona natural?"},
+    {"id":"6","pregunta":"¿Va a vincular solamente a una persona?"},
+    {"id":"7","pregunta":"¿Todos sus trabajadores ganarán individualmente más de 10 SMMLV?"},
+    {"id":"8","pregunta":"¿Tendrá máquinas o equipos necesarios para la producción del bien o prestación del servicio?"},
+    {"id":"9","pregunta":"¿Va a necesitar algún tipo de financiación para los recursos de la empresa?"},
+    {"id":"10","pregunta":"¿El usuario debe facturar el impuesto al consumo o del IVA?"}
+]

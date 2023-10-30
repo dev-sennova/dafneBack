@@ -1,5 +1,5 @@
 [
-    {"id":"1","modulo":"Ideación"},
-    {"id":"2","modulo":"Simulación"},
-    {"id":"3","modulo":"Formalización"}
+    {"id":"1","modulo":"ideacion"},
+    {"id":"2","modulo":"simulacion"},
+    {"id":"3","modulo":"formalizacion"}
 ]

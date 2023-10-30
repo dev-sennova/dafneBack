@@ -9,7 +9,7 @@ class Tb_bitacoraController extends Controller
 {
     public function index(Request $request)
     {
-        $bitacora = Tb_bitacora::orderBy('bitacora','asc')
+        $bitacora = Tb_bitacora::orderBy('tb_bitacora.id','asc')
         ->get();
 
         return [
@@ -20,13 +20,31 @@ class Tb_bitacoraController extends Controller
 
     public function indexOne(Request $request)
     {
-        $bitacora = Tb_bitacora::orderBy('bitacora','desc')
+        $bitacora = Tb_bitacora::orderBy('tb_bitacora.id','desc')
         ->where('tb_bitacora.id','=',$request->id)
         ->get();
 
         return [
             'estado' => 'Ok',
             'bitacora' => $bitacora
+        ];
+    }
+
+    public function validarAvance(Request $request)
+    {
+        //Modelo::join('tablaqueseune',basicamente un on)
+        $idModulo=$request->idModulo;
+        $idUsuario=$request->idUsuario;
+        $seccion = Tb_bitacora::join('tb_secciones','tb_bitacora.idSeccion','=','tb_secciones.id')
+        ->where('tb_bitacora.idUsuario','=',$idUsuario)
+        ->where('tb_secciones.idModulo','=',$idModulo)
+        ->select('tb_bitacora.id as id','tb_bitacora.avance as avance','tb_bitacora.idSeccion as idSeccion','tb_bitacora.idUsuario as idUsuario','tb_secciones.seccion as seccion','tb_secciones.idModulo as idModulo')
+        ->orderBy('tb_bitacora.id','desc')
+        ->first();
+
+        return [
+            'estado' => 'Ok',
+            'seccion' => $seccion
         ];
     }
 
@@ -39,7 +57,6 @@ class Tb_bitacoraController extends Controller
             $tb_bitacora->avance=$request->avance;
             $tb_bitacora->idSeccion=$request->idSeccion;
             $tb_bitacora->idUsuario=$request->idUsuario;
-            $tb_bitacora->estado=1;
 
             if ($tb_bitacora->save()) {
                 return response()->json([
@@ -53,7 +70,7 @@ class Tb_bitacoraController extends Controller
                    ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json(['error' => 'Ocurrió un error interno '+$e], 500);
         }
 
     }

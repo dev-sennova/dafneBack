@@ -37,6 +37,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("usuario/activate", "Tb_usuarioController@activate");
      Route::get("usuario/selectusuario/{id}", "Tb_usuarioController@indexOne");
      Route::get("usuario/selectemail/{id}", "Tb_usuarioController@indexUser");
+     Route::get("usuario/selectemaillogin/{id}", "Tb_usuarioController@indexIdUser");
 
      Route::get("rol", "Tb_rolController@index");
      Route::post("rol/store", "Tb_rolController@store");
@@ -51,6 +52,14 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("ciudad/deactivate", "Tb_ciudadController@deactivate");
      Route::put("ciudad/activate", "Tb_ciudadController@activate");
      Route::get("ciudad/selectciudad/{id}", "Tb_ciudadController@indexOne");
+
+     Route::get("bitacora", "Tb_bitacoraController@index");
+     Route::post("bitacora/store", "Tb_bitacoraController@store");
+     Route::put("bitacora/update", "Tb_bitacoraController@update");
+     Route::put("bitacora/deactivate", "Tb_bitacoraController@deactivate");
+     Route::put("bitacora/activate", "Tb_bitacoraController@activate");
+     Route::get("bitacora/selectbitacora/{id}", "Tb_bitacoraController@indexOne");
+     Route::get("bitacora/validaravance", "Tb_bitacoraController@validarAvance");
 
      Route::get("suenos", "Tb_suenosController@index");
      Route::post("suenos/store", "Tb_suenosController@store");
@@ -176,6 +185,15 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("preguntas_legal/next", "Tb_preguntas_legalController@validateFlow");
      Route::get("preguntas_legal/pre", "Tb_preguntas_legalController@preFlow");
      Route::get("preguntas_legal/nextflow", "Tb_preguntas_legalController@nextFlow");
+     Route::get("preguntas_legal/validatepersona", "Tb_preguntas_legalController@validatePersona");
+
+     Route::get("preguntas_tributario/next", "Tb_preguntas_tributarioController@validateFlow");
+     Route::get("preguntas_tributario/pre", "Tb_preguntas_tributarioController@preFlow");
+     Route::get("preguntas_tributario/nextflow", "Tb_preguntas_tributarioController@nextFlow");
+
+     Route::get("preguntas_tributario_persona/next", "Tb_preguntas_tributario_personaController@validateFlow");
+     Route::get("preguntas_tributario_persona/pre", "Tb_preguntas_tributario_personaController@preFlow");
+     Route::get("preguntas_tributario_persona/nextflow", "Tb_preguntas_tributario_personaController@nextFlow");
 
      Route::get("matriz_dofa", "Tb_matriz_dofaController@index");
      Route::post("matriz_dofa/store", "Tb_matriz_dofaController@store");

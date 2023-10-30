@@ -15,7 +15,7 @@ class CreateTbEnlacesTributarioTable extends Migration
     {
         Schema::create('tb_enlaces_tributario', function (Blueprint $table) {
             $table->id();
-            $table->string('enlace', 255);
+            $table->string('enlace', 512);
             //$table->timestamps();
         });
     }

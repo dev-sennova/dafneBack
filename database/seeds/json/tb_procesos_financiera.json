@@ -1,0 +1,14 @@
+[
+    {"id":"1","proceso":"Extraer el código CIIU el nivel de riesgo ARL y el % de cotización de acuerdo al código seleccionado."},
+    {"id":"2","proceso":"Se valida de acuerdo a los resultados de las simulaciones anteriores si se va a formalizar como persona natural."},
+    {"id":"3","proceso":"Realizar el cálculo de la mano de obra productiva con base a los datos y fórmulas predefinidas."},
+    {"id":"4","proceso":"Iterar a lista de trabajadores."},
+    {"id":"5","proceso":"Realizar el cálculo de la mano de obra administrativa con base a los datos y fórmulas predefinidas."},
+    {"id":"6","proceso":"Realizar el cálculo de la depreciación con base a los datos y fórmulas predefinidas."},
+    {"id":"7","proceso":"Realizar el cálculo de la amortización y extraer el valor promedio mensual de intereses."},
+    {"id":"8","proceso":"Realizar el cálculo del precio de venta con base al costo y fórmulas predefinidas."},
+    {"id":"9","proceso":"Se valida la obligatoriedad de los impuestos sobre el producto."},
+    {"id":"10","proceso":"Calcular el precio de venta despues de impuestos adicionándole el % correspondiente."},
+    {"id":"11","proceso":"Realizar el cálculo del punto de equilibrio con base al precio de venta antes de impuestos."},
+    {"id":"12","proceso":"Realizar el cálculo de la utilidad antes de impuestos con los datos capturados de la hoja de costo, hoja de gasto y gastos e ingresos adicionales."}
+]

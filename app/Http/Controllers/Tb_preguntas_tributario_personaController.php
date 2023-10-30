@@ -137,15 +137,17 @@ class Tb_preguntas_tributario_personaController extends Controller
 
     public function validateFlow(Request $request){
         $idUsuario=$request->idUsuario;
-        $idPregunta=$request->idP;
 
         $cant_preguntas_simulacion = Tb_avances_tributario_persona::where('tb_avances_tributario_persona.idUsuario','=',$idUsuario)->count();
 
         if($cant_preguntas_simulacion>0){
-            $max_preguntas_simulacion = Tb_avances_tributario_persona::where('tb_avances_tributario_persona.idUsuario','=',$idUsuario)
-            ->select('tb_avances_tributario_persona.idExterno')
-            ->orderBy('preguntas_tributario_persona.id','desc')
-            ->first();
+            $preguntas_simulacion = Tb_avances_tributario_persona::where('tb_avances_tributario_persona.idUsuario','=',$idUsuario)
+            ->orderBy('tb_avances_tributario_persona.id','asc')
+            ->get();
+
+            foreach($preguntas_simulacion as $vueltaP){
+                $max_preguntas_simulacion = $vueltaP->next;
+                }
         }else{
             $max_preguntas_simulacion = 1;
         }
@@ -222,31 +224,30 @@ class Tb_preguntas_tributario_personaController extends Controller
 
         switch ($idPregunta) {
             case '1':
-            try {
-                $next_question=1;
-                $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',1)->get();
-
-                foreach($enunciado_simulacion as $vueltaE){
-                $cadenaE = $vueltaE->enunciado;
-                }
-
-                $this->guardarEnunciado(1, $cadenaE, $next_question, $idUsuario);
-
-                $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',1)->get();
-
-                foreach($enlace_simulacion as $vueltaEn){
-                $cadenaEn = $vueltaEn->enlace;
-                }
-
-                $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
-            } catch (\Exception $e) {
-                return response()->json(['error' => 'Ocurrió un error interno'], 500);
-            }
                 switch ($valor) {
                     case '1':
                         // Código a ejecutar si pregunta es 1 y entra por si'
                         try {
                             $next_question=10;
+
+                            //START MODIFY
+                            $enunciado_simulacionP=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',1)->get();
+
+                            foreach($enunciado_simulacionP as $vueltaEP){
+                            $cadenaEP = $vueltaEP->enunciado;
+                            $idE = $vueltaEP->id;
+                            $this->guardarEnunciado($idE, $cadenaEP, $next_question, $idUsuario);
+                            }
+
+                            $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',1)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                            $cadenaEn = $vueltaEn->enlace;
+                            }
+
+                            $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
+                            //END MODIFY
+
                             $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
 
                             $enunciado_simulacion=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',2)->get();
@@ -278,13 +279,32 @@ class Tb_preguntas_tributario_personaController extends Controller
                                 'message' => $next_question
                                ]);
                         } catch (\Exception $e) {
-                            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+                            return response()->json(['error' => 'Ocurrió un error interno '.$e], 500);
                         }
                         break;
                     case '2':
                         // Código a ejecutar si  si pregunta es 1 y entra por no'
                         try {
                             $next_question=2;
+
+                            //START MODIFY
+                            $enunciado_simulacionP=Tb_enunciados_tributario_persona::where('tb_enunciados_tributario_persona.id','=',1)->get();
+
+                            foreach($enunciado_simulacionP as $vueltaEP){
+                            $cadenaEP = $vueltaEP->enunciado;
+                            $idE = $vueltaEP->id;
+                            $this->guardarEnunciado($idE, $cadenaEP, $next_question, $idUsuario);
+                            }
+
+                            $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',1)->get();
+
+                            foreach($enlace_simulacion as $vueltaEn){
+                            $cadenaEn = $vueltaEn->enlace;
+                            }
+
+                            $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
+                            //END MODIFY
+
                             $this->guardarPregunta(1, $cadenaP, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_tributario_persona::where('tb_enlaces_tributario_persona.id','=',2)->get();

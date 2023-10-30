@@ -15,7 +15,7 @@ class CreateTbEnlacesLegalTable extends Migration
     {
         Schema::create('tb_enlaces_legal', function (Blueprint $table) {
             $table->id();
-            $table->string('enlace', 255);
+            $table->string('enlace', 512);
             //$table->timestamps();
         });
     }

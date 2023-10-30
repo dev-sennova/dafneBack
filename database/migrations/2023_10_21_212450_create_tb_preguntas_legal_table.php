@@ -15,7 +15,7 @@ class CreateTbPreguntasLegalTable extends Migration
     {
         Schema::create('tb_preguntas_legal', function (Blueprint $table) {
             $table->id();
-            $table->string('pregunta', 255);
+            $table->string('pregunta', 512);
             //$table->integer('valorMinuto')->unsigned();
             //$table->boolean('estado')->default(1);
             //$table->timestamps();
