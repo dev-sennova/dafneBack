@@ -224,6 +224,28 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("avances_legal/selectavances_legal/{id}", "Tb_avances_legalController@indexOne");
      Route::get("avances_legal/selectavances_legalpropio/{id}", "Tb_avances_legalController@indexPropio");
 
+     Route::get("variables_globales", "Tb_variables_globalesController@index");
+     Route::post("variables_globales/store", "Tb_variables_globalesController@store");
+     Route::put("variables_globales/update", "Tb_variables_globalesController@update");
+     Route::put("variables_globales/deactivate", "Tb_variables_globalesController@deactivate");
+     Route::put("variables_globales/activate", "Tb_variables_globalesController@activate");
+     Route::get("variables_globales/selectvariables_globales/{id}", "Tb_variables_globalesController@indexOne");
+
+     Route::get("codigo_ciiu", "Tb_codigo_ciiuController@index");
+     Route::post("codigo_ciiu/store", "Tb_codigo_ciiuController@store");
+     Route::put("codigo_ciiu/update", "Tb_codigo_ciiuController@update");
+     Route::put("codigo_ciiu/deactivate", "Tb_codigo_ciiuController@deactivate");
+     Route::put("codigo_ciiu/activate", "Tb_codigo_ciiuController@activate");
+     Route::get("codigo_ciiu/selectcodigo_ciiu/{id}", "Tb_codigo_ciiuController@indexOne");
+
+     Route::get("riesgo_arl", "Tb_riesgo_arlController@index");
+     Route::post("riesgo_arl/store", "Tb_riesgo_arlController@store");
+     Route::put("riesgo_arl/update", "Tb_riesgo_arlController@update");
+     Route::put("riesgo_arl/deactivate", "Tb_riesgo_arlController@deactivate");
+     Route::put("riesgo_arl/activate", "Tb_riesgo_arlController@activate");
+     Route::get("riesgo_arl/selectriesgo_arl/{id}", "Tb_riesgo_arlController@indexOne");
+
+
     });
 
 });

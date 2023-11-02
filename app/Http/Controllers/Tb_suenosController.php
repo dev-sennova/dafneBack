@@ -24,8 +24,8 @@ class Tb_suenosController extends Controller
     {
         $suenos = Tb_suenos::orderBy('id','asc')
         ->where('tb_suenos.visibilidad','=','1')
-        ->where('tb_suenos.moderacion','=','1')
-        ->select('tb_suenos.id','tb_suenos.sueno')
+        ->where('tb_suenos.moderacion','<','2')
+        ->select('tb_suenos.id','tb_suenos.sueno','tb_suenos.moderacion')
         ->get();
 
         return [
@@ -39,9 +39,9 @@ class Tb_suenosController extends Controller
         //Modelo::join('tablaqueseune',basicamente un on)
         $suenos = Tb_suenos::join('tb_usuario_suenos','tb_suenos.id','=','tb_usuario_suenos.idSueno')
         ->where('tb_suenos.visibilidad','=','2')
-        ->where('tb_suenos.moderacion','=','1')
+        ->where('tb_suenos.moderacion','<','2')
         ->where('tb_usuario_suenos.idUsuario','=',$request->id)
-        ->select('tb_suenos.id','tb_suenos.sueno')
+        ->select('tb_suenos.id','tb_suenos.sueno','tb_suenos.moderacion')
         ->orderBy('tb_suenos.id','asc')
         ->get();
 
@@ -71,7 +71,7 @@ class Tb_suenosController extends Controller
             $tb_suenos=new Tb_suenos();
             $tb_suenos->sueno=$request->sueno;
             $tb_suenos->visibilidad=2;
-            $tb_suenos->moderacion=1;
+            $tb_suenos->moderacion=0;
             $tb_suenos->estado=1;
 
             if ($tb_suenos->save()) {

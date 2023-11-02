@@ -24,8 +24,8 @@ class Tb_ideasController extends Controller
     {
         $ideas = Tb_ideas::orderBy('id','asc')
         ->where('tb_ideas.visibilidad','=','1')
-        ->where('tb_ideas.moderacion','=','1')
-        ->select('tb_ideas.id','tb_ideas.idea')
+        ->where('tb_ideas.moderacion','<','2')
+        ->select('tb_ideas.id','tb_ideas.idea','tb_ideas.moderacion')
         ->get();
 
         return [
@@ -51,9 +51,9 @@ class Tb_ideasController extends Controller
         //Modelo::join('tablaqueseune',basicamente un on)
         $ideas = Tb_ideas::join('tb_usuario_ideas','tb_ideas.id','=','tb_usuario_ideas.idideas')
         ->where('tb_ideas.visibilidad','=','2')
-        ->where('tb_ideas.moderacion','=','1')
+        ->where('tb_ideas.moderacion','<','2')
         ->where('tb_usuario_ideas.idUsuario','=',$request->id)
-        ->select('tb_ideas.id','tb_ideas.idea')
+        ->select('tb_ideas.id','tb_ideas.idea','tb_ideas.moderacion')
         ->orderBy('tb_ideas.id','asc')
         ->get();
 
@@ -71,7 +71,7 @@ class Tb_ideasController extends Controller
             $tb_ideas=new Tb_ideas();
             $tb_ideas->idea=$request->idea;
             $tb_ideas->visibilidad=2;
-            $tb_ideas->moderacion=1;
+            $tb_ideas->moderacion=0;
             $tb_ideas->estado=1;
 
             if ($tb_ideas->save()) {

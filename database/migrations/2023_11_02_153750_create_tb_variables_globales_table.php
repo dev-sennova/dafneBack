@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbCriteriosTable extends Migration
+class CreateTbVariablesGlobalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTbCriteriosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_criterios', function (Blueprint $table) {
+        Schema::create('tb_variables_globales', function (Blueprint $table) {
             $table->id();
-            $table->string('criterio');
-            $table->string('pregunta');
-            $table->boolean('visibilidad')->default(0); //visibilidad 1 obligatoria, 0 opcional
-            $table->boolean('moderacion')->default(0); //moderacion 0 espera, 1 moderado, 2 rechazado
+            $table->string('variable');
+            $table->string('valor');
             $table->boolean('estado')->default(1);
         });
     }
@@ -30,6 +28,6 @@ class CreateTbCriteriosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_criterios');
+        Schema::dropIfExists('tb_variables_globales');
     }
 }

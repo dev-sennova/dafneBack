@@ -36,6 +36,8 @@ class AuthController extends Controller
        $tokenResult->token->expires_at
       )->toDateTimeString(),
       'id_usuario' => $user->id,
+      'nombre_usuario' => $user->name,
+      'email_usuario' => $user->email,
       'rol' => $user->rol // Agrega el campo 'rol' a la respuesta
     ]);
   }
@@ -45,12 +47,14 @@ class AuthController extends Controller
     'name' => 'required|string',
     'email' => 'required|string|email|unique:users',
     'rol' => 'required|integer',
+    'gestor' => 'required|integer',
     'password' => 'required|string'
   ]);
    $user = new User;
    $user->name = $request->name;
    $user->email = $request->email;
    $user->rol = $request->rol;
+   $user->gestor = $request->gestor;
    $user->password = bcrypt($request->password);
    $user->save();
    return response()->json([

@@ -198,7 +198,33 @@ class DatabaseSeeder extends Seeder
         //funcion principal que llama cada seeder
         $this->call(Tb_seccionesSeeder::class);
 //-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_variables_globales'
+        ]);
 
+        //funcion principal que llama cada seeder
+        $this->call(Tb_variables_globalesSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_riesgo_arl'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_riesgo_arlSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_codigo_ciiu'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_codigo_ciiuSeeder::class);
+//-------------------------------------------------------------------//
 
 //--Tener cuidado con este cierre--//
     }

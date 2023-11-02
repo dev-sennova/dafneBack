@@ -23,8 +23,8 @@ class Tb_criteriosController extends Controller
     {
         $criterios = Tb_criterios::orderBy('id','asc')
         ->where('tb_criterios.visibilidad','=','1')
-        ->where('tb_criterios.moderacion','=','1')
-        ->select('tb_criterios.id','tb_criterios.criterio')
+        ->where('tb_criterios.moderacion','<','2')
+        ->select('tb_criterios.id','tb_criterios.criterio','tb_criterios.moderacion')
         ->get();
 
         return [
@@ -50,9 +50,9 @@ class Tb_criteriosController extends Controller
         //Modelo::join('tablaqueseune',basicamente un on)
         $criterios = Tb_criterios::join('tb_usuario_criterios','tb_criterios.id','=','tb_usuario_criterios.idCriterio')
         ->where('tb_criterios.visibilidad','=','2')
-        ->where('tb_criterios.moderacion','=','1')
+        ->where('tb_criterios.moderacion','<','2')
         ->where('tb_usuario_criterios.idUsuario','=',$request->id)
-        ->select('tb_criterios.id','tb_criterios.criterio')
+        ->select('tb_criterios.id','tb_criterios.criterio','tb_criterios.moderacion')
         ->orderBy('tb_criterios.id','asc')
         ->get();
 
@@ -71,7 +71,7 @@ class Tb_criteriosController extends Controller
             $tb_criterios->criterio=$request->criterio;
             $tb_criterios->pregunta=$request->pregunta;
             $tb_criterios->visibilidad=2;
-            $tb_criterios->moderacion=1;
+            $tb_criterios->moderacion=0;
             $tb_criterios->estado=1;
 
             if ($tb_criterios->save()) {

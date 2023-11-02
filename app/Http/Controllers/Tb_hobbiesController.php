@@ -24,8 +24,8 @@ class Tb_hobbiesController extends Controller
     {
         $hobbies = Tb_hobbies::orderBy('id','asc')
         ->where('tb_hobbies.visibilidad','=','1')
-        ->where('tb_hobbies.moderacion','=','1')
-        ->select('tb_hobbies.id','tb_hobbies.hobby')
+        ->where('tb_hobbies.moderacion','<','2')
+        ->select('tb_hobbies.id','tb_hobbies.hobby','tb_hobbies.moderacion')
         ->get();
 
         return [
@@ -39,9 +39,9 @@ class Tb_hobbiesController extends Controller
         //Modelo::join('tablaqueseune',basicamente un on)
         $hobbies = Tb_hobbies::join('tb_usuario_hobbies','tb_hobbies.id','=','tb_usuario_hobbies.idHobby')
         ->where('tb_hobbies.visibilidad','=','2')
-        ->where('tb_hobbies.moderacion','=','1')
+        ->where('tb_hobbies.moderacion','<','2')
         ->where('tb_usuario_hobbies.idUsuario','=',$request->id)
-        ->select('tb_hobbies.id','tb_hobbies.hobby')
+        ->select('tb_hobbies.id','tb_hobbies.hobby','tb_hobbies.moderacion')
         ->orderBy('tb_hobbies.id','asc')
         ->get();
 
@@ -71,7 +71,7 @@ class Tb_hobbiesController extends Controller
             $tb_hobbies=new Tb_hobbies();
             $tb_hobbies->hobby=$request->hobby;
             $tb_hobbies->visibilidad=2;
-            $tb_hobbies->moderacion=1;
+            $tb_hobbies->moderacion=0;
             $tb_hobbies->estado=1;
 
             if ($tb_hobbies->save()) {
