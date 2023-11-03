@@ -208,6 +208,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("modelo_canvas/deactivate", "Tb_modelo_canvasController@deactivate");
      Route::put("modelo_canvas/activate", "Tb_modelo_canvasController@activate");
      Route::get("modelo_canvas/selectmodelo_canvas/{id}", "Tb_modelo_canvasController@indexOne");
+     Route::get("modelo_canvas/selectmodelo_canvaspropio/{id}", "Tb_modelo_canvasController@indexPropio");
 
      Route::get("estrategias", "Tb_estrategiasController@index");
      Route::post("estrategias/store", "Tb_estrategiasController@store");

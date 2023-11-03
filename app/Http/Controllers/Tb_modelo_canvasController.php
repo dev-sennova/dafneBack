@@ -30,6 +30,18 @@ class Tb_modelo_canvasController extends Controller
         ];
     }
 
+    public function indexPropio(Request $request)
+    {
+        $modelo_canvas = Tb_modelo_canvas::orderBy('id','desc')
+        ->where('tb_modelo_canvas.idUsuario','=',$request->id)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'modelo_canvas' => $modelo_canvas
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');
