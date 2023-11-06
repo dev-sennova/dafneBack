@@ -424,7 +424,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaEn = $vueltaEn->enlace;
                                 }
 
-                            $this->guardarEnlace(5, $cadenaEn, $next_question, $idUsuario);
+                            $this->guardarEnlace(1, $cadenaEn, $next_question, $idUsuario);
 
                             return response()->json([
                                 'estado' => 'Ok',
@@ -454,7 +454,7 @@ class Tb_preguntas_legalController extends Controller
                                 $cadenaE = $vueltaE->enunciado;
                                 }
 
-                            $this->guardarPregunta(6, $cadenaE, $next_question, $idUsuario);
+                            $this->guardarEnunciado(6, $cadenaE, $next_question, $idUsuario);
 
                             $enlace_simulacion=Tb_enlaces_legal::where('tb_enlaces_legal.id','=',1)->get();
 

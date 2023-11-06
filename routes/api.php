@@ -60,6 +60,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("bitacora/activate", "Tb_bitacoraController@activate");
      Route::get("bitacora/selectbitacora/{id}", "Tb_bitacoraController@indexOne");
      Route::get("bitacora/validaravance", "Tb_bitacoraController@validarAvance");
+     Route::put("bitacora/updatereg", "Tb_bitacoraController@updateReg");
 
      Route::get("suenos", "Tb_suenosController@index");
      Route::post("suenos/store", "Tb_suenosController@store");
@@ -224,6 +225,28 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("avances_legal/activate", "Tb_avances_legalController@activate");
      Route::get("avances_legal/selectavances_legal/{id}", "Tb_avances_legalController@indexOne");
      Route::get("avances_legal/selectavances_legalpropio/{id}", "Tb_avances_legalController@indexPropio");
+     Route::get("avances_legal/selectavances_legalresumen/{id}", "Tb_avances_legalController@indexResumen");
+     Route::get("avances_legal/resetlegal/{idUsuario}", "Tb_avances_legalController@resetLegal");
+
+     Route::get("avances_tributario", "Tb_avances_tributarioController@index");
+     Route::post("avances_tributario/store", "Tb_avances_tributarioController@store");
+     Route::put("avances_tributario/update", "Tb_avances_tributarioController@update");
+     Route::put("avances_tributario/deactivate", "Tb_avances_tributarioController@deactivate");
+     Route::put("avances_tributario/activate", "Tb_avances_tributarioController@activate");
+     Route::get("avances_tributario/selectavances_tributario/{id}", "Tb_avances_tributarioController@indexOne");
+     Route::get("avances_tributario/selectavances_tributariopropio/{id}", "Tb_avances_tributarioController@indexPropio");
+     Route::get("avances_tributario/selectavances_tributarioresumen/{id}", "Tb_avances_tributarioController@indexResumen");
+     Route::get("avances_tributario/resettributarioempresa/{idUsuario}", "Tb_avances_tributarioController@resetTributarioEmpresa");
+
+     Route::get("avances_tributario_persona", "Tb_avances_tributario_personaController@index");
+     Route::post("avances_tributario_persona/store", "Tb_avances_tributario_personaController@store");
+     Route::put("avances_tributario_persona/update", "Tb_avances_tributario_personaController@update");
+     Route::put("avances_tributario_persona/deactivate", "Tb_avances_tributario_personaController@deactivate");
+     Route::put("avances_tributario_persona/activate", "Tb_avances_tributario_personaController@activate");
+     Route::get("avances_tributario_persona/selectavances_tributario_persona/{id}", "Tb_avances_tributario_personaController@indexOne");
+     Route::get("avances_tributario_persona/selectavances_tributario_personapropio/{id}", "Tb_avances_tributario_personaController@indexPropio");
+     Route::get("avances_tributario_persona/selectavances_tributario_personaresumen/{id}", "Tb_avances_tributario_personaController@indexResumen");
+     Route::get("avances_tributario_persona/resettributariopersona/{idUsuario}", "Tb_avances_tributario_personaController@resetTributarioPersona");
 
      Route::get("variables_globales", "Tb_variables_globalesController@index");
      Route::post("variables_globales/store", "Tb_variables_globalesController@store");

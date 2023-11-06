@@ -30,6 +30,35 @@ class Tb_avances_tributarioController extends Controller
         ];
     }
 
+    public function indexResumen(Request $request)
+    {
+        $avances_tributario = Tb_avances_tributario::orderBy('tb_avances_tributario.id','asc')
+        ->where('tb_avances_tributario.idUsuario','=',$request->id)
+        ->where('tb_avances_tributario.enunciado','=',1)
+        ->select('tb_avances_tributario.cadena')
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'avances_tributario' => $avances_tributario
+        ];
+    }
+
+    public function resetTributarioEmpresa(Request $request)
+    {
+        if($tb_avances_tributario=Tb_avances_tributario::where('tb_avances_tributario.idUsuario',$request->idUsuario)->delete()){
+            return [
+                'estado' => 'Ok',
+                'reset_tributario_empresa' => "Módulo reseteado con éxito"
+            ];
+        }else{
+            return [
+                'estado' => 'Error',
+                'reset_tributario_empresa' => "Falló el reseteo del módulo"
+            ];
+        }
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');

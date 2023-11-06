@@ -42,6 +42,35 @@ class Tb_avances_legalController extends Controller
         ];
     }
 
+    public function indexResumen(Request $request)
+    {
+        $avances_legal = Tb_avances_legal::orderBy('tb_avances_legal.id','asc')
+        ->where('tb_avances_legal.idUsuario','=',$request->id)
+        ->where('tb_avances_legal.enunciado','=',1)
+        ->select('tb_avances_legal.cadena')
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'avances_legal' => $avances_legal
+        ];
+    }
+
+    public function resetLegal(Request $request)
+    {
+        if($reset_legal=Tb_avances_legal::where('tb_avances_legal.idUsuario',$request->idUsuario)->delete()){
+            return [
+                'estado' => 'Ok',
+                'reset_legal' => "Módulo reseteado con éxito"
+            ];
+        }else{
+            return [
+                'estado' => 'Error',
+                'reset_legal' => "Falló el reseteo del módulo"
+            ];
+        }
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');

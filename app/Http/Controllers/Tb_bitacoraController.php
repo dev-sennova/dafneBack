@@ -103,6 +103,42 @@ class Tb_bitacoraController extends Controller
 
     }
 
+    public function updateReg(Request $request)
+    {
+        //if(!$request->ajax()) return redirect('/');
+
+        try {
+            $tb_bit=Tb_bitacora::where('tb_bitacora.idUsuario','=',$request->idUsuario)
+            ->where('tb_bitacora.idSeccion','=',$request->idSeccionP)
+            ->get();
+
+            foreach($tb_bit as $vueltaE){
+                $idBit = $vueltaE->id;
+                }
+
+            $tb_bitacora=Tb_bitacora::findOrFail($idBit);
+            $tb_bitacora->avance=$request->avance;
+            $tb_bitacora->idSeccion=$request->idSeccion;
+            $tb_bitacora->idUsuario=$request->idUsuario;
+            $tb_bitacora->estado='1';
+
+            if ($tb_bitacora->save()) {
+                return response()->json([
+                    'estado' => 'Ok',
+                    'message' => 'bitacora actualizada con éxito'
+                   ]);
+            } else {
+                return response()->json([
+                    'estado' => 'Error',
+                    'message' => 'bitacora no pudo ser actualizada'
+                   ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+        }
+
+    }
+
     public function deactivate(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');

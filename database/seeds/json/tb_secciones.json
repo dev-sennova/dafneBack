@@ -18,7 +18,7 @@
     {"id":"17","seccion":"resumenfinalideacion","idModulo":"1"},
     {"id":"18","seccion":"simulacionlegal","idModulo":"2"},
     {"id":"19","seccion":"simulaciontributaria","idModulo":"2"},
-    {"id":"20","seccion":"simulacionlegaltributariapersona","idModulo":"2"},
+    {"id":"20","seccion":"simulaciontributariapersona","idModulo":"2"},
     {"id":"21","seccion":"simulacionfinanciera","idModulo":"2"},
     {"id":"22","seccion":"resumensimulacion","idModulo":"2"},
     {"id":"23","seccion":"basicoformalizacion","idModulo":"3"}
