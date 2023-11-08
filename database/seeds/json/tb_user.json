@@ -1,3 +1,15 @@
 [
-{"id":"1","name":"Luis García","email":"ljgarcia899@misena.edu.co","rol":"1","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"}
+{"id":"1","name":"Luis García","email":"ljgarcia899@misena.edu.co","rol":"1","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"2","name":"Competidor 1","email":"competidor1@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"3","name":"Competidor 2","email":"competidor2@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"4","name":"Competidor 3","email":"competidor3@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"5","name":"Competidor 4","email":"competidor4@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"6","name":"Competidor 5","email":"competidor5@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"7","name":"Competidor 6","email":"competidor6@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"8","name":"Competidor 7","email":"competidor7@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"9","name":"Competidor 8","email":"competidor8@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"10","name":"Competidor 9","email":"competidor9@soy.sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"11","name":"Paula Colmenares","email":"pacolmenares@sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"12","name":"Jonathan Alexis Velandia","email":"javelandia@sena.edu.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"},
+{"id":"13","name":"Test 0","email":"test0@test.co","rol":"3","password":"$2y$10$HlO4ipHoq0nktFaUdaB9KuQ8C1f3Rh.PfGexQtjhTHPR4vkNZc.Dy"}
 ]
