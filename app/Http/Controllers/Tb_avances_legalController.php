@@ -183,4 +183,19 @@ class Tb_avances_legalController extends Controller
         }
 
     }
+
+    public function validarPersona(Request $request)
+    {
+        //if(!$request->ajax()) return redirect('/');
+
+        $persona_natural = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$request->id)
+        ->where('tb_avances_legal.enunciado','=',1)
+        ->where('tb_avances_legal.idExterno','=',8)
+        ->count();
+
+        return [
+            'estado' => 'Ok',
+            'persona_natural' => $persona_natural
+        ];
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbVariablesGlobalesTable extends Migration
+class CreateTbCifTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTbVariablesGlobalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_variables_globales', function (Blueprint $table) {
+        Schema::create('tb_cif', function (Blueprint $table) {
             $table->id();
-            $table->string('variable');
-            $table->double('valor');
-            $table->boolean('estado')->default(1);
+            $table->string('cif', 512);
+            $table->integer('valor')->default(0);
+            $table->foreignId('idUsuario')->constrained('tb_usuario');
+            $table->boolean('estado')->default(0);
         });
     }
 
@@ -28,6 +29,6 @@ class CreateTbVariablesGlobalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_variables_globales');
+        Schema::dropIfExists('tb_cif');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbVariablesGlobalesTable extends Migration
+class CreateTbPerfilesEmpresaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTbVariablesGlobalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_variables_globales', function (Blueprint $table) {
+        Schema::create('tb_perfiles_empresa', function (Blueprint $table) {
             $table->id();
-            $table->string('variable');
-            $table->double('valor');
-            $table->boolean('estado')->default(1);
+            $table->string('perfil', 512);
+            $table->double('precio')->default(0);
+            $table->foreignId('idUsuario')->constrained('tb_usuario');
+            $table->boolean('estado')->default(0);
         });
     }
 
@@ -28,6 +29,6 @@ class CreateTbVariablesGlobalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_variables_globales');
+        Schema::dropIfExists('tb_perfiles_empresa');
     }
 }

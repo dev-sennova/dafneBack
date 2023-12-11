@@ -64,6 +64,15 @@ class DatabaseSeeder extends Seeder
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
         $this->truncateTables([
+            'tb_impuesto'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_impuestoSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
             'tb_hobbies'
         ]);
 
@@ -134,7 +143,6 @@ class DatabaseSeeder extends Seeder
         //funcion principal que llama cada seeder
         $this->call(Tb_preguntas_tributarioSeeder::class);
 //-------------------------------------------------------------------//
-
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
         $this->truncateTables([
@@ -224,6 +232,73 @@ class DatabaseSeeder extends Seeder
 
         //funcion principal que llama cada seeder
         $this->call(Tb_codigo_ciiuSeeder::class);
+//-------------------------------------------------------------------//
+
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_calculos_financiera'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_calculos_financieraSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_datos_simulacion_financiera'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_datos_simulacion_financieraSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_enunciados_financiera'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_enunciados_financieraSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_preguntas_financiera'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_preguntas_financieraSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_procesos_financiera'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_procesos_financieraSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_salidas_financiera'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_salidas_financieraSeeder::class);
+//-------------------------------------------------------------------//
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_titulos_financiera'
+        ]);
+
+        //funcion principal que llama cada seeder
+        $this->call(Tb_titulos_financieraSeeder::class);
+//-------------------------------------------------------------------//
+
+//-------------------------------------------------------------------//
 //-------------------------------------------------------------------//
 
 //--Tener cuidado con este cierre--//

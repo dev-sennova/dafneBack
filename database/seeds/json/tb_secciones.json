@@ -21,5 +21,7 @@
     {"id":"20","seccion":"simulaciontributariapersona","idModulo":"2"},
     {"id":"21","seccion":"simulacionfinanciera","idModulo":"2"},
     {"id":"22","seccion":"resumensimulacion","idModulo":"2"},
-    {"id":"23","seccion":"basicoformalizacion","idModulo":"3"}
+    {"id":"23","seccion":"basicoformalizacion","idModulo":"3"},
+    {"id":"24","seccion":"personaformalizacion","idModulo":"3"},
+    {"id":"25","seccion":"empresaformalizacion","idModulo":"3"}
 ]

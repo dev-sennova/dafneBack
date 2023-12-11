@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbVariablesGlobalesTable extends Migration
+class CreateTbImpuestoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTbVariablesGlobalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_variables_globales', function (Blueprint $table) {
+        Schema::create('tb_impuesto', function (Blueprint $table) {
             $table->id();
-            $table->string('variable');
-            $table->double('valor');
+            $table->string('impuesto');
+            $table->double('porcentaje');
             $table->boolean('estado')->default(1);
         });
     }
@@ -28,6 +28,6 @@ class CreateTbVariablesGlobalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_variables_globales');
+        Schema::dropIfExists('tb_impuesto');
     }
 }

@@ -38,6 +38,9 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("usuario/selectusuario/{id}", "Tb_usuarioController@indexOne");
      Route::get("usuario/selectemail/{id}", "Tb_usuarioController@indexUser");
      Route::get("usuario/selectemaillogin/{id}", "Tb_usuarioController@indexIdUser");
+     Route::get("usuarioGestor/{idGestor}", "Tb_usuarioController@indexGestor");
+     Route::get("usuarioPendientes/{idUsuario}", "Tb_usuarioController@indexPendientes");
+     Route::get("countUsuario/{idUsuario}", "Tb_usuarioController@countUsuario");
 
      Route::get("rol", "Tb_rolController@index");
      Route::post("rol/store", "Tb_rolController@store");
@@ -227,6 +230,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("avances_legal/selectavances_legalpropio/{id}", "Tb_avances_legalController@indexPropio");
      Route::get("avances_legal/selectavances_legalresumen/{id}", "Tb_avances_legalController@indexResumen");
      Route::get("avances_legal/resetlegal/{idUsuario}", "Tb_avances_legalController@resetLegal");
+     Route::get("avances_legal/validarPersona/{idUsuario}", "Tb_avances_legalController@validarPersona");
 
      Route::get("avances_tributario", "Tb_avances_tributarioController@index");
      Route::post("avances_tributario/store", "Tb_avances_tributarioController@store");
@@ -269,6 +273,144 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("riesgo_arl/activate", "Tb_riesgo_arlController@activate");
      Route::get("riesgo_arl/selectriesgo_arl/{id}", "Tb_riesgo_arlController@indexOne");
 
+     Route::get("cif", "Tb_cifController@index");
+     Route::post("cif/store", "Tb_cifController@store");
+     Route::put("cif/update", "Tb_cifController@update");
+     Route::put("cif/deactivate", "Tb_cifController@deactivate");
+     Route::put("cif/activate", "Tb_cifController@activate");
+     Route::get("cif/selectcif/{id}", "Tb_cifController@indexOne");
+     Route::get("cif/selectcif_propio/{id}", "Tb_cifController@indexPropio");
+
+     Route::get("maquinaria", "Tb_maquinariaController@index");
+     Route::post("maquinaria/store", "Tb_maquinariaController@store");
+     Route::put("maquinaria/update", "Tb_maquinariaController@update");
+     Route::put("maquinaria/deactivate", "Tb_maquinariaController@deactivate");
+     Route::put("maquinaria/activate", "Tb_maquinariaController@activate");
+     Route::get("maquinaria/selectmaquinaria/{id}", "Tb_maquinariaController@indexOne");
+     Route::get("maquinaria/selectmaquinaria_propia/{id}", "Tb_maquinariaController@indexPropio");
+
+     Route::get("consolidado_simulacion_financiera", "Tb_consolidado_simulacion_financieraController@index");
+     Route::post("consolidado_simulacion_financiera/store", "Tb_consolidado_simulacion_financieraController@store");
+     Route::put("consolidado_simulacion_financiera/update", "Tb_consolidado_simulacion_financieraController@update");
+     Route::put("consolidado_simulacion_financiera/deactivate", "Tb_consolidado_simulacion_financieraController@deactivate");
+     Route::put("consolidado_simulacion_financiera/activate", "Tb_consolidado_simulacion_financieraController@activate");
+     Route::get("consolidado_simulacion_financiera/selectconsolidado_simulacion_financiera/{id}", "Tb_consolidado_simulacion_financieraController@indexOne");
+     Route::get("consolidado_simulacion_financiera/select_propio/{id}", "Tb_consolidado_simulacion_financieraController@indexPropio");
+     Route::get("consolidado_simulacion_financiera/resetfinanciera/{idUsuario}", "Tb_consolidado_simulacion_financieraController@resetFinanciera");
+
+     Route::get("empleados_empresa", "Tb_empleados_empresaController@index");
+     Route::post("empleados_empresa/store", "Tb_empleados_empresaController@store");
+     Route::put("empleados_empresa/update", "Tb_empleados_empresaController@update");
+     Route::put("empleados_empresa/deactivate", "Tb_empleados_empresaController@deactivate");
+     Route::put("empleados_empresa/activate", "Tb_empleados_empresaController@activate");
+     Route::get("empleados_empresa/selectempleados_empresa/{id}", "Tb_empleados_empresaController@indexOne");
+     Route::get("empleados_empresa/selectempleados_propios/{id}", "Tb_empleados_empresaController@indexPropio");
+
+     Route::get("perfiles_empresa", "Tb_perfiles_empresaController@index");
+     Route::post("perfiles_empresa/store", "Tb_perfiles_empresaController@store");
+     Route::put("perfiles_empresa/update", "Tb_perfiles_empresaController@update");
+     Route::put("perfiles_empresa/deactivate", "Tb_perfiles_empresaController@deactivate");
+     Route::put("perfiles_empresa/activate", "Tb_perfiles_empresaController@activate");
+     Route::get("perfiles_empresa/selectperfiles_empresa/{id}", "Tb_perfiles_empresaController@indexOne");
+     Route::get("perfiles_empresa/selectperfiles_propios/{id}", "Tb_perfiles_empresaController@indexPropio");
+
+     Route::get("financiacion", "Tb_financiacionController@index");
+     Route::post("financiacion/store", "Tb_financiacionController@store");
+     Route::put("financiacion/update", "Tb_financiacionController@update");
+     Route::put("financiacion/deactivate", "Tb_financiacionController@deactivate");
+     Route::put("financiacion/activate", "Tb_financiacionController@activate");
+     Route::get("financiacion/selectfinanciacion/{id}", "Tb_financiacionController@indexOne");
+     Route::get("financiacion/selectfinanciacion_propio/{id}", "Tb_financiacionController@indexPropio");
+
+     Route::get("gastos", "Tb_gastosController@index");
+     Route::post("gastos/store", "Tb_gastosController@store");
+     Route::put("gastos/update", "Tb_gastosController@update");
+     Route::put("gastos/deactivate", "Tb_gastosController@deactivate");
+     Route::put("gastos/activate", "Tb_gastosController@activate");
+     Route::get("gastos/selectgastos/{id}", "Tb_gastosController@indexOne");
+     Route::get("gastos/selectgastos_propio/{id}", "Tb_gastosController@indexPropio");
+
+     Route::get("precio_venta", "Tb_precio_ventaController@index");
+     Route::post("precio_venta/store", "Tb_precio_ventaController@store");
+     Route::put("precio_venta/update", "Tb_precio_ventaController@update");
+     Route::put("precio_venta/deactivate", "Tb_precio_ventaController@deactivate");
+     Route::put("precio_venta/activate", "Tb_precio_ventaController@activate");
+     Route::get("precio_venta/selectprecio_venta/{id}", "Tb_precio_ventaController@indexOne");
+     Route::get("precio_venta/selectprecio_venta_propio/{id}", "Tb_precio_ventaController@indexPropio");
+
+     Route::get("punto_equilibrio", "Tb_punto_equilibrioController@index");
+     Route::post("punto_equilibrio/store", "Tb_punto_equilibrioController@store");
+     Route::put("punto_equilibrio/update", "Tb_punto_equilibrioController@update");
+     Route::put("punto_equilibrio/deactivate", "Tb_punto_equilibrioController@deactivate");
+     Route::put("punto_equilibrio/activate", "Tb_punto_equilibrioController@activate");
+     Route::get("punto_equilibrio/selectpunto_equilibrio/{id}", "Tb_punto_equilibrioController@indexOne");
+     Route::get("punto_equilibrio/selectpunto_equilibrio_propio/{id}", "Tb_punto_equilibrioController@indexPropio");
+
+     Route::get("proyeccion_mensual", "Tb_proyeccion_mensualController@index");
+     Route::post("proyeccion_mensual/store", "Tb_proyeccion_mensualController@store");
+     Route::put("proyeccion_mensual/update", "Tb_proyeccion_mensualController@update");
+     Route::put("proyeccion_mensual/deactivate", "Tb_proyeccion_mensualController@deactivate");
+     Route::put("proyeccion_mensual/activate", "Tb_proyeccion_mensualController@activate");
+     Route::get("proyeccion_mensual/selectproyeccion_mensual/{id}", "Tb_proyeccion_mensualController@indexOne");
+     Route::get("proyeccion_mensual/selectproyeccion_mensual_propio/{id}", "Tb_proyeccion_mensualController@indexPropio");
+
+     Route::get("ingresos_adicionales", "Tb_ingresos_adicionalesController@index");
+     Route::post("ingresos_adicionales/store", "Tb_ingresos_adicionalesController@store");
+     Route::put("ingresos_adicionales/update", "Tb_ingresos_adicionalesController@update");
+     Route::put("ingresos_adicionales/deactivate", "Tb_ingresos_adicionalesController@deactivate");
+     Route::put("ingresos_adicionales/activate", "Tb_ingresos_adicionalesController@activate");
+     Route::get("ingresos_adicionales/selectingresos_adicionales/{id}", "Tb_ingresos_adicionalesController@indexOne");
+     Route::get("ingresos_adicionales/selectingresos_adicionales_propio/{id}", "Tb_ingresos_adicionalesController@indexPropio");
+
+     Route::get("gastos_adicionales", "Tb_gastos_adicionalesController@index");
+     Route::post("gastos_adicionales/store", "Tb_gastos_adicionalesController@store");
+     Route::put("gastos_adicionales/update", "Tb_gastos_adicionalesController@update");
+     Route::put("gastos_adicionales/deactivate", "Tb_gastos_adicionalesController@deactivate");
+     Route::put("gastos_adicionales/activate", "Tb_gastos_adicionalesController@activate");
+     Route::get("gastos_adicionales/selectgastos_adicionales/{id}", "Tb_gastos_adicionalesController@indexOne");
+     Route::get("gastos_adicionales/selectgastos_adicionales_propio/{id}", "Tb_gastos_adicionalesController@indexPropio");
+
+     Route::get("nomina_empleados_simula", "Tb_nomina_empleados_simulaController@index");
+     Route::post("nomina_empleados_simula/store", "Tb_nomina_empleados_simulaController@store");
+     Route::put("nomina_empleados_simula/update", "Tb_nomina_empleados_simulaController@update");
+     Route::put("nomina_empleados_simula/deactivate", "Tb_nomina_empleados_simulaController@deactivate");
+     Route::put("nomina_empleados_simula/activate", "Tb_nomina_empleados_simulaController@activate");
+     Route::get("nomina_empleados_simula/selectnomina_empleados_simula/{id}", "Tb_nomina_empleados_simulaController@indexOne");
+     Route::get("nomina_empleados_simula/selectnomina_empleados_simula_propio/{id}", "Tb_nomina_empleados_simulaController@indexPropio");
+
+     Route::get("hoja_costos_simula", "Tb_hoja_costos_simulaController@index");
+     Route::post("hoja_costos_simula/store", "Tb_hoja_costos_simulaController@store");
+     Route::put("hoja_costos_simula/update", "Tb_hoja_costos_simulaController@update");
+     Route::put("hoja_costos_simula/deactivate", "Tb_hoja_costos_simulaController@deactivate");
+     Route::put("hoja_costos_simula/activate", "Tb_hoja_costos_simulaController@activate");
+     Route::get("hoja_costos_simula/selecthoja_costos_simula/{id}", "Tb_hoja_costos_simulaController@indexOne");
+     Route::get("hoja_costos_simula/selecthoja_costos_simula_propio/{id}", "Tb_hoja_costos_simulaController@indexPropio");
+     Route::get("hoja_costos_simula/consolidado/{id}", "Tb_hoja_costos_simulaController@consolidado");
+     Route::get("hoja_costos_simula/consolidadoUnidad/{id}", "Tb_hoja_costos_simulaController@consolidadoUnidad");
+
+     Route::get("hoja_gastos_simula", "Tb_hoja_gastos_simulaController@index");
+     Route::post("hoja_gastos_simula/store", "Tb_hoja_gastos_simulaController@store");
+     Route::put("hoja_gastos_simula/update", "Tb_hoja_gastos_simulaController@update");
+     Route::put("hoja_gastos_simula/deactivate", "Tb_hoja_gastos_simulaController@deactivate");
+     Route::put("hoja_gastos_simula/activate", "Tb_hoja_gastos_simulaController@activate");
+     Route::get("hoja_gastos_simula/selecthoja_gastos_simula/{id}", "Tb_hoja_gastos_simulaController@indexOne");
+     Route::get("hoja_gastos_simula/selecthoja_gastos_simula_propio/{id}", "Tb_hoja_gastos_simulaController@indexPropio");
+     Route::get("hoja_gastos_simula/consolidado/{id}", "Tb_hoja_gastos_simulaController@consolidado");
+
+     Route::get("estado_resultados_simula", "Tb_estado_resultados_simulaController@index");
+     Route::post("estado_resultados_simula/store", "Tb_estado_resultados_simulaController@store");
+     Route::put("estado_resultados_simula/update", "Tb_estado_resultados_simulaController@update");
+     Route::put("estado_resultados_simula/deactivate", "Tb_estado_resultados_simulaController@deactivate");
+     Route::put("estado_resultados_simula/activate", "Tb_estado_resultados_simulaController@activate");
+     Route::get("estado_resultados_simula/selectestado_resultados_simula/{id}", "Tb_estado_resultados_simulaController@indexOne");
+     Route::get("estado_resultados_simula/selectestado_resultados_simula_propio/{id}", "Tb_estado_resultados_simulaController@indexPropio");
+
+     Route::get("impuesto", "Tb_impuestoController@index");
+     Route::post("impuesto/store", "Tb_impuestoController@store");
+     Route::put("impuesto/update", "Tb_impuestoController@update");
+     Route::put("impuesto/deactivate", "Tb_impuestoController@deactivate");
+     Route::put("impuesto/activate", "Tb_impuestoController@activate");
+     Route::get("impuesto/selectimpuesto/{id}", "Tb_impuestoController@indexOne");
 
     });
 

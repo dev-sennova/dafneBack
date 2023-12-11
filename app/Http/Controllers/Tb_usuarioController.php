@@ -198,4 +198,41 @@ class Tb_usuarioController extends Controller
         }
 
     }
+
+    public function indexGestor(Request $request)
+    {
+        $users = User::orderBy('id','asc')
+        ->where('rol','=',3)
+        ->where('gestor','=',$request->idGestor)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'users' => $users
+        ];
+    }
+
+    public function indexPendientes(Request $request)
+    {
+        $users = Tb_usuario::orderBy('id','asc')
+        ->where('id','=',$request->idUsuario)
+        ->get();
+
+        return [
+            'estado' => 'Ok',
+            'users' => $users
+        ];
+    }
+
+    public function countUsuario(Request $request)
+    {
+        $users = Tb_usuario::orderBy('id','asc')
+        ->where('id','=',$request->idUsuario)
+        ->count();
+
+        return [
+            'estado' => 'Ok',
+            'users' => $users
+        ];
+    }
 }

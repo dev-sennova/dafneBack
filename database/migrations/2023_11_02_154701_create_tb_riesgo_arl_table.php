@@ -16,7 +16,7 @@ class CreateTbRiesgoArlTable extends Migration
         Schema::create('tb_riesgo_arl', function (Blueprint $table) {
             $table->id();
             $table->string('riesgo');
-            $table->float('porcentaje');
+            $table->double('porcentaje');
             $table->boolean('estado')->default(1);
         });
     }
