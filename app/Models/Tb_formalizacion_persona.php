@@ -14,4 +14,3 @@ class Tb_formalizacion_persona extends Model
 
     public $timestamps = false;
 }
-$table->id();
