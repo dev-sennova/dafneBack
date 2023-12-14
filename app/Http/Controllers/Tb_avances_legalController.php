@@ -198,4 +198,37 @@ class Tb_avances_legalController extends Controller
             'persona_natural' => $persona_natural
         ];
     }
+
+    public function validarRegistroEmpresa(Request $request)
+    {
+        //if(!$request->ajax()) return redirect('/');
+
+        $empresa_count = Tb_avances_legal::where('tb_avances_legal.idUsuario', '=', $request->id)
+        ->where('tb_avances_legal.enunciado', '=', 1)
+        ->whereIn('tb_avances_legal.idExterno', [9, 10, 13, 14, 15, 16, 17, 18])
+        ->count();
+
+        if($empresa_count>0){
+            $tipo_empresa_query = Tb_avances_legal::where('tb_avances_legal.idUsuario', '=', $request->id)
+            ->join('tb_enunciados_legal','tb_avances_legal.cadena','=','tb_enunciados_legal.enunciado')
+            ->where('tb_avances_legal.enunciado', '=', 1)
+            ->whereIn('tb_avances_legal.idExterno', [9, 10, 13, 14, 15, 16, 17, 18])
+            ->select('tb_avances_legal.cadena')
+            ->get();
+
+            foreach($tipo_empresa_query as $vueltaE){
+                $tipo_empresa = $vueltaE->cadena;
+                }
+
+        }else{
+            $tipo_empresa = "No tiene sugerido de simulación";
+        }
+
+        return [
+            'estado' => 'Ok',
+            'cantidad_empresa' => $empresa_count,
+            'tipo_empresa' => $tipo_empresa
+        ];
+    }
+
 }

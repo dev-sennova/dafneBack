@@ -18,7 +18,7 @@ class CreateTbPrecioVentaTable extends Migration
             $table->double('costo')->default(0);
             $table->float('margen')->default(0);
             $table->double('venta')->default(0);
-            $table->float('impuesto')->default(0);
+            $table->double('impuesto')->default(0);
             $table->double('valorimpuesto')->default(0);
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->boolean('estado')->default(0);

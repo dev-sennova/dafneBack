@@ -231,6 +231,7 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("avances_legal/selectavances_legalresumen/{id}", "Tb_avances_legalController@indexResumen");
      Route::get("avances_legal/resetlegal/{idUsuario}", "Tb_avances_legalController@resetLegal");
      Route::get("avances_legal/validarPersona/{idUsuario}", "Tb_avances_legalController@validarPersona");
+     Route::get("avances_legal/validarRegistroEmpresa/{idUsuario}", "Tb_avances_legalController@validarRegistroEmpresa");
 
      Route::get("avances_tributario", "Tb_avances_tributarioController@index");
      Route::post("avances_tributario/store", "Tb_avances_tributarioController@store");
@@ -411,6 +412,22 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("impuesto/deactivate", "Tb_impuestoController@deactivate");
      Route::put("impuesto/activate", "Tb_impuestoController@activate");
      Route::get("impuesto/selectimpuesto/{id}", "Tb_impuestoController@indexOne");
+
+     Route::get("formalizacion_persona", "Tb_formalizacion_personaController@index");
+     Route::post("formalizacion_persona/store", "Tb_formalizacion_personaController@store");
+     Route::put("formalizacion_persona/update", "Tb_formalizacion_personaController@update");
+     Route::put("formalizacion_persona/deactivate", "Tb_formalizacion_personaController@deactivate");
+     Route::put("formalizacion_persona/activate", "Tb_formalizacion_personaController@activate");
+     Route::get("formalizacion_persona/selectformalizacion_persona/{id}", "Tb_formalizacion_personaController@indexOne");
+     Route::get("formalizacion_persona/selectformalizacion_persona_propio/{id}", "Tb_formalizacion_personaController@indexPropio");
+
+     Route::get("formalizacion_empresa", "Tb_formalizacion_empresaController@index");
+     Route::post("formalizacion_empresa/store", "Tb_formalizacion_empresaController@store");
+     Route::put("formalizacion_empresa/update", "Tb_formalizacion_empresaController@update");
+     Route::put("formalizacion_empresa/deactivate", "Tb_formalizacion_empresaController@deactivate");
+     Route::put("formalizacion_empresa/activate", "Tb_formalizacion_empresaController@activate");
+     Route::get("formalizacion_empresa/selectformalizacion_empresa/{id}", "Tb_formalizacion_empresaController@indexOne");
+     Route::get("formalizacion_empresa/selectformalizacion_empresa_propio/{id}", "Tb_formalizacion_empresaController@indexPropio");
 
     });
 
