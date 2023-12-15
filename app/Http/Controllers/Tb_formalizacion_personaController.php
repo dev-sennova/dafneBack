@@ -119,7 +119,7 @@ class Tb_formalizacion_personaController extends Controller
                    ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json(['error' => 'Ocurrió un error interno: '.$e], 500);
         }
 
     }

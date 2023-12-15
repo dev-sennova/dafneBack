@@ -16,14 +16,14 @@ class CreateTbFormalizacionPersonaTable extends Migration
         Schema::create('tb_formalizacion_persona', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 700)->nullable();
-            $table->text('marca', 2000)->nullable();
+            $table->longtext('marca')->nullable();
             $table->text('codigoCiiu', 2000)->nullable();
-            $table->text('usoDeSuelo', 2000)->nullable();
+            $table->longtext('usoDeSuelo')->nullable();
             $table->text('direccion', 2000)->nullable();
-            $table->text('rut', 2000)->nullable();
-            $table->text('rues', 2000)->nullable();
-            $table->text('sayco', 2000)->nullable();
-            $table->text('bomberil', 2000)->nullable();
+            $table->longtext('rut')->nullable();
+            $table->longtext('rues')->nullable();
+            $table->longtext('sayco')->nullable();
+            $table->longtext('bomberil')->nullable();
             $table->text('placa', 2000)->nullable();
             $table->text('seguridad', 2000)->nullable();
             $table->text('afiliacion', 2000)->nullable();
