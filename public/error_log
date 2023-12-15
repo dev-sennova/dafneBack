@@ -162,3 +162,5 @@
 [15-Dec-2023 05:18:17 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
 [15-Dec-2023 05:18:22 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
 [15-Dec-2023 05:18:29 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
+[15-Dec-2023 12:38:03 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
+[15-Dec-2023 12:38:17 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
