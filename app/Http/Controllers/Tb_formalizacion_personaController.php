@@ -50,23 +50,6 @@ class Tb_formalizacion_personaController extends Controller
             $tb_formalizacion_persona=new Tb_formalizacion_persona();
             $tb_formalizacion_persona->idUsuario=$request->idUsuario;
             $tb_formalizacion_persona->estado=1;
-            /*
-            $tb_formalizacion_persona=new Tb_formalizacion_persona();
-            $tb_formalizacion_persona->nombre=$request->nombre;
-            $tb_formalizacion_persona->marca=$request->marca;
-            $tb_formalizacion_persona->codigoCiiu=$request->codigoCiiu;
-            $tb_formalizacion_persona->usoDeSuelo=$request->usoDeSuelo;
-            $tb_formalizacion_persona->direccion=$request->direccion;
-            $tb_formalizacion_persona->rut=$request->rut;
-            $tb_formalizacion_persona->rues=$request->rues;
-            $tb_formalizacion_persona->sayco=$request->sayco;
-            $tb_formalizacion_persona->bomberil=$request->bomberil;
-            $tb_formalizacion_persona->placa=$request->placa;
-            $tb_formalizacion_persona->seguridad=$request->seguridad;
-            $tb_formalizacion_persona->afiliacion=$request->afiliacion;
-            $tb_formalizacion_persona->idUsuario=$request->idUsuario;
-            $tb_formalizacion_persona->estado=1;
-            */
 
             if ($tb_formalizacion_persona->save()) {
                 return response()->json([
@@ -101,8 +84,6 @@ class Tb_formalizacion_personaController extends Controller
             $tb_formalizacion_persona->sayco=$request->sayco;
             $tb_formalizacion_persona->bomberil=$request->bomberil;
             $tb_formalizacion_persona->placa=$request->placa;
-            //$tb_formalizacion_persona->seguridad=$request->seguridad;
-            //$tb_formalizacion_persona->afiliacion=$request->afiliacion;
             $tb_formalizacion_persona->pasosAvance=$request->pasosAvance;
             $tb_formalizacion_persona->idUsuario=$request->idUsuario;
             $tb_formalizacion_persona->estado=1;

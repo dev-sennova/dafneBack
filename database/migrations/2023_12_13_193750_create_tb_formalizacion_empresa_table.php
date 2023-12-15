@@ -31,8 +31,6 @@ class CreateTbFormalizacionEmpresaTable extends Migration
             $table->longtext('sayco')->nullable();
             $table->longtext('bomberil')->nullable();
             $table->text('placa', 2000)->nullable();
-            $table->text('seguridad', 2000)->nullable();
-            $table->text('salud', 2000)->nullable();
             $table->integer('pasosAvance')->default(0);
             $table->foreignId('idUsuario')->constrained('tb_usuario');
             $table->boolean('estado')->default(0);
