@@ -101,8 +101,8 @@ class Tb_formalizacion_personaController extends Controller
             $tb_formalizacion_persona->sayco=$request->sayco;
             $tb_formalizacion_persona->bomberil=$request->bomberil;
             $tb_formalizacion_persona->placa=$request->placa;
-            $tb_formalizacion_persona->seguridad=$request->seguridad;
-            $tb_formalizacion_persona->afiliacion=$request->afiliacion;
+            //$tb_formalizacion_persona->seguridad=$request->seguridad;
+            //$tb_formalizacion_persona->afiliacion=$request->afiliacion;
             $tb_formalizacion_persona->pasosAvance=$request->pasosAvance;
             $tb_formalizacion_persona->idUsuario=$request->idUsuario;
             $tb_formalizacion_persona->estado=1;
