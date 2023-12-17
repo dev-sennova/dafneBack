@@ -78,31 +78,33 @@ class Tb_resumen_empresaController extends Controller
         //if(!$request->ajax()) return redirect('/');
 
         try {
-            $resumen_empresa=Tb_resumen_empresa::findOrFail($request->id);
-            $resumen_empresa->nombreIdea=$request->nombreIdea;
-            $resumen_empresa->idUsuario=$request->idUsuario;
-            $resumen_empresa->nombreEmpresa=$request->nombreEmpresa;
-            $resumen_empresa->mision=$request->mision;
-            $resumen_empresa->vision=$request->vision;
-            $resumen_empresa->slogan=$request->slogan;
-            $resumen_empresa->logo=$request->logo;
-            $resumen_empresa->estado=1;
+            $resumen_empresa = Tb_resumen_empresa::findOrFail($request->id);
+            $resumen_empresa->nombreIdea = $request->nombreIdea;
+            $resumen_empresa->idUsuario = $request->idUsuario;
+            $resumen_empresa->nombreEmpresa = $request->nombreEmpresa;
+            $resumen_empresa->mision = $request->mision;
+            $resumen_empresa->vision = $request->vision;
+            $resumen_empresa->slogan = $request->slogan;
+            $resumen_empresa->logo = $request->logo;
+            $resumen_empresa->estado = 1;
 
             if ($resumen_empresa->save()) {
                 return response()->json([
-                    'estado' => 'Ok',
-                    'message' => 'Resumen empresa actualizado con éxito'
-                   ]);
+                    'estado'  => 'Ok',
+                    'message' => 'Resumen empresa actualizado con éxito',
+                ]);
             } else {
                 return response()->json([
-                    'estado' => 'Error',
-                    'message' => 'Resumen empresa no pudo ser actualizado'
-                   ]);
+                    'estado'  => 'Error',
+                    'message' => 'Resumen empresa no pudo ser actualizado',
+                ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json([
+                'estado'  => 'Error',
+                'message' => 'Ocurrió un error interno al actualizar el resumen de la empresa',
+            ], 500);
         }
-
     }
 
     public function deactivate(Request $request)

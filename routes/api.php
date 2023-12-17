@@ -429,6 +429,14 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("formalizacion_empresa/selectformalizacion_empresa/{id}", "Tb_formalizacion_empresaController@indexOne");
      Route::get("formalizacion_empresa/selectformalizacion_empresa_propio/{id}", "Tb_formalizacion_empresaController@indexPropio");
 
+     Route::get("directorio", "Tb_directorioController@index");
+     Route::post("directorio/store", "Tb_directorioController@store");
+     Route::put("directorio/update", "Tb_directorioController@update");
+     Route::put("directorio/deactivate", "Tb_directorioController@deactivate");
+     Route::put("directorio/activate", "Tb_directorioController@activate");
+     Route::get("directorio/selectdirectorio/{id}", "Tb_directorioController@indexOne");
+
+
     });
 
 });

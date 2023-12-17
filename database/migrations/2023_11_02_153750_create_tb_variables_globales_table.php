@@ -15,7 +15,7 @@ class CreateTbVariablesGlobalesTable extends Migration
     {
         Schema::create('tb_variables_globales', function (Blueprint $table) {
             $table->id();
-            $table->string('variable');
+            $table->longtext('variable');
             $table->double('valor');
             $table->boolean('estado')->default(1);
         });
