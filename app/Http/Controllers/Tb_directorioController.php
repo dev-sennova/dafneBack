@@ -9,7 +9,7 @@ class Tb_directorioController extends Controller
 {
     public function index(Request $request)
     {
-        $directorio = Tb_directorio::orderBy('directorio','asc')
+        $directorio = Tb_directorio::orderBy('tb_directorio.id','asc')
         ->get();
 
         return [
@@ -20,7 +20,7 @@ class Tb_directorioController extends Controller
 
     public function indexOne(Request $request)
     {
-        $directorio = Tb_directorio::orderBy('directorio','desc')
+        $directorio = Tb_directorio::orderBy('tb_directorio.id','desc')
         ->where('tb_directorio.id','=',$request->id)
         ->get();
 
