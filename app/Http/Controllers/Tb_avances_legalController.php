@@ -188,7 +188,7 @@ class Tb_avances_legalController extends Controller
     {
         //if(!$request->ajax()) return redirect('/');
 
-        $persona_natural = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$request->id)
+        $persona_natural = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$request->idUsuario)
         ->where('tb_avances_legal.enunciado','=',1)
         ->where('tb_avances_legal.idExterno','=',8)
         ->count();
