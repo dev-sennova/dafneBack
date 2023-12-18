@@ -164,3 +164,16 @@
 [15-Dec-2023 05:18:29 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
 [15-Dec-2023 12:38:03 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
 [15-Dec-2023 12:38:17 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\emprendimientoback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 06:22:28 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 06:23:03 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 06:26:21 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 06:28:50 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 06:32:05 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 06:32:29 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 06:52:24 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 07:00:17 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 07:04:07 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 07:12:42 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 07:18:20 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 07:24:46 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
+[18-Dec-2023 07:25:09 UTC] PHP Notice:  file_get_contents(): file created in the system's temporary directory in C:\OnGoingProjects\dafneback\vendor\symfony\http-foundation\Request.php on line 1570
