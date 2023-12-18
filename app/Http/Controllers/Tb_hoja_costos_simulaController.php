@@ -81,11 +81,12 @@ class Tb_hoja_costos_simulaController extends Controller
                 $valorP= $vueltaG->montounidad;
 
                 $consolidado=$consolidado+$valorP;
+                $consolidadof=round($consolidado, 2);
         }
 
         return [
             'estado' => 'Ok',
-            'consolidado' => $consolidado
+            'consolidado' => $consolidadof
         ];
     }
 

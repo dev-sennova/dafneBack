@@ -15,7 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+//-------------------------------------------------------------------//
+        //primero vacia la tabla y luego la llena ojo
+        $this->truncateTables([
+            'tb_directorio'
+        ]);
 
+        //funcion principal que llama cada seeder
+        $this->call(Tb_directorioSeeder::class);
+//-------------------------------------------------------------------//
 //-------------------------------------------------------------------//
         //primero vacia la tabla y luego la llena ojo
         $this->truncateTables([

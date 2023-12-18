@@ -188,7 +188,7 @@ class Tb_avances_legalController extends Controller
     {
         //if(!$request->ajax()) return redirect('/');
 
-        $persona_natural = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$request->id)
+        $persona_natural = Tb_avances_legal::where('tb_avances_legal.idUsuario','=',$request->idUsuario)
         ->where('tb_avances_legal.enunciado','=',1)
         ->where('tb_avances_legal.idExterno','=',8)
         ->count();
@@ -203,16 +203,16 @@ class Tb_avances_legalController extends Controller
     {
         //if(!$request->ajax()) return redirect('/');
 
-        $empresa_count = Tb_avances_legal::where('tb_avances_legal.idUsuario', '=', $request->id)
-        ->where('tb_avances_legal.enunciado', '=', 1)
+        $empresa_count = Tb_avances_legal::where('tb_avances_legal.idUsuario', '=', $request->idUsuario)
         ->whereIn('tb_avances_legal.idExterno', [9, 10, 13, 14, 15, 16, 17, 18])
+        ->where('tb_avances_legal.enunciado', '=', '1')
         ->count();
 
         if($empresa_count>0){
-            $tipo_empresa_query = Tb_avances_legal::where('tb_avances_legal.idUsuario', '=', $request->id)
+            $tipo_empresa_query = Tb_avances_legal::where('tb_avances_legal.idUsuario', '=', $request->idUsuario)
             ->join('tb_enunciados_legal','tb_avances_legal.cadena','=','tb_enunciados_legal.enunciado')
-            ->where('tb_avances_legal.enunciado', '=', 1)
             ->whereIn('tb_avances_legal.idExterno', [9, 10, 13, 14, 15, 16, 17, 18])
+            ->where('tb_avances_legal.enunciado', '=', 1)
             ->select('tb_avances_legal.cadena')
             ->get();
 

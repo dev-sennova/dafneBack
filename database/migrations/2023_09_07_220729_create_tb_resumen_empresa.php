@@ -21,7 +21,7 @@ class CreateTbResumenEmpresa extends Migration
             $table->string('mision')->nullable();
             $table->string('vision')->nullable();
             $table->string('slogan')->nullable();
-            $table->string('logo')->nullable();
+            $table->longtext('logo')->nullable();
             $table->boolean('estado')->default(1);
         });
     }
