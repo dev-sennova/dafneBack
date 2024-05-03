@@ -7,6 +7,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Implementacion_verificacion_Correo
+
+03/05/2024
+
+Se implementa la verificacion de correo de los nuevos usuarios que sean registrados. Ahora se envia un email con un pin, que el usuario tendra que proporcionar al ingresar por primera vez al sistema. Esta medida de seguridad garantiza que el correo electronico proporcionado durante el registro realmente pertenece al usuario.
+
+¡Importante! Para el correcto envio de email, se debe modificar el archivo .env, agregando la configuracion del servidor de correo saliente (SMTP). En entorno local, se puede usar MailTrap, el cual brinda un servico de pruebas para correos electronicos. 
+
 ## Modificacion_archivo_readme
 02/05/2024
 Se realiza primer acercamiento a la nueva estructura de manejo de cambios.

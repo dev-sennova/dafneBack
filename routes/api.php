@@ -22,6 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login')->name('login');
+    Route::post('/verify-email','AuthController@verifyEmail')->name('verify_email'); 
+    Route::post('/resend-email','AuthController@resendEmail')->name('resend_email');
     Route::post('register', 'AuthController@register');
 
     // Las siguientes rutas además del prefijo requieren que el usuario tenga un token válido
