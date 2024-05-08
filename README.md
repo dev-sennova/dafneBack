@@ -33,17 +33,17 @@ MAIL_ENCRYPTION: El tipo de cifrado que se utilizará al enviar correos electró
 MAIL_FROM_ADDRESS: La dirección de correo electrónico desde la cual se enviarán los correos electrónicos.
 MAIL_FROM_NAME: El nombre que se mostrará como remitente en los correos electrónicos. 
 
-Ejemplo: 
+Se ha configurado el siguiente entorno SMTP, el cual funciona actualmente. Se recomienda copiar y pegar en el archivo .env: 
 
 MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
+MAIL_HOST=smtp.hostinger.com
+MAIL_PORT=465
 #MAIL_PORT=1025
-MAIL_USERNAME=dsrondon96@misena.edu.co
-MAIL_PASSWORD=***********
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=dsrondon96@misena.edu.co
-MAIL_FROM_NAME="${APP_NAME}"
+MAIL_USERNAME=hacem@miproyecto.xyz
+MAIL_PASSWORD=Hacem_2024
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=hacem@miproyecto.xyz
+MAIL_FROM_NAME="D.A.F.N.E."
 
 ## Modificacion_archivo_readme
 02/05/2024

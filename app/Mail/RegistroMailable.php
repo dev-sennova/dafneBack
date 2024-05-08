@@ -35,10 +35,6 @@ class RegistroMailable extends Mailable
         return $this->view('emails.registro')
                     ->with([
                         'pin' => $this->pin,
-                    ])
-                    ->attach(public_path('img/login.png'), [
-                        'as' => 'login.png',
-                        'mime' => 'image/png',
                     ]);
     }
 }

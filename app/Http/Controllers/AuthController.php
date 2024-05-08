@@ -27,7 +27,7 @@ class AuthController extends Controller
   
       $user = Auth::user();
   
-      if (!$user->email_verified_at && $user->pin) {
+      if (!$user->email_verified_at) {
         return response()->json(['error_code' => 'email_not_verified', 'message' => 'Debe verificar su correo electrónico ingresando su PIN'], 401);
     }
   
@@ -61,9 +61,8 @@ class AuthController extends Controller
         'password' => 'required|string'
     ]);
 
-    // Generar un PIN único de 6 dígitos
-    $pin = $this->generarPINUnico();
-
+    // Generar un PIN de 6 dígitos
+    $pin = mt_rand(100000, 999999);
     $user = new User;
     $user->name = $request->name;
     $user->email = $request->email;
@@ -152,13 +151,6 @@ public function verifyEmail(Request $request)
     ]);
 }
 
-private function generarPINUnico() {
-    do {
-        $pin = mt_rand(100000, 999999);
-    } while (User::where('pin', $pin)->exists());
-
-    return $pin;
-}
 
   public function logout(Request $request)
   {
