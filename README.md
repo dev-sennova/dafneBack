@@ -7,6 +7,44 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Implementacion_verificacion_Correo
+
+03/05/2024
+
+Se implementa la verificacion de correo de los nuevos usuarios que sean registrados. Ahora se envia un email con un pin, que el usuario tendra que proporcionar al ingresar por primera vez al sistema. Esta medida de seguridad garantiza que el correo electronico proporcionado durante el registro realmente pertenece al usuario.
+
+¡Importante! Para el correcto envio de email, se debe modificar el archivo .env, agregando la configuracion del servidor de correo saliente (SMTP). En entorno local, se puede usar MailTrap, el cual brinda un servico de pruebas para correos electronicos. 
+El entorno SMTP en el archivo .env se ve algo asi:
+
+MAIL_MAILER=smtp 
+MAIL_HOST=smtp.example.com 
+MAIL_PORT=587 
+MAIL_USERNAME=your_smtp_username 
+MAIL_PASSWORD=your_smtp_password 
+MAIL_ENCRYPTION=tls 
+MAIL_FROM_ADDRESS=your_email@example.com 
+MAIL_FROM_NAME="${APP_NAME}"
+
+MAIL_MAILER: Indica el transportador de correo que utiliza, de preferencia SMTP
+MAIL_HOST: La dirección del servidor SMTP que se usará para enviar correos electrónicos.
+MAIL_PORT: El puerto del servidor SMTP. Por lo general, el puerto 587.
+MAIL_USERNAME y MAIL_PASSWORD: Las credenciales de autenticación de tu cuenta SMTP. Aquí deberás proporcionar tu nombre de usuario y contraseña del servidor SMTP.
+MAIL_ENCRYPTION: El tipo de cifrado que se utilizará al enviar correos electrónicos. Puede ser tls o ssl.Aunque depende de la configuración del servidor SMTP.
+MAIL_FROM_ADDRESS: La dirección de correo electrónico desde la cual se enviarán los correos electrónicos.
+MAIL_FROM_NAME: El nombre que se mostrará como remitente en los correos electrónicos. 
+
+Se ha configurado el siguiente entorno SMTP, el cual funciona actualmente. Se recomienda copiar y pegar en el archivo .env: 
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.hostinger.com
+MAIL_PORT=465
+#MAIL_PORT=1025
+MAIL_USERNAME=hacem@miproyecto.xyz
+MAIL_PASSWORD=Hacem_2024
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=hacem@miproyecto.xyz
+MAIL_FROM_NAME="D.A.F.N.E."
+
 ## Modificacion_archivo_readme
 02/05/2024
 Se realiza primer acercamiento a la nueva estructura de manejo de cambios.

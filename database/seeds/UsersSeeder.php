@@ -20,6 +20,8 @@ class UsersSeeder extends Seeder
                 'email' => $item->email,
                 'rol' => $item->rol,
                 'password' => $item->password,
+                "pin"=>$item->pin,
+                "email_verified_at"=>$item->email_verified_at
             ));
             }
         /*
