@@ -7,6 +7,20 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Implementacion_Cambio_y_Recuperacion_Contraseña
+
+17/05/2024
+
+Se implementa el cambio y la recuperacion de contraseña para los usuarios del sistema. Ahora, los usuarios podran cambiar la contraseña despues de loguearse, o en caso de olvidarla, restablecerla. para restablecer la contraseña, el usuario dara clic al boton "¿olvido su contraseña?", alli ingresara su email, y recibira un correo con las instrucciones para el restablecimiento. 
+
+¡IMPORTANTE! Al momento de implementar esto a producción, se debe cambiar el link de redireccionamiento del archivo "App\Http\Controllers\Auth\ResetPasswordController", el cual actualmente es: 
+
+    protected $redirectTo = 'http://localhost:4200/#/home';
+
+Al subirlo a produccion ese link debe ser el de el frontend del sistema, es decir "https://formaliza.hacem.com.co/".
+
+En esta implementacion se ha añadido una tabla a la BD, por tanto se debe migrar para que funcione correctamente.
+
 ## Implementacion_verificacion_Correo
 
 03/05/2024
