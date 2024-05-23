@@ -10,7 +10,11 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
-    protected $redirectTo = 'http://localhost:4200/#/home';
+    public function __construct()
+    {
+        $this->redirectTo = config('app.redirect_url');
+    }
+
 
     public function showResetForm(Request $request, $token = null)
     {
