@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Mail\RegistroMailable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -51,121 +52,151 @@ class AuthController extends Controller
       ]);
   }
   
-  public function register(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string',
-        'email' => 'required|string|email|unique:users',
-        'rol' => 'required|integer',
-        'gestor' => 'required|integer',
-        'password' => 'required|string'
-    ]);
-
-    // Generar un PIN de 6 dígitos
-    $pin = mt_rand(100000, 999999);
-    $user = new User;
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->rol = $request->rol;
-    $user->gestor = $request->gestor;
-    $user->pin = $pin;
-    $user->password = bcrypt($request->password);
-
-    try {
-      Mail::to($user->email)->send(new RegistroMailable($user->pin,$user->name));
-    } catch (\Exception $e) {
-      \Log::error('Error al enviar el correo electrónico: ' . $e->getMessage());
-
-      return response()->json([
-          'estado' => 'Error',
-          'message' => 'Error al enviar el correo electrónico.'
-      ], 500);
-    }
-  
-    $user->save();
-
-    return response()->json([
-        'estado' => 'Ok',
-        'message' => 'Usuario creado exitosamente!'
-    ], 201);
-}
-
-public function resendEmail(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email'
-    ]);
-
-    $user = User::where('email', $request->email)->first();
-
-    if (!$user) {
-        return response()->json(['error_code' => 'user_not_found', 'message' => 'Usuario no encontrado'], 404);
-    }
-
-    Mail::to($user->email)->send(new RegistroMailable($user->pin,$user->name));
-
-    return response()->json(['message' => 'El correo ha sido reenviado correctamente'], 200);
-
-}
-
-
-public function verifyEmail(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'pin' => 'required|digits:6',
-    ]);
-
-    $user = User::where('email', $request->email)->first();
-
-    if (!$user) {
-        return response()->json(['error_code' => 'user_not_found', 'message' => 'Usuario no encontrado'], 404);
-    }
-
-    if ($user->pin != $request->pin) {
-        return response()->json(['error_code' => 'invalid_pin', 'message' => 'PIN incorrecto'], 401);
-    }
-
-    // Marcar el correo electrónico como verificado
-    $user->email_verified_at = now();
-    $user->save();
-
-    // Crear un token de acceso
-    $tokenResult = $user->createToken('Personal Access Token');
-    $token = $tokenResult->token;
-
-    if ($request->remember_me) {
-        $token->expires_at = Carbon::now()->addWeeks(1);
-    }
-
-    $token->save();
-
-    return response()->json([
-        'access_token' => $tokenResult->accessToken,
-        'token_type' => 'Bearer',
-        'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
-        'id_usuario' => $user->id,
-        'nombre_usuario' => $user->name,
-        'email_usuario' => $user->email,
-        'rol' => $user->rol
-    ]);
-}
-
-
-  public function logout(Request $request)
-  {
-    $request->user()->token()->revoke();
-    return response()->json([
-     'message' => 'Successfully logged out'
-    ]);
-  }
-  /**
-  * Get the authenticated User
-  *
-  * @return [json] user object
-  */
-    public function user(Request $request)
+    public function register(Request $request)
     {
-      return response()->json($request->user());
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'rol' => 'required|integer',
+            'gestor' => 'required|integer',
+            'password' => 'required|string'
+        ]);
+
+        // Generar un PIN de 6 dígitos
+        $pin = mt_rand(100000, 999999);
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->rol = $request->rol;
+        $user->gestor = $request->gestor;
+        $user->pin = $pin;
+        $user->password = bcrypt($request->password);
+
+        try {
+        Mail::to($user->email)->send(new RegistroMailable($user->pin,$user->name));
+        } catch (\Exception $e) {
+        \Log::error('Error al enviar el correo electrónico: ' . $e->getMessage());
+
+        return response()->json([
+              'estado' => 'Error',
+            'message' => 'Error al enviar el correo electrónico.'
+        ], 500);
+        }
+  
+        $user->save();
+
+        return response()->json([
+            'estado' => 'Ok',
+            'message' => 'Usuario creado exitosamente!'
+        ], 201);
     }
-  }
+
+    public function resendEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+           return response()->json(['error_code' => 'user_not_found', 'message' => 'Usuario no encontrado'], 404);
+       }
+
+       Mail::to($user->email)->send(new RegistroMailable($user->pin,$user->name));
+
+       return response()->json(['message' => 'El correo ha sido reenviado correctamente'], 200);
+
+    }
+
+
+    public function verifyEmail(Request $request)
+    {
+        $request->validate([
+           'email' => 'required|email',
+           'pin' => 'required|digits:6',
+       ]);
+
+       $user = User::where('email', $request->email)->first();
+
+       if (!$user) {
+           return response()->json(['error_code' => 'user_not_found', 'message' => 'Usuario no encontrado'], 404);
+       }
+
+       if ($user->pin != $request->pin) {
+           return response()->json(['error_code' => 'invalid_pin', 'message' => 'PIN incorrecto'], 401);
+       }
+
+       // Marcar el correo electrónico como verificado
+       $user->email_verified_at = now();
+       $user->save();
+
+       // Crear un token de acceso
+      $tokenResult = $user->createToken('Personal Access Token');
+       $token = $tokenResult->token;
+
+      if ($request->remember_me) {
+         $token->expires_at = Carbon::now()->addWeeks(1);
+      }
+
+     $token->save();
+
+     return response()->json([
+          'access_token' => $tokenResult->accessToken,
+          'token_type' => 'Bearer',
+           'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
+          'id_usuario' => $user->id,
+           'nombre_usuario' => $user->name,
+          'email_usuario' => $user->email,
+          'rol' => $user->rol
+       ]);
+    }
+
+    public function verifyPassword(Request $request) 
+    {
+        $user = Auth::user();
+
+        if (Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Contraseña correcta'], 200);
+        } else {
+            return response()->json(['error' => 'La contraseña actual es incorrecta. Por favor, inténtalo de nuevo.'], 422);
+        }
+
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'new_password' => 'required|string|min:6',
+        ], [
+            'new_password.min' => 'La contraseña debe tener al menos 6 caracteres.',
+        ]);
+
+        // Obtener el usuario autenticado
+        $user = Auth::user();
+
+        // Actualizar la contraseña del usuario
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response()->json(['message' => '¡La contraseña ha sido cambiada con éxito!'], 200);
+    }
+
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+        'message' => 'Successfully logged out'
+        ]);
+    }
+    /**
+    * Get the authenticated User
+    *
+    * @return [json] user object
+    */
+        public function user(Request $request)
+        {
+        return response()->json($request->user());
+        }
+}

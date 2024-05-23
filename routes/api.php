@@ -31,6 +31,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::group(['middleware' => 'auth:api'], function() {
      Route::get('logout', 'AuthController@logout');
      Route::get('user', 'AuthController@user');
+     Route::post('verifypassword','AuthController@verifyPassword');
+     Route::post('changepassword','AuthController@changePassword');
 
      Route::get("usuario", "Tb_usuarioController@index");
      Route::post("usuario/store", "Tb_usuarioController@store");
