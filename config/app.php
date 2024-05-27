@@ -53,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'redirect_url' => env('REDIRECT_URL', 'http://localhost:4200/#/home'),
 
     'asset_url' => env('ASSET_URL', null),
 
