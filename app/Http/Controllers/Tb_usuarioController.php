@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tb_usuario;
+use App\Models\Tb_ciudad;
+use App\Models\Tb_departamento;
 use App\Models\Tb_usuario_rol;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,15 +25,34 @@ class Tb_usuarioController extends Controller
 
     public function indexOne(Request $request)
     {
-        $users = Tb_usuario::orderBy('id','desc')
-        ->where('tb_usuario.id','=',$request->id)
-        ->get();
-
+        $user = Tb_usuario::find($request->id);
+    
+        if ($user) {
+            $ciudad = null;
+            $departamento = null;
+    
+            if ($user->ciudad) {
+                $ciudad = Tb_ciudad::find($user->ciudad);
+                if ($ciudad) {
+                    $departamento = Tb_departamento::find($ciudad->departamento_id);
+                }
+            }
+    
+            return [
+                'estado' => 'Ok',
+                'user' => $user,
+                'ciudad' => $ciudad,
+                'departamento' => $departamento
+            ];
+        }
+    
         return [
-            'estado' => 'Ok',
-            'users' => $users
+            'estado' => 'Error',
+            'message' => 'Usuario no encontrado'
         ];
     }
+    
+
 
     public function indexUser(Request $request)
     {
@@ -118,36 +139,34 @@ class Tb_usuarioController extends Controller
     }
 
     public function update(Request $request)
-    {
-        //if(!$request->ajax()) return redirect('/');
+{
+    try {
+        $tb_usuario = Tb_usuario::findOrFail($request->id);
+        $tb_usuario->nombre = $request->nombre;
+        $tb_usuario->tipodocumento = $request->tipodocumento;
+        $tb_usuario->documento = $request->documento;
+        $tb_usuario->direccion = $request->direccion;
+        $tb_usuario->telefono = $request->telefono;
+        $tb_usuario->email = $request->email;
+        $tb_usuario->ciudad = $request->ciudad;
+        $tb_usuario->sexo = $request->sexo;
 
-        try {
-            $tb_usuario=Tb_usuario::findOrFail($request->id);
-            $tb_usuario->nombres=$request->nombres;
-            $tb_usuario->apellidos=$request->apellidos;
-            $tb_usuario->documento=$request->documento;
-            $tb_usuario->direccion=$request->direccion;
-            $tb_usuario->telefono=$request->telefono;
-            $tb_usuario->email=$request->email;
-            $tb_usuario->password=$request->password;
-            $tb_usuario->estado='1';
-
-            if ($tb_usuario->save()) {
-                return response()->json([
-                    'estado' => 'Ok',
-                    'message' => 'Usuario actualizado con éxito'
-                   ]);
-            } else {
-                return response()->json([
-                    'estado' => 'Error',
-                    'message' => 'Usuario no pudo ser actualizado'
-                   ]);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+        if ($tb_usuario->save()) {
+            return response()->json([
+                'estado' => 'Ok',
+                'message' => 'Usuario actualizado con éxito'
+            ]);
+        } else {
+            return response()->json([
+                'estado' => 'Error',
+                'message' => 'Usuario no pudo ser actualizado'
+            ], 500);
         }
-
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Ocurrió un error interno'], 500);
     }
+}
+
 
     public function deactivate(Request $request)
     {

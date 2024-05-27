@@ -30,6 +30,18 @@ class Tb_ciudadController extends Controller
         ];
     }
 
+    public function filterByDepartamento(Request $request)
+    {
+        $ciudades = Tb_ciudad::where('departamento_id', $request->departamento_id)
+                             ->orderBy('ciudad', 'asc')
+                             ->get();
+
+        return [
+            'estado' => 'Ok',
+            'ciudades' => $ciudades
+        ];
+    }
+
     public function store(Request $request)
     {
         //if(!$request->ajax()) return redirect('/');
