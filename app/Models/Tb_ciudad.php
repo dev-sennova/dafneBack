@@ -11,4 +11,9 @@ class Tb_ciudad extends Model
     protected $fillable = ['ciudad','estado'];
 
     public $timestamps = false;
+
+    public function departamento()
+    {
+        return $this->belongsTo(Tb_departamento::class);
+    }
 }

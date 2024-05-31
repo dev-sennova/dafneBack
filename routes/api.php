@@ -59,6 +59,15 @@ Route::group(['prefix' => 'auth'], function () {
      Route::put("ciudad/deactivate", "Tb_ciudadController@deactivate");
      Route::put("ciudad/activate", "Tb_ciudadController@activate");
      Route::get("ciudad/selectciudad/{id}", "Tb_ciudadController@indexOne");
+     Route::get('ciudad/filterByDepartamento/{departamento_id}', "Tb_ciudadController@filterByDepartamento");
+
+
+     Route::get('departamento', 'Tb_departamentoController@index');
+     Route::post('departamento/store', 'Tb_departamentoController@store');
+     Route::put('departamento/update', 'Tb_departamentoController@update');
+     Route::put('departamento/deactivate', 'Tb_departamentoController@deactivate');
+     Route::put('departamento/activate', 'Tb_departamentoController@activate');
+     Route::get('departamento/selectdepartamento/{id}', 'Tb_departamentoController@indexOne');
 
      Route::get("bitacora", "Tb_bitacoraController@index");
      Route::post("bitacora/store", "Tb_bitacoraController@store");
