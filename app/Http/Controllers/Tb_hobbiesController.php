@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Tb_hobbies;
 use App\Models\Tb_usuario_hobbies;
+use App\Models\Tb_usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Mail\PendingModeration;
+use Illuminate\Support\Facades\Mail;
+
 
 class Tb_hobbiesController extends Controller
 {
@@ -65,37 +71,65 @@ class Tb_hobbiesController extends Controller
 
     public function store(Request $request)
     {
-        //if(!$request->ajax()) return redirect('/');
-
         try {
-            $tb_hobbies=new Tb_hobbies();
-            $tb_hobbies->hobby=$request->hobby;
-            $tb_hobbies->visibilidad=2;
-            $tb_hobbies->moderacion=0;
-            $tb_hobbies->estado=1;
+            $tb_hobbies = new Tb_hobbies();
+            $tb_hobbies->hobby = $request->hobby;
+            $tb_hobbies->visibilidad = 2;
+            $tb_hobbies->moderacion = 0;
+            $tb_hobbies->estado = 1;
+            $tb_hobbies->created_at = Carbon::now();
 
             if ($tb_hobbies->save()) {
+
                 $idHobbyRecienGuardado = $tb_hobbies->id;
 
-                $tb_usuario_hobbies=new Tb_usuario_hobbies();
-                $tb_usuario_hobbies->idUsuario=$request->idUsuario;
-                $tb_usuario_hobbies->idHobby=$idHobbyRecienGuardado;
-                $tb_usuario_hobbies->save();
+                $tb_usuario_hobbies = new Tb_usuario_hobbies();
+                $tb_usuario_hobbies->idUsuario = $request->idUsuario;
+                $tb_usuario_hobbies->idHobby = $idHobbyRecienGuardado;
 
-                return response()->json([
-                    'estado' => 'Ok',
-                    'message' => 'Hobbie creado con éxito'
-                   ]);
+                if ($tb_usuario_hobbies->save()) {
+                    $usuario = User::find($request->idUsuario);
+                    $usuarioNombre = Tb_usuario::find($request->idUsuario);
+
+                    if ($usuario) {
+                        $nombre = $usuarioNombre ? $usuarioNombre->nombre : 'Usuario desconocido';
+                        $gestor = User::find($usuario->gestor);
+                        if ($gestor) {
+                            $email = $gestor->email;
+
+                            // Enviar correo al orientador (gestor)
+                            $type = 'Nuevo hobbie';
+                            $description = $tb_hobbies->hobby;
+                            $createdAt = $tb_hobbies->created_at;
+                            $expiresAt = $createdAt->copy()->addHours(12);
+
+                            Mail::to($email)->send(new PendingModeration($type, $description, $createdAt, $expiresAt, $nombre));
+
+                            return response()->json([
+                                'estado' => 'Ok',
+                                'message' => 'Hobbie creado con éxito'
+                            ]);
+                        } else {
+                            return response()->json(['error' => 'Gestor no encontrado'], 500);
+                        }
+                    } else {
+                        return response()->json(['error' => 'Usuario no encontrado'], 500);
+                    }
+                } else {
+                    return response()->json([
+                        'estado' => 'Error',
+                        'message' => 'Usuario_hobbies no pudo ser creado'
+                    ]);
+                }
             } else {
                 return response()->json([
                     'estado' => 'Error',
                     'message' => 'Hobbie no pudo ser creado'
-                   ]);
+                ]);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocurrió un error interno'], 500);
+            return response()->json(['error' => 'Ocurrió un error interno: ' . $e->getMessage()], 500);
         }
-
     }
 
     public function update(Request $request)

@@ -24,7 +24,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('hobbies:eliminar-no-moderados')
+        ->everyMinute()
+        ->appendOutputTo(storage_path('logs\laravel.log')); 
+
+        $schedule->command('ideas:eliminar-no-moderados')
+        ->everyMinute()
+        ->appendOutputTo(storage_path('logs\laravel.log')); 
+
+        $schedule->command('criterios:eliminar-no-moderados')
+        ->everyMinute()
+        ->appendOutputTo(storage_path('logs\laravel.log')); 
+
+        $schedule->command('suenos:eliminar-no-moderados')
+        ->everyMinute()
+        ->appendOutputTo(storage_path('logs\laravel.log')); 
+    
     }
 
     /**

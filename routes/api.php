@@ -34,6 +34,20 @@ Route::group(['prefix' => 'auth'], function () {
      Route::post('verifypassword','AuthController@verifyPassword');
      Route::post('changepassword','AuthController@changePassword');
 
+     Route::get('/usuario-hobbies','OrientadorController@getHobbiesDeUsuariosGestionados');
+     Route::post('/actualizar-hobby/{idHobby}','OrientadorController@actualizarEstadoHobby');
+     Route::post('/eliminar-hobby/{idHobby}','OrientadorController@eliminarHobby');
+     Route::get('/usuario-suenos','OrientadorController@getSuenosDeUsuariosGestionados');
+     Route::post('/actualizar-sueno/{idSueno}','OrientadorController@actualizarEstadoSueno');
+     Route::post('/eliminar-sueno/{idSueno}','OrientadorController@eliminarSueno');
+     Route::get('/usuario-ideas','OrientadorController@getIdeasDeUsuariosGestionados');
+     Route::post('/actualizar-idea/{idIdea}','OrientadorController@actualizarEstadoIdea');
+     Route::post('/eliminar-idea/{idIdea}','OrientadorController@eliminarIdea');
+     Route::get('/usuario-criterios','OrientadorController@getCriteriosDeUsuariosGestionados');
+     Route::post('/actualizar-criterio/{idCriterio}','OrientadorController@actualizarEstadoCriterio');
+     Route::post('/eliminar-criterio/{idCriterio}','OrientadorController@eliminarCriterio');
+     Route::get('/obtener-gestor','OrientadorController@getGestorByUserId');
+
      Route::get("usuario", "Tb_usuarioController@index");
      Route::post("usuario/store", "Tb_usuarioController@store");
      Route::put("usuario/update", "Tb_usuarioController@update");
@@ -42,9 +56,12 @@ Route::group(['prefix' => 'auth'], function () {
      Route::get("usuario/selectusuario/{id}", "Tb_usuarioController@indexOne");
      Route::get("usuario/selectemail/{id}", "Tb_usuarioController@indexUser");
      Route::get("usuario/selectemaillogin/{id}", "Tb_usuarioController@indexIdUser");
-     Route::get("usuarioGestor/{idGestor}", "Tb_usuarioController@indexGestor");
+     Route::get("usuarioGestor", "Tb_usuarioController@indexGestor");
      Route::get("usuarioPendientes/{idUsuario}", "Tb_usuarioController@indexPendientes");
      Route::get("countUsuario/{idUsuario}", "Tb_usuarioController@countUsuario");
+     Route::get("orientadores","Tb_usuarioController@indexOrientadores");
+     Route::put("/usuario/{id}/cambiar-gestor","Tb_usuarioController@cambiarGestor");
+     Route::get("/usuarios-gestor","Tb_usuarioController@indexUsuarioGestor");
 
      Route::get("rol", "Tb_rolController@index");
      Route::post("rol/store", "Tb_rolController@store");

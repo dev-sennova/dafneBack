@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Tb_criterios;
 use App\Models\Tb_usuario_criterios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Tb_usuario;
+use App\Mail\PendingModeration;
+use Illuminate\Support\Facades\Mail;
 
 class Tb_criteriosController extends Controller
 {
@@ -64,33 +70,54 @@ class Tb_criteriosController extends Controller
 
     public function store(Request $request)
     {
-        //if(!$request->ajax()) return redirect('/');
-
         try {
-            $tb_criterios=new Tb_criterios();
-            $tb_criterios->criterio=$request->criterio;
-            $tb_criterios->pregunta=$request->pregunta;
-            $tb_criterios->visibilidad=2;
-            $tb_criterios->moderacion=0;
-            $tb_criterios->estado=1;
+            $tb_criterios = new Tb_criterios();
+            $tb_criterios->criterio = $request->criterio;
+            $tb_criterios->pregunta = $request->pregunta;
+            $tb_criterios->visibilidad = 2;
+            $tb_criterios->moderacion = 0;
+            $tb_criterios->estado = 1;
+            $tb_criterios->created_at = Carbon::now();
 
             if ($tb_criterios->save()) {
                 $idCriterioRecienGuardado = $tb_criterios->id;
 
-                $tb_usuario_criterios=new Tb_usuario_criterios();
-                $tb_usuario_criterios->idUsuario=$request->idUsuario;
-                $tb_usuario_criterios->idCriterio=$idCriterioRecienGuardado;
+                $tb_usuario_criterios = new Tb_usuario_criterios();
+                $tb_usuario_criterios->idUsuario = $request->idUsuario;
+                $tb_usuario_criterios->idCriterio = $idCriterioRecienGuardado;
                 $tb_usuario_criterios->save();
 
-                return response()->json([
-                    'estado' => 'Ok',
-                    'message' => 'Criterio creado con éxito'
-                   ]);
+                $usuario = User::find($request->idUsuario);
+                $usuarioNombre = Tb_usuario::find($request->idUsuario);
+
+                if ($usuario) {
+                    $nombre = $usuarioNombre->nombre;
+                    $gestor = User::find($usuario->gestor);
+                    if ($gestor) {
+                        $email = $gestor->email;
+
+                        $type = 'Nuevo criterio';
+                        $description = $tb_criterios->criterio;
+                        $createdAt = $tb_criterios->created_at;
+                        $expiresAt = $createdAt->copy()->addHours(12);
+
+                        Mail::to($email)->send(new PendingModeration($type, $description, $createdAt, $expiresAt, $nombre));
+
+                        return response()->json([
+                            'estado' => 'Ok',
+                            'message' => 'Criterio creado con éxito'
+                        ]);
+                    } else {
+                        return response()->json(['error' => 'Gestor no encontrado'], 500);
+                    }
+                } else {
+                    return response()->json(['error' => 'Usuario no encontrado'], 500);
+                }
             } else {
                 return response()->json([
                     'estado' => 'Error',
                     'message' => 'Criterio no pudo ser creado'
-                   ]);
+                ]);
             }
         } catch (\Exception $e) {
             return response()->json(['error' => 'Ocurrió un error interno'], 500);

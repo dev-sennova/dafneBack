@@ -20,6 +20,8 @@ class CreateTbCriteriosTable extends Migration
             $table->boolean('visibilidad')->default(0); //visibilidad 1 obligatoria, 0 opcional
             $table->boolean('moderacion')->default(0); //moderacion 0 espera, 1 moderado, 2 rechazado
             $table->boolean('estado')->default(1);
+            $table->timestamp('created_at')->nullable(); 
+
         });
     }
 

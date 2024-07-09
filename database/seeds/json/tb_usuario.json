@@ -1,3 +1,5 @@
 [
-  {"id":"1","nombre":"Luis García","tipodocumento":"Cédula","documento":"13514998","direccion":"Av 1 1 1","telefono":"3158572686","ciudad":"Bucaramanga","email":"ljgarcia899@misena.edu.co","sexo":"Masculino","estado":"1"}
+  {"id":"1","nombre":"Luis García","tipodocumento":"Cédula","documento":"13514998","direccion":"Av 1 1 1","telefono":"3158572686","ciudad":"904","email":"ljgarcia899@misena.edu.co","sexo":"Masculino","estado":"1"},
+  {"id":"61","nombre":"Orientador Prueba","tipodocumento":"Cédula","documento":"12345678","direccion":"Av 2 2 2","telefono":"3213421322","ciudad":"904","email":"orientador@correo.co","sexo":"Masculino","estado":"1"}
+
 ]
