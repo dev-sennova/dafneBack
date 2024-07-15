@@ -7,6 +7,20 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Implementacion-Funciones-Rol-Orientador
+09/07/2024
+
+Se implementan las funciones necesarias para el rol de orientador, ahora los hobbies, ideas,criterios y sueños personalizados que ingrese el emprendedor, tendran que ser aceptados por el orientador asociado en un plazo de 12 horas. Se implementan algunas tareas programadas en laravel, las cuales se encargaran de borrar la informacion que no sea regulada por los orientadores despues de las 12 horas. Para que estas tareas se ejecuten automaticamente, al momento de cargar los cambios en produccion se tendra que configurar los cron jobs, por lo general, los pasos para esta configuracion son: 
+
+1. Abrir el archivo cron jobs: comando —> crontab -e
+2. Agregar la siguiente linea al final del archivo: —> * * * * * php /ruta-proyecto/artisan schedule:run >> /dev/null 2>&1
+
+con estos pasos, las tareas programadas en el archivo Kernel.php, deberian quedar funcionando. 
+
+NOTA: "Por el momento, las tareas programadas estan configuradas para ejecutarse cada minuto, el tiempo de intervalo de ejecucion se puede ajustar en el archivo app/console/Kernel.php".
+
+Se implementa tambien el envio de correos, para informar a los orientadores cuando haya informacion pendiente por aceptar.
+
 ## Implementacion-Tabla-Departamento
 
 27/05/2024

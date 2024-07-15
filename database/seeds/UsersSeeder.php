@@ -18,6 +18,7 @@ class UsersSeeder extends Seeder
                 'id' => $item->id,
                 'name' => $item->name,
                 'email' => $item->email,
+                'gestor'=>$item->gestor,
                 'rol' => $item->rol,
                 'password' => $item->password,
                 "pin"=>$item->pin,
