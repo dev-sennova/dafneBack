@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="reset-password-container">
-        <div class="reset-password-title">{{ __('Reestablecer Contraseña') }}</div>
+        <div class="reset-password-title">{{ __('Restablecer Contraseña') }}</div>
 
             <div class="card-body">
                 @if (session('status'))
